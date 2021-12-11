@@ -1,11 +1,12 @@
 package dao;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import lombok.Data;
+
+import javax.persistence.*;
 
 @Entity
+@Table(name = "author")
+@Data
 public class AuthorDAO {
 
     @Id
@@ -14,8 +15,8 @@ public class AuthorDAO {
 
     private String author_name;
 
+    @Column(name = "coauthor_exists")
+    private boolean coAuthorExists;
 
-    public Integer getId() {
-        return id;
-    }
+
 }
