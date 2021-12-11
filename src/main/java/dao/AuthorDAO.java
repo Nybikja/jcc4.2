@@ -14,7 +14,6 @@ public class AuthorDAO {
 
     private String author_name;
 
-    private
 
     public Integer getId() {
         return id;
