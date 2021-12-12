@@ -16,6 +16,6 @@ public class RoleDAO {
 
     private String name;
 
-    @OneToMany(mappedBy = "role", cascade = CascadeType.ALL)
-    private List<UserDAO> users = new ArrayList<>();
+//    @OneToMany(mappedBy = "role", cascade = CascadeType.ALL)
+//    private List<UserDAO> users = new ArrayList<>();
 }

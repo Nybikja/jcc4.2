@@ -14,9 +14,9 @@ public class AuthorDAO {
     private Integer id;
 
     private String author_name;
+    private String author_surname;
 
     @Column(name = "coauthor_exists")
     private boolean coAuthorExists;
-
 
 }

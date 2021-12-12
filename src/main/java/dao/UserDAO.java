@@ -34,7 +34,7 @@ public class UserDAO {
     @Column(name = "role_id")
     int roleId;
 
-    @ManyToOne
-    @JoinColumn(name = "role_id")
-    private RoleDAO role;
+//    @ManyToOne
+//    @JoinColumn(name = "role_id")
+//    private RoleDAO role;
 }
