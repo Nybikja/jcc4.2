@@ -3,17 +3,17 @@ package dao;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.sql.Date;
 
 @Entity
 @Table(name = "rent")
-@Data
+//@Data
 public class RentDAO {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private int userId;
-
-    private int bookId;
+//    private int userId;
+//    private int bookId;
 
     @Basic
     @Column(name = "time_taken")
@@ -26,5 +26,21 @@ public class RentDAO {
     @Basic
     @Column(name = "time_returned")
     private java.sql.Date timeReturned;
+
+    @ManyToOne(
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
+    private UserDAO user;
+
+    @ManyToOne(
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
+    private BookDAO book;
+
+    public RentDAO() {
+    }
+
 
 }
