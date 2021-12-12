@@ -15,8 +15,11 @@ public class AuthorDAO {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String author_name;
-    private String author_surname;
+    @Column(name = "author_name")
+    private String authorName;
+
+    @Column(name = "author_surname")
+    private String authorSurname;
 
     @Column(name = "coauthor_exists")
     private boolean coAuthorExists;
@@ -30,20 +33,20 @@ public class AuthorDAO {
     public AuthorDAO() {
     }
 
-    public String getAuthor_name() {
-        return author_name;
+    public String getAuthorName() {
+        return authorName;
     }
 
-    public void setAuthor_name(String author_name) {
-        this.author_name = author_name;
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
     }
 
-    public String getAuthor_surname() {
-        return author_surname;
+    public String getAuthorSurname() {
+        return authorSurname;
     }
 
-    public void setAuthor_surname(String author_surname) {
-        this.author_surname = author_surname;
+    public void setAuthorSurname(String authorSurname) {
+        this.authorSurname = authorSurname;
     }
 
     public boolean isCoAuthorExists() {
@@ -66,8 +69,8 @@ public class AuthorDAO {
     public String toString() {
         return "AuthorDAO{" +
                 "id=" + id +
-                ", author_name='" + author_name + '\'' +
-                ", author_surname='" + author_surname + '\'' +
+                ", authorName='" + authorName + '\'' +
+                ", authorSurname='" + authorSurname + '\'' +
                 ", coAuthorExists=" + coAuthorExists +
                 '}';
     }

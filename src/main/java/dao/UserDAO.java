@@ -34,9 +34,6 @@ public class UserDAO {
     @Column
     private String password;
 
-//    @Column(name = "role_id")
-//    int roleId;
-
     @ManyToOne(
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY

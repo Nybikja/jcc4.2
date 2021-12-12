@@ -14,6 +14,7 @@ public class RoleDAO {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(name = "Name")
     private String name;
 
     @OneToMany(

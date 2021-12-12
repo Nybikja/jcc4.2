@@ -13,13 +13,8 @@ public class RequestDAO {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
-//    @Column(name = "user_id")
-//    int userId;
-
-//    @Column(name = "book_id")
-//    int bookId;
-
     @Basic
+    @Column
     private java.sql.Date time;
 
     @ManyToOne(
