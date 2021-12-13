@@ -14,4 +14,15 @@ public class RequestDao {
         entityManager.persist(request);
         entityManager.getTransaction().commit();
     }
+
+    public RequestDao() {
+    }
+
+    public EntityManagerFactory getEntityManagerFactory() {
+        return entityManagerFactory;
+    }
+
+    public void setEntityManagerFactory(EntityManagerFactory entityManagerFactory) {
+        this.entityManagerFactory = entityManagerFactory;
+    }
 }
