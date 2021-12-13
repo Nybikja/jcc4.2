@@ -1,3 +1,4 @@
+import models.Request;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import service.BookService;
 import service.UserService;
@@ -9,8 +10,8 @@ public class Main {
         ClassPathXmlApplicationContext container = new ClassPathXmlApplicationContext("classpath:/context.xml");
         BookService bean = container.getBean(BookService.class);
         bean.save("Misto", 10, 0, 0);
-        //UserService bean = container.getBean(UserService.class);
-        //bean.save("petya", "kok", 19, Date.valueOf("2010-12-10"), "koko@gmail.com", "123456");
+//        UserService bean = container.getBean(UserService.class);
+//        bean.save("petya", "kok", 19, Date.valueOf("2010-12-10"), "koko@gmail.com", "123456");
 
 //        EntityManagerFactory factory = Persistence.createEntityManagerFactory("xxx");
 //        EntityManager manager = factory.createEntityManager();

@@ -16,16 +16,16 @@
         </property>
     </bean>
 
-    <bean class="dao.UserDao" id="userDao">
-        <property name="entityManagerFactory" ref="entityManagerFactory"/>
-    </bean>
-    
-<!--    <context:component-scan base-package="java.*"/>-->
+    <context:component-scan base-package="java.*"/>
     <bean class="org.springframework.orm.jpa.JpaTransactionManager" id="transactionManager">
         <property name="entityManagerFactory" ref="entityManagerFactory" />
     </bean>
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
+
+    <bean class="dao.UserDao" id="userDao">
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
+    </bean>
     <bean class="service.UserService" id="userService">
         <property name="userDao" ref="userDao"/>
     </bean>

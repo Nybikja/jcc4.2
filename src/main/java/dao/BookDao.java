@@ -4,14 +4,19 @@ import models.Book;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.transaction.Transactional;
 
 public class BookDao {
 
     private EntityManagerFactory entityManagerFactory;
 
+    //@Transactional
     public void save(Book book){
+
         EntityManager entityManager = entityManagerFactory.createEntityManager();
+        entityManager.getTransaction().begin();
         entityManager.persist(book);
+        entityManager.getTransaction().commit();
     }
 
     public BookDao() {
