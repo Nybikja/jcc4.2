@@ -7,7 +7,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
-import javax.transaction.Transactional;
 import java.util.List;
 
 public class UserDao {
@@ -15,7 +14,9 @@ public class UserDao {
     private EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("xxx");;
     private final EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-    // @Transactional
+    public UserDao() {
+    }
+
     public void save(User user) {
         entityManager.getTransaction().begin();
         entityManager.persist(user);
@@ -32,10 +33,6 @@ public class UserDao {
         TypedQuery<User> query = entityManager.createQuery("from User", User.class);
         List<User> list = query.getResultList();
         System.out.println(list);
-    }
-
-
-    public UserDao() {
     }
 
     public EntityManagerFactory getEntityManagerFactory() {

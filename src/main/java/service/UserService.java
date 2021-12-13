@@ -13,12 +13,16 @@ import java.sql.Date;
 
 public class UserService {
 
-    private UserDao userDao;
-    private final RoleDao roleDao = new RoleDao();
+    private UserDao userDao = new UserDao();
+    private final RoleService roleService = new RoleService();
 
     public void save(String name, String surname, int age, Date sqlDate, String email, String password,int roleId){
-        Role role = roleDao.findById(roleId);
+        Role role = roleService.findById(roleId);
         userDao.save(new User(name, surname, age, sqlDate, email, password, role));
+    }
+
+    public User findById(int id) {
+        return userDao.findById(id);
     }
 
     public void read() {

@@ -23,19 +23,22 @@ public class Rent {
     @Column(name = "time_returned")
     private java.sql.Date timeReturned;
 
-    @ManyToOne(
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
-    )
+    @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToOne(
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
-    )
+    @ManyToOne
+    @JoinColumn(name = "book_id")
     private Book book;
 
     public Rent() {
+    }
+
+    public Rent(User user, Book book, Date timeTaken, Date timeShouldBeReturned) {
+        this.user = user;
+        this.book = book;
+        this.timeTaken = timeTaken;
+        this.timeShouldBeReturned = timeShouldBeReturned;
     }
 
     public Date getTimeTaken() {

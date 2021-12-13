@@ -1,16 +1,14 @@
 package service;
 
-import dao.BookDao;
 import dao.RoleDao;
-import models.Book;
 import models.Role;
 
 public class RoleService {
-    private RoleDao roleDao;
+    private RoleDao roleDao = new RoleDao();
 
-//    public void save(String roleName){
-//        roleDao.save(new Role(roleName));
-//    }
+    public void save(String roleName){
+        roleDao.save(new Role(roleName));
+    }
 
     public void read() {
         roleDao.read();
@@ -23,9 +21,9 @@ public class RoleService {
     public RoleService() {
     }
 
-//    public BookDao getBookDao() {
-//        return bookDao;
-//    }
+    public RoleDao getRoleDao() {
+        return roleDao;
+    }
 
     public void setRoleDao(RoleDao roleDao) {
         this.roleDao = roleDao;

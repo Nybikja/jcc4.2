@@ -13,6 +13,9 @@ public class RoleDao {
     private EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("xxx");;;
     private EntityManager entityManager = entityManagerFactory.createEntityManager();
 
+    public RoleDao() {
+    }
+
     public void save(Role role) {
         entityManager.getTransaction().begin();
         entityManager.persist(role);
@@ -29,9 +32,6 @@ public class RoleDao {
         TypedQuery<Role> query = entityManager.createQuery("from Role", Role.class);
         List<Role> list = query.getResultList();
         System.out.println(list);
-    }
-
-    public RoleDao() {
     }
 
     public EntityManagerFactory getEntityManagerFactory() {

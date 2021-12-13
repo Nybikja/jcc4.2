@@ -5,12 +5,14 @@ import models.Book;
 
 public class BookService {
 
-    private BookDao bookDao;
+    private BookDao bookDao = new BookDao();
 
     public void save(String bookTitle, int amountLeft, int amountGave, int rating){
-        //if (!bookTitle.isEmpty() && amountLeft >= 0 && amountGave >= 0){
-            bookDao.save(new Book(bookTitle, amountLeft, amountGave, rating));
-        //}
+        bookDao.save(new Book(bookTitle, amountLeft, amountGave, rating));
+    }
+
+    public Book findById(int id) {
+        return bookDao.findById(id);
     }
 
     public void read() {

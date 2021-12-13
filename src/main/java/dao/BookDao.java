@@ -1,15 +1,18 @@
 package dao;
 
 import models.Book;
+import models.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
-import javax.transaction.Transactional;
 import java.util.List;
 
 public class BookDao {
+
+    public BookDao() {
+    }
 
     private EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("xxx");
     private EntityManager entityManager = entityManagerFactory.createEntityManager();
@@ -19,16 +22,18 @@ public class BookDao {
         entityManager.getTransaction().commit();
     }
 
+    public Book findById(int id) {
+        Book book = entityManager.createQuery("from Book where id = " + id, Book.class).getSingleResult();
+        System.out.println(book);
+        return book;
+    }
+
     public void read() {
         entityManager.getTransaction().begin();
         TypedQuery<Book> query = entityManager.createQuery("from Book", Book.class);
         List<Book> list = query.getResultList();
         System.out.println(list);
         entityManager.getTransaction().commit();
-    }
-
-
-    public BookDao() {
     }
 
     public EntityManagerFactory getEntityManagerFactory() {

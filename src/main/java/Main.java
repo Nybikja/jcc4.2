@@ -1,6 +1,7 @@
 import models.Request;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import service.BookService;
+import service.RentService;
 import service.UserService;
 
 import java.sql.Date;
@@ -8,11 +9,16 @@ import java.sql.Date;
 public class Main {
     public static void main(String[] args) {
         ClassPathXmlApplicationContext container = new ClassPathXmlApplicationContext("classpath:/context.xml");
-//        BookService bean = container.getBean(BookService.class);
-//        bean.save("Misto", 10, 0, 0);
-        UserService bean = container.getBean(UserService.class);
+        BookService bookBean = container.getBean(BookService.class);
+//        bookBean.save("Misto", 10, 0, 0);
+
+        UserService userBean = container.getBean(UserService.class);
         Date date = new Date(20101012);
-        bean.save("petya", "kok", 19, date, "koko@gmail.com", "123456", 1);
+//        userBean.save("petya", "kok", 19, date, "koko@gmail.com", "123456", 1);
+
+        RentService rentBean = container.getBean(RentService.class);
+//        rentBean.save(5, 6, new Date(20101012), new Date(20104012));
+//        rentBean.setTimeReturned(6);
 
 //        EntityManagerFactory factory = Persistence.createEntityManagerFactory("xxx");
 //        EntityManager manager = factory.createEntityManager();
