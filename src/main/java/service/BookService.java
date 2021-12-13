@@ -13,6 +13,10 @@ public class BookService {
         //}
     }
 
+    public void read() {
+        bookDao.read();
+    }
+
     public BookService() {
     }
 
