@@ -3,18 +3,19 @@ package service;
 import dao.UserDao;
 import models.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
-@Service
+import java.sql.Date;
+
 public class UserService {
 
-    @Autowired
     private UserDao userDao;
 
 
-    public void save(String name){
-        if (!name.isEmpty() && name != null){
-            userDao.save(new User(name));
+    public void save(String name, String surname, int age, Date sqlDate, String email, String password){
+        if (!name.isEmpty()){
+            userDao.save(new User(name, surname, age, sqlDate, email, password));
         }
     }
     public UserService() {

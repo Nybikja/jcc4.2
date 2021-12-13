@@ -33,6 +33,9 @@ public class User {
     @Column
     private String password;
 
+//    @Column(name = "role_id")
+//    private int roleId;
+
     @ManyToOne(
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
@@ -60,6 +63,15 @@ public class User {
         this.name = name;
     }
 
+    public User(String name, String surname, int age, Date sqlDate, String email, String password) {
+        this.name = name;
+        this.surname = surname;
+        this.age = age;
+        this.sqlDate = sqlDate;
+        this.email = email;
+        this.password = password;
+        //this.roleId = roleId;
+    }
 
     public String getName() {
         return name;
@@ -109,6 +121,14 @@ public class User {
         this.password = password;
     }
 
+//    public int getRoleId() {
+//        return roleId;
+//    }
+//
+//    public void setRoleId(int roleId) {
+//        this.roleId = roleId;
+//    }
+
     public Role getRole() {
         return role;
     }
@@ -117,17 +137,19 @@ public class User {
         this.role = role;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", age=" + age +
-                ", sqlDate=" + sqlDate +
-                ", email='" + email + '\'' +
-                '}';
+    public List<Request> getRequest() {
+        return request;
     }
 
+    public void setRequest(List<Request> request) {
+        this.request = request;
+    }
 
+    public List<Rent> getRent() {
+        return rent;
+    }
+
+    public void setRent(List<Rent> rent) {
+        this.rent = rent;
+    }
 }

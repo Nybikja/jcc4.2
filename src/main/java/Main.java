@@ -1,17 +1,13 @@
-import dao.UserDao;
-import models.Request;
-import models.User;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import service.UserService;
 
-import javax.persistence.*;
-import java.util.List;
+import java.sql.Date;
 
 public class Main {
     public static void main(String[] args) {
         ClassPathXmlApplicationContext container = new ClassPathXmlApplicationContext("classpath:/context.xml");
         UserService bean = container.getBean(UserService.class);
-        bean.save("petya");
+        bean.save("petya", "kok", 19, Date.valueOf("2010-12-10"), "koko@gmail.com", "123456");
 
 //        EntityManagerFactory factory = Persistence.createEntityManagerFactory("xxx");
 //        EntityManager manager = factory.createEntityManager();
