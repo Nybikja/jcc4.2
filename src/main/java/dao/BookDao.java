@@ -12,7 +12,7 @@ import java.util.List;
 public class BookDao {
 
     private EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("xxx");;
-    EntityManager entityManager = entityManagerFactory.createEntityManager();
+    private EntityManager entityManager = entityManagerFactory.createEntityManager();
     public void save(Book book){
         entityManager.getTransaction().begin();
         entityManager.persist(book);
