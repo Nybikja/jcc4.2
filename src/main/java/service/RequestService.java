@@ -1,5 +1,6 @@
 package service;
 
+import dao.RequestDao;
 import models.Book;
 import models.Request;
 import models.User;
@@ -8,20 +9,19 @@ import java.util.Date;
 
 public class RequestService {
 
-    private Request request;
+    private RequestDao requestDao;
 
-//    public void save(Date date, User user, Book book){
-//
-//    }
+    public void save(Date date, User user, Book book){
+    }
 
     public RequestService() {
     }
 
-    public Request getRequest() {
-        return request;
+    public RequestDao getRequestDao() {
+        return requestDao;
     }
 
-    public void setRequest(Request request) {
-        this.request = request;
+    public void setRequestDao(RequestDao requestDao) {
+        this.requestDao = requestDao;
     }
 }

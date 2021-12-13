@@ -30,6 +30,12 @@ public class Request {
     public Request() {
     }
 
+    public Request(Date time, User user, Book book) {
+        this.time = time;
+        this.user = user;
+        this.book = book;
+    }
+
     public Date getTime() {
         return time;
     }
