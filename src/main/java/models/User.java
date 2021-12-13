@@ -33,14 +33,15 @@ public class User {
     @Column
     private String password;
 
-//    @Column(name = "role_id")
-//    private int roleId;
+    @Column(name = "role_id")
+    private int roleId;
 
-    @ManyToOne(
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
-    )
-    private Role role;
+//    @ManyToOne(
+//            cascade = CascadeType.ALL,
+//            fetch = FetchType.LAZY
+//    )
+//    @JoinColumn(name = "id_role", nullable = false)
+//    private Role role;
 
     @OneToMany(
             mappedBy = "user",
@@ -59,18 +60,14 @@ public class User {
     public User() {
     }
 
-    public User(String name){
-        this.name = name;
-    }
-
-    public User(String name, String surname, int age, Date sqlDate, String email, String password) {
+    public User(String name, String surname, int age, Date sqlDate, String email, String password, int roleId) {
         this.name = name;
         this.surname = surname;
         this.age = age;
         this.sqlDate = sqlDate;
         this.email = email;
         this.password = password;
-        //this.roleId = roleId;
+        this.roleId = roleId;
     }
 
     public String getName() {
@@ -121,21 +118,21 @@ public class User {
         this.password = password;
     }
 
-//    public int getRoleId() {
-//        return roleId;
+    public int getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(int roleId) {
+        this.roleId = roleId;
+    }
+
+//    public Role getRole() {
+//        return role;
 //    }
 //
-//    public void setRoleId(int roleId) {
-//        this.roleId = roleId;
+//    public void setRole(Role role) {
+//        this.role = role;
 //    }
-
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
-    }
 
     public List<Request> getRequest() {
         return request;
@@ -153,3 +150,4 @@ public class User {
         this.rent = rent;
     }
 }
+

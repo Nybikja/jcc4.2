@@ -53,7 +53,6 @@ public class Book {
         this.amountLeft = amountLeft;
         this.amountGave = amountGave;
         this.rating = rating;
-        this.id = id;
     }
 
     public String getBookTitle() {
