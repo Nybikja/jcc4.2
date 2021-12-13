@@ -3,25 +3,25 @@ package dao;
 import models.Book;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import javax.persistence.EntityManagerFactory;
 
 public class BookDao {
 
-    @PersistenceContext
-    private EntityManager entityManager;
+    private EntityManagerFactory entityManagerFactory;
 
     public void save(Book book){
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.persist(book);
     }
 
     public BookDao() {
     }
 
-    public EntityManager getEntityManager() {
-        return entityManager;
+    public EntityManagerFactory getEntityManagerFactory() {
+        return entityManagerFactory;
     }
 
-    public void setEntityManager(EntityManager entityManager) {
-        this.entityManager = entityManager;
+    public void setEntityManagerFactory(EntityManagerFactory entityManagerFactory) {
+        this.entityManagerFactory = entityManagerFactory;
     }
 }

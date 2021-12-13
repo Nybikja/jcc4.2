@@ -48,6 +48,13 @@ public class Book {
     public Book() {
     }
 
+    public Book(String bookTitle, int amountLeft, int amountGave, int rating) {
+        this.bookTitle = bookTitle;
+        this.amountLeft = amountLeft;
+        this.amountGave = amountGave;
+        this.rating = rating;
+    }
+
     public String getBookTitle() {
         return bookTitle;
     }

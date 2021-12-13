@@ -1,4 +1,5 @@
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import service.BookService;
 import service.UserService;
 
 import java.sql.Date;
@@ -6,7 +7,9 @@ import java.sql.Date;
 public class Main {
     public static void main(String[] args) {
         ClassPathXmlApplicationContext container = new ClassPathXmlApplicationContext("classpath:/context.xml");
-        UserService bean = container.getBean(UserService.class);
+        BookService bean = container.getBean(BookService.class);
+        bean.save("Misto", 10, 0, 0);
+        //UserService bean = container.getBean(UserService.class);
         //bean.save("petya", "kok", 19, Date.valueOf("2010-12-10"), "koko@gmail.com", "123456");
 
 //        EntityManagerFactory factory = Persistence.createEntityManagerFactory("xxx");
