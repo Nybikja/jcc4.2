@@ -1,15 +1,14 @@
-package dao;
+package models;
 
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-import lombok.*;
 @Entity
 @Table(name = "user")
 //@Data
-public class UserDAO {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,25 +37,28 @@ public class UserDAO {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    private RoleDAO role;
+    private Role role;
 
     @OneToMany(
             mappedBy = "user",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    private List<RequestDAO> request = new ArrayList<>();
+    private List<Request> request = new ArrayList<>();
 
     @OneToMany(
             mappedBy = "user",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    private List<RentDAO> rent = new ArrayList<>();
+    private List<Rent> rent = new ArrayList<>();
 
-    public UserDAO() {
+    public User() {
     }
 
+    public User(String name){
+        this.name = name;
+    }
 
 
     public String getName() {
@@ -107,17 +109,17 @@ public class UserDAO {
         this.password = password;
     }
 
-    public RoleDAO getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(RoleDAO role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 
     @Override
     public String toString() {
-        return "UserDAO{" +
+        return "User{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +

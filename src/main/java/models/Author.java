@@ -1,6 +1,4 @@
-package dao;
-
-import lombok.Data;
+package models;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -9,7 +7,7 @@ import java.util.List;
 @Entity
 @Table(name = "author")
 //@Data
-public class AuthorDAO {
+public class Author {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,9 +26,9 @@ public class AuthorDAO {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    private List<BookDAO> books = new ArrayList<>();
+    private List<Book> books = new ArrayList<>();
 
-    public AuthorDAO() {
+    public Author() {
     }
 
     public String getAuthorName() {
@@ -57,17 +55,17 @@ public class AuthorDAO {
         this.coAuthorExists = coAuthorExists;
     }
 
-    public List<BookDAO> getBooks() {
+    public List<Book> getBooks() {
         return books;
     }
 
-    public void setBooks(List<BookDAO> books) {
+    public void setBooks(List<Book> books) {
         this.books = books;
     }
 
     @Override
     public String toString() {
-        return "AuthorDAO{" +
+        return "Author{" +
                 "id=" + id +
                 ", authorName='" + authorName + '\'' +
                 ", authorSurname='" + authorSurname + '\'' +

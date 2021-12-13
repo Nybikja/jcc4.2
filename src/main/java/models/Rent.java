@@ -1,6 +1,4 @@
-package dao;
-
-import lombok.Data;
+package models;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -8,7 +6,7 @@ import java.sql.Date;
 @Entity
 @Table(name = "rent")
 //@Data
-public class RentDAO {
+public class Rent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -29,15 +27,15 @@ public class RentDAO {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    private UserDAO user;
+    private User user;
 
     @ManyToOne(
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    private BookDAO book;
+    private Book book;
 
-    public RentDAO() {
+    public Rent() {
     }
 
     public Date getTimeTaken() {
@@ -64,25 +62,25 @@ public class RentDAO {
         this.timeReturned = timeReturned;
     }
 
-    public UserDAO getUser() {
+    public User getUser() {
         return user;
     }
 
-    public void setUser(UserDAO user) {
+    public void setUser(User user) {
         this.user = user;
     }
 
-    public BookDAO getBook() {
+    public Book getBook() {
         return book;
     }
 
-    public void setBook(BookDAO book) {
+    public void setBook(Book book) {
         this.book = book;
     }
 
     @Override
     public String toString() {
-        return "RentDAO{" +
+        return "Rent{" +
                 "id=" + id +
                 ", timeTaken=" + timeTaken +
                 ", timeShouldBeReturned=" + timeShouldBeReturned +

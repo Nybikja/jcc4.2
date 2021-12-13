@@ -1,6 +1,4 @@
-package dao;
-
-import lombok.Data;
+package models;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -9,7 +7,7 @@ import java.util.List;
 @Entity
 @Table(name = "role")
 //@Data
-public class RoleDAO {
+public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -22,9 +20,9 @@ public class RoleDAO {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    private List<UserDAO> users = new ArrayList<>();
+    private List<User> users = new ArrayList<>();
 
-    public RoleDAO() {
+    public Role() {
     }
 
     public String getName() {
@@ -35,17 +33,17 @@ public class RoleDAO {
         this.name = name;
     }
 
-    public List<UserDAO> getUsers() {
+    public List<User> getUsers() {
         return users;
     }
 
-    public void setUsers(List<UserDAO> users) {
+    public void setUsers(List<User> users) {
         this.users = users;
     }
 
     @Override
     public String toString() {
-        return "RoleDAO{" +
+        return "Role{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';

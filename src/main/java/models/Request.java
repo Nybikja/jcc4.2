@@ -1,6 +1,4 @@
-package dao;
-
-import lombok.Data;
+package models;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -8,7 +6,7 @@ import java.sql.Date;
 @Entity
 @Table(name = "request")
 //@Data
-public class RequestDAO {
+public class Request {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
@@ -21,15 +19,15 @@ public class RequestDAO {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    private UserDAO user;
+    private User user;
 
     @ManyToOne(
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    private BookDAO book;
+    private Book book;
 
-    public RequestDAO() {
+    public Request() {
     }
 
     public Date getTime() {
@@ -40,25 +38,25 @@ public class RequestDAO {
         this.time = time;
     }
 
-    public UserDAO getUser() {
+    public User getUser() {
         return user;
     }
 
-    public void setUser(UserDAO user) {
+    public void setUser(User user) {
         this.user = user;
     }
 
-    public BookDAO getBook() {
+    public Book getBook() {
         return book;
     }
 
-    public void setBook(BookDAO book) {
+    public void setBook(Book book) {
         this.book = book;
     }
 
     @Override
     public String toString() {
-        return "RequestDAO{" +
+        return "Request{" +
                 "id=" + id +
                 ", time=" + time +
                 '}';

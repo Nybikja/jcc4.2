@@ -1,6 +1,4 @@
-package dao;
-
-import lombok.Data;
+package models;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -9,7 +7,7 @@ import java.util.List;
 @Entity
 @Table(name = "book")
 //@Data
-public class BookDAO {
+public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -31,23 +29,23 @@ public class BookDAO {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    private List<RequestDAO> request = new ArrayList<>();
+    private List<Request> request = new ArrayList<>();
 
     @OneToMany(
             mappedBy = "book",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    private List<RentDAO> rent = new ArrayList<>();
+    private List<Rent> rent = new ArrayList<>();
 
     @ManyToMany(
             mappedBy = "books",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    private List<AuthorDAO> authors = new ArrayList<>();
+    private List<Author> authors = new ArrayList<>();
 
-    public BookDAO() {
+    public Book() {
     }
 
     public String getBookTitle() {
@@ -82,25 +80,25 @@ public class BookDAO {
         this.rating = rating;
     }
 
-    public List<RequestDAO> getRequest() {
+    public List<Request> getRequest() {
         return request;
     }
 
-    public void setRequest(List<RequestDAO> request) {
+    public void setRequest(List<Request> request) {
         this.request = request;
     }
 
-    public List<AuthorDAO> getAuthors() {
+    public List<Author> getAuthors() {
         return authors;
     }
 
-    public void setAuthors(List<AuthorDAO> authors) {
+    public void setAuthors(List<Author> authors) {
         this.authors = authors;
     }
 
     @Override
     public String toString() {
-        return "BookDAO{" +
+        return "Book{" +
                 "id=" + id +
                 ", bookTitle='" + bookTitle + '\'' +
                 ", amountLeft=" + amountLeft +
