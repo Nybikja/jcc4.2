@@ -10,7 +10,6 @@ public class UserDao {
 
     private EntityManagerFactory entityManagerFactory;
 
-    // @Transactional
     public void save(User user) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();

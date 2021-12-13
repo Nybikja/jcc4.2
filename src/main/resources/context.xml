@@ -36,4 +36,11 @@
     <bean class="service.BookService" id="bookService">
         <property name="bookDao" ref="bookDao"/>
     </bean>
+
+    <bean class="dao.RequestDao" id="requestDao">
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
+    </bean>
+    <bean class="service.RequestService" id="requestService">
+        <property name="requestDao" ref="requestDao"/>
+    </bean>
 </beans>

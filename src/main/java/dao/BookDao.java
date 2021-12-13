@@ -4,7 +4,6 @@ import models.Book;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.transaction.Transactional;
 
 public class BookDao {
 

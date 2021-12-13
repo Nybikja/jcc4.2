@@ -33,8 +33,8 @@ public class User {
     @Column
     private String password;
 
-//    @Column(name = "role_id")
-//    private int roleId;
+    @Column(name = "role_id")
+    private int roleId;
 
     @ManyToOne(
             cascade = CascadeType.ALL,
@@ -60,14 +60,14 @@ public class User {
     public User() {
     }
 
-    public User(String name, String surname, int age, Date sqlDate, String email, String password) {
+    public User(String name, String surname, int age, Date sqlDate, String email, String password, int roleId) {
         this.name = name;
         this.surname = surname;
         this.age = age;
         this.sqlDate = sqlDate;
         this.email = email;
         this.password = password;
-        //this.roleId = roleId;
+        this.roleId = roleId;
     }
 
     public String getName() {
@@ -118,13 +118,13 @@ public class User {
         this.password = password;
     }
 
-//    public int getRoleId() {
-//        return roleId;
-//    }
-//
-//    public void setRoleId(int roleId) {
-//        this.roleId = roleId;
-//    }
+    public int getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(int roleId) {
+        this.roleId = roleId;
+    }
 
     public Role getRole() {
         return role;
