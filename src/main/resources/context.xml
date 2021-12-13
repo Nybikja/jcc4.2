@@ -43,4 +43,11 @@
     <bean class="service.RequestService" id="requestService">
         <property name="requestDao" ref="requestDao"/>
     </bean>
+
+    <bean class="dao.RoleDao" id="roleDao">
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
+    </bean>
+    <bean class="service.RoleService" id="roleService">
+        <property name="roleDao" ref="roleDao"/>
+    </bean>
 </beans>

@@ -1,6 +1,8 @@
 package service;
 
+import dao.RoleDao;
 import dao.UserDao;
+import models.Role;
 import models.User;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,13 +14,17 @@ import java.sql.Date;
 public class UserService {
 
     private UserDao userDao;
+    private final RoleDao roleDao = new RoleDao();
 
-
-    public void save(String name, String surname, int age, Date sqlDate, String email, String password, int roleId){
-        //if (!name.isEmpty() && !surname.isEmpty() && age > 0 && sqlDate.equals(Date.class) && !email.isEmpty() && !password.isEmpty()){
-            userDao.save(new User(name, surname, age, sqlDate, email, password, roleId));
-        //}
+    public void save(String name, String surname, int age, Date sqlDate, String email, String password,int roleId){
+        Role role = roleDao.findById(roleId);
+        userDao.save(new User(name, surname, age, sqlDate, email, password, role));
     }
+
+    public void read() {
+        userDao.read();
+    }
+
     public UserService() {
     }
 

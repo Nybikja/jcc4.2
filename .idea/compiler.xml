@@ -11,5 +11,8 @@
         <module name="HybernateIMPL" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="HybernateIMPL" target="15" />
+    </bytecodeTargetLevel>
   </component>
 </project>
