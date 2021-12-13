@@ -8,11 +8,11 @@ import java.sql.Date;
 public class Main {
     public static void main(String[] args) {
         ClassPathXmlApplicationContext container = new ClassPathXmlApplicationContext("classpath:/context.xml");
-        BookService bean = container.getBean(BookService.class);
-        bean.save("Misto", 10, 0, 0);
-//        UserService bean = container.getBean(UserService.class);
-//        Date date = new Date(20101012);
-//        bean.save("petya", "kok", 19, date, "koko@gmail.com", "123456", 1);
+//        BookService bean = container.getBean(BookService.class);
+//        bean.save("Misto", 10, 0, 0);
+        UserService bean = container.getBean(UserService.class);
+        Date date = new Date(20101012);
+        bean.save("petya", "kok", 19, date, "koko@gmail.com", "123456");
 
 //        EntityManagerFactory factory = Persistence.createEntityManagerFactory("xxx");
 //        EntityManager manager = factory.createEntityManager();
