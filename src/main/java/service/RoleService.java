@@ -12,9 +12,9 @@ public class RoleService {
 //        roleDao.save(new Role(roleName));
 //    }
 
-//    public void read() {
-//        roleDao.read();
-//    }
+    public void read() {
+        roleDao.read();
+    }
 
     public Role findById(int id) {
         return roleDao.findById(id);
