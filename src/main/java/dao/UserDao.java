@@ -13,7 +13,6 @@ public class UserDao {
 
     private EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("xxx");;
     private final EntityManager entityManager = entityManagerFactory.createEntityManager();
-
     public UserDao() {
     }
 

@@ -9,7 +9,7 @@ import java.util.List;
 //@Data
 public class Role {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
 //    @Column(name = "id_role")
@@ -23,7 +23,7 @@ public class Role {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    //@JoinColumn(name = "id_role")
+    //@JoinColumn(name = "role_id")
     private List<User> users = new ArrayList<>();
 
     public Role() {
