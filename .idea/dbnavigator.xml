@@ -24,7 +24,11 @@
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
     <show-object-properties value="true" />
-    <loaded-nodes />
+    <loaded-nodes>
+      <connection connection-id="dc1b63fa-7168-4843-97ef-24e0dbab104b">
+        <schema name="mydb" object-types="table, view, procedure, function, constraint, index, column, dataset trigger" />
+      </connection>
+    </loaded-nodes>
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="dc1b63fa-7168-4843-97ef-24e0dbab104b">
@@ -32,13 +36,27 @@
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files />
+    <open-files>
+      <object connection-id="dc1b63fa-7168-4843-97ef-24e0dbab104b" object-ref="schemas/mydb/tables/book" />
+      <object connection-id="dc1b63fa-7168-4843-97ef-24e0dbab104b" object-ref="schemas/mydb/tables/user" />
+    </open-files>
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="dc1b63fa-7168-4843-97ef-24e0dbab104b" />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
-    <filter-actions connection-id="dc1b63fa-7168-4843-97ef-24e0dbab104b" dataset="mydb.author" active-filter-id="" />
+    <filter-actions connection-id="dc1b63fa-7168-4843-97ef-24e0dbab104b" dataset="mydb.role" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="dc1b63fa-7168-4843-97ef-24e0dbab104b" dataset="mydb.rent" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="dc1b63fa-7168-4843-97ef-24e0dbab104b" dataset="mydb.user" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="dc1b63fa-7168-4843-97ef-24e0dbab104b" dataset="mydb.request" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="dc1b63fa-7168-4843-97ef-24e0dbab104b" dataset="mydb.author_book" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="dc1b63fa-7168-4843-97ef-24e0dbab104b" dataset="mydb.book" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="dc1b63fa-7168-4843-97ef-24e0dbab104b" dataset="mydb.authors_name" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="dc1b63fa-7168-4843-97ef-24e0dbab104b" dataset="mydb.author" active-filter-id="EMPTY_FILTER">
+      <filter id="312e68dc-179b-48ff-b8d2-a0e387c2be44" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND">
+        <condition column="id" operator="=" value="" active="true" />
+      </filter>
+    </filter-actions>
   </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />

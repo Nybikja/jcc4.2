@@ -16,11 +16,11 @@ public class Main {
         RentService rentBean = container.getBean(RentService.class);
         RoleService roleBean = container.getBean(RoleService.class);
 
-//        bookBean.save("Misto", 10, 0, 0);
+        //bookBean.save("Misto", 10, 0, 0);
 
 
         Date date = new Date(20101012);
-//        userBean.save("petya", "kok", 19, date, "koko@gmail.com", "123456", 1);
+        //userBean.save("petya", "kok", 19, date, "koko@gmail.com", "123456", 1);
 
 //        rentBean.save(5, 6, new Date(20101012), new Date(20104012));
 
@@ -35,7 +35,7 @@ public class Main {
         rentBean.read();
         rentBean.findRentByBookId(2);
         rentBean.findRentByUserId(2);
-        rentBean.findRentByIds(5, 6);
+        rentBean.findRentByIds(1, 2);
 
 //        AuthorService authorBean = container.getBean(AuthorService.class);
 //        authorBean.setAuthorToBook(3, 2);

@@ -1,6 +1,7 @@
 package dao;
 
 import models.Rent;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -9,7 +10,7 @@ import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import java.sql.Date;
 import java.util.List;
-
+@Repository
 public class RentDao {
     private EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("xxx");;
     private final EntityManager entityManager = entityManagerFactory.createEntityManager();

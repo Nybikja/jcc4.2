@@ -4,11 +4,12 @@ import dao.RentDao;
 import models.Book;
 import models.Rent;
 import models.User;
+import org.springframework.stereotype.Service;
 
 
 import java.sql.Date;
 
-
+@Service
 public class RentService {
     private RentDao rentDao = new RentDao();
     private final UserService userService = new UserService();
