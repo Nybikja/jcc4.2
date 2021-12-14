@@ -8,13 +8,14 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
+
 public class BookDao {
 
     public BookDao() {
     }
 
     private EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("xxx");
-    private EntityManager entityManager = entityManagerFactory.createEntityManager();
+    private final EntityManager entityManager = entityManagerFactory.createEntityManager();
     public void save(Book book){
         entityManager.getTransaction().begin();
         entityManager.persist(book);
@@ -22,12 +23,14 @@ public class BookDao {
     }
 
     public Book findById(int id) {
+        System.out.println("Find book by id");
         Book book = entityManager.createQuery("from Book where id = " + id, Book.class).getSingleResult();
         System.out.println(book);
         return book;
     }
 
     public void read() {
+        System.out.println("Get all books");
         entityManager.getTransaction().begin();
         TypedQuery<Book> query = entityManager.createQuery("from Book", Book.class);
         List<Book> list = query.getResultList();

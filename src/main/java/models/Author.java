@@ -6,7 +6,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "author")
-//@Data
 public class Author {
 
     @Id
@@ -20,7 +19,7 @@ public class Author {
     private String authorSurname;
 
     @Column(name = "coauthor_exists")
-    private boolean coAuthorExists;
+    private int coAuthorExists;
 
     @ManyToMany(
             cascade = CascadeType.ALL,
@@ -29,6 +28,12 @@ public class Author {
     private List<Book> books = new ArrayList<>();
 
     public Author() {
+    }
+
+    public Author(String authorName, String authorSurname, int coAuthorExists) {
+        this.authorName = authorName;
+        this.authorSurname = authorSurname;
+        this.coAuthorExists = coAuthorExists;
     }
 
     public String getAuthorName() {
@@ -47,11 +52,11 @@ public class Author {
         this.authorSurname = authorSurname;
     }
 
-    public boolean isCoAuthorExists() {
+    public int isCoAuthorExists() {
         return coAuthorExists;
     }
 
-    public void setCoAuthorExists(boolean coAuthorExists) {
+    public void setCoAuthorExists(int coAuthorExists) {
         this.coAuthorExists = coAuthorExists;
     }
 
@@ -65,11 +70,11 @@ public class Author {
 
     @Override
     public String toString() {
-        return "Author{" +
+        return "\n Author{" +
                 "id=" + id +
                 ", authorName='" + authorName + '\'' +
                 ", authorSurname='" + authorSurname + '\'' +
                 ", coAuthorExists=" + coAuthorExists +
-                '}';
+                '}' + "\n";
     }
 }

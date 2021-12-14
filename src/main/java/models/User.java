@@ -7,7 +7,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "user")
-//@Data
 public class User {
 
     @Id
@@ -32,9 +31,6 @@ public class User {
 
     @Column
     private String password;
-
-//    @Column(name = "role_id")
-//    private int roleId;
 
     @ManyToOne
     @JoinColumn(name = "role_id")
@@ -115,14 +111,6 @@ public class User {
         this.password = password;
     }
 
-//    public int getRoleId() {
-//        return roleId;
-//    }
-//
-//    public void setRoleId(int roleId) {
-//        this.roleId = roleId;
-//    }
-
     public Role getRole() {
         return role;
     }
@@ -145,6 +133,21 @@ public class User {
 
     public void setRent(List<Rent> rent) {
         this.rent = rent;
+    }
+
+    @Override
+    public String toString() {
+        return "\n User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", age=" + age +
+                ", sqlDate=" + sqlDate +
+                ", email='" + email + '\'' +
+                ", role=" + role.getName() +
+                ", request=" + request +
+                ", rents=" + rent +
+                '}' + "\n";
     }
 }
 

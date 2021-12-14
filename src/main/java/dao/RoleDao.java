@@ -22,12 +22,14 @@ public class RoleDao {
     }
 
     public Role findById(int id) {
+        System.out.println("Find role by id");
         Role role = entityManager.createQuery("from Role where id = " + id, Role.class).getSingleResult();
         System.out.println(role);
         return role;
     }
 
     public void read() {
+        System.out.println("Get all roles");
         TypedQuery<Role> query = entityManager.createQuery("from Role", Role.class);
         List<Role> list = query.getResultList();
         System.out.println(list);

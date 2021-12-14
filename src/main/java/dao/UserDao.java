@@ -22,12 +22,14 @@ public class UserDao {
     }
 
     public User findById(int id) {
+        System.out.println("Find user by id");
         User user = entityManager.createQuery("from User where id = " + id, User.class).getSingleResult();
         System.out.println(user);
         return user;
     }
 
     public void read() {
+        System.out.println("Get all users");
         TypedQuery<User> query = entityManager.createQuery("from User", User.class);
         List<User> list = query.getResultList();
         System.out.println(list);

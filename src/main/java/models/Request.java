@@ -5,7 +5,6 @@ import java.sql.Date;
 
 @Entity
 @Table(name = "request")
-//@Data
 public class Request {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -62,9 +61,9 @@ public class Request {
 
     @Override
     public String toString() {
-        return "Request{" +
+        return "\n Request{" +
                 "id=" + id +
                 ", time=" + time +
-                '}';
+                '}' + "\n";
     }
 }

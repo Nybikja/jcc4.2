@@ -37,12 +37,12 @@
         <property name="bookDao" ref="bookDao"/>
     </bean>
 
-<!--    <bean class="dao.RequestDao" id="requestDao">-->
-<!--        <property name="entityManagerFactory" ref="entityManagerFactory"/>-->
-<!--    </bean>-->
-<!--    <bean class="service.RequestService" id="requestService">-->
-<!--        <property name="requestDao" ref="requestDao"/>-->
-<!--    </bean>-->
+    <bean class="dao.RequestDao" id="requestDao">
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
+    </bean>
+    <bean class="service.RequestService" id="requestService">
+        <property name="requestDao" ref="requestDao"/>
+    </bean>
 
     <bean class="dao.RoleDao" id="roleDao">
         <property name="entityManagerFactory" ref="entityManagerFactory"/>
@@ -57,4 +57,11 @@
     <bean class="service.RentService" id="rentService">
         <property name="rentDao" ref="rentDao"/>
     </bean>
+
+<!--    <bean class="dao.AuthorDao" id="authorDao">-->
+<!--        <property name="entityManagerFactory" ref="entityManagerFactory"/>-->
+<!--    </bean>-->
+<!--    <bean class="service.AuthorService" id="authorService">-->
+<!--        <property name="authorDao" ref="authorDao"/>-->
+<!--    </bean>-->
 </beans>

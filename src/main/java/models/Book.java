@@ -6,7 +6,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "book")
-//@Data
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -105,12 +104,12 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Book{" +
+        return "\n Book{" +
                 "id=" + id +
                 ", bookTitle='" + bookTitle + '\'' +
                 ", amountLeft=" + amountLeft +
                 ", amountGave=" + amountGave +
                 ", rating=" + rating +
-                '}';
+                '}' + "\n";
     }
 }

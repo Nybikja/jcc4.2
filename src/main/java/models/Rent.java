@@ -5,7 +5,6 @@ import java.sql.Date;
 
 @Entity
 @Table(name = "rent")
-//@Data
 public class Rent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -83,11 +82,11 @@ public class Rent {
 
     @Override
     public String toString() {
-        return "Rent{" +
+        return "\n Rent{" +
                 "id=" + id +
                 ", timeTaken=" + timeTaken +
                 ", timeShouldBeReturned=" + timeShouldBeReturned +
                 ", timeReturned=" + timeReturned +
-                '}';
+                '}' + "\n";
     }
 }

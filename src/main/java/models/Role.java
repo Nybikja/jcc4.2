@@ -6,14 +6,10 @@ import java.util.List;
 
 @Entity
 @Table(name = "role")
-//@Data
 public class Role {
     @Id
     //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
-//    @Column(name = "id_role")
-//    private int idRole;
 
     @Column(name = "Name")
     private String name;
@@ -23,7 +19,6 @@ public class Role {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    //@JoinColumn(name = "role_id")
     private List<User> users = new ArrayList<>();
 
     public Role() {
@@ -50,20 +45,11 @@ public class Role {
         this.users = users;
     }
 
-//    public int getRoleId() {
-//        return idRole;
-//    }
-//
-//    public void setRoleId(int roleId) {
-//        this.idRole = roleId;
-//    }
-
     @Override
     public String toString() {
-        return "Role{" +
+        return "\n Role{" +
                 "id=" + id +
-              //  ", roleId=" + idRole +
                 ", name='" + name + '\'' +
-                '}';
+                '}' + "\n";
     }
 }

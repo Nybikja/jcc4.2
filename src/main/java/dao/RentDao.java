@@ -24,10 +24,9 @@ public class RentDao {
     }
 
     public void findRentByIds(int userId, int bookId) {
+        System.out.println("Find rent by user id and book id");
         Rent rent = entityManager.createQuery("from Rent where user_id = " + userId + "and book_id = " + bookId,
                 Rent.class).getSingleResult();;
-//        entityManager.persist(rent);
-//        entityManager.getTransaction().commit();
         System.out.println(rent);
     }
 
@@ -35,6 +34,7 @@ public class RentDao {
     void update(Date date, int rentId) {
         entityManager.createQuery("update Rent set time_returned = " + date + " where id = "
                 + rentId).executeUpdate();
+//        entityManager.merge()
         Rent rent = findById(rentId);
         entityManager.persist(rent);
         entityManager.getTransaction().commit();
@@ -46,25 +46,29 @@ public class RentDao {
         update(date, rentId);
     }
 
-    public void findRequestsByBookId(int bookId) {
+    public void findRentByBookId(int bookId) {
+        System.out.println("find rents by book id");
         TypedQuery<Rent> query = entityManager.createQuery("from Rent where book_id = " + bookId, Rent.class);
         List<Rent> list = query.getResultList();
         System.out.println(list);
     }
 
-    public void findRequestsByUserId(int userId) {
+    public void findRentByUserId(int userId) {
+        System.out.println("find rents by user id");
         TypedQuery<Rent> query = entityManager.createQuery("from Rent where user_id = " + userId, Rent.class);
         List<Rent> list = query.getResultList();
         System.out.println(list);
     }
 
     public Rent findById(int id) {
+        System.out.println("find rent by id");
         Rent rent = entityManager.createQuery("from Rent where id = " + id, Rent.class).getSingleResult();
         System.out.println(rent);
         return rent;
     }
 
     public void read() {
+        System.out.println("Get all rents");
         TypedQuery<Rent> query = entityManager.createQuery("from Rent", Rent.class);
         List<Rent> list = query.getResultList();
         System.out.println(list);

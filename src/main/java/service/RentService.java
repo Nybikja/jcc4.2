@@ -29,10 +29,10 @@ public class RentService {
         rentDao.setTimeReturned(rentId);
     }
 
-    public void findRequestsByUserId(int userId) { rentDao.findRequestsByUserId(userId); }
+    public void findRentByUserId(int userId) { rentDao.findRentByUserId(userId); }
 
-    public void findRequestsByBookId(int bookId) {
-        rentDao.findRequestsByBookId(bookId);
+    public void findRentByBookId(int bookId) {
+        rentDao.findRentByBookId(bookId);
     }
 
     public void read() {
