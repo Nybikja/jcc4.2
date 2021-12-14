@@ -1,15 +1,13 @@
 package service;
 
 import dao.RentDao;
-import dao.UserDao;
 import models.Book;
 import models.Rent;
-import models.Role;
 import models.User;
 
 
 import java.sql.Date;
-import java.text.SimpleDateFormat;
+
 
 public class RentService {
     private RentDao rentDao = new RentDao();
@@ -25,12 +23,16 @@ public class RentService {
         rentDao.save((new Rent(user, book, timeTaken, timeShouldBeReturned)));
     }
 
-//    public void setTimeReturned(int rentId) {
-//        rentDao.setTimeReturned(rentId);
-//    }
+    public void findRentByIds(int userId, int bookId) { rentDao.findRentByIds(userId, bookId); }
 
-    public void findRequestsByUserId(int userId) {
-        rentDao.findRequestsByUserId(userId);
+    public void setTimeReturned(int rentId) {
+        rentDao.setTimeReturned(rentId);
+    }
+
+    public void findRequestsByUserId(int userId) { rentDao.findRequestsByUserId(userId); }
+
+    public void findRequestsByBookId(int bookId) {
+        rentDao.findRequestsByBookId(bookId);
     }
 
     public void read() {

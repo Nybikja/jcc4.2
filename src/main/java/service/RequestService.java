@@ -2,7 +2,6 @@ package service;
 
 import dao.RequestDao;
 import models.Book;
-import models.Request;
 import models.User;
 
 import java.util.Date;

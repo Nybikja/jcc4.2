@@ -1,7 +1,6 @@
 package dao;
 
 import models.Rent;
-import models.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -24,20 +23,34 @@ public class RentDao {
         entityManager.getTransaction().commit();
     }
 
-//    @Transactional
-//    void update(Date date, int rentId) {
-//        entityManager.createQuery("update Rent set time_returned = " + date + " where id = "
-//                + rentId).executeUpdate();
-//        Rent rent = findById(rentId);
+    public void findRentByIds(int userId, int bookId) {
+        Rent rent = entityManager.createQuery("from Rent where user_id = " + userId + "and book_id = " + bookId,
+                Rent.class).getSingleResult();;
 //        entityManager.persist(rent);
 //        entityManager.getTransaction().commit();
-//    }
-//
-//    public void setTimeReturned(int rentId) {
-//        Date date = new Date(20101012);
-//        findById(rentId).setTimeReturned(date);
-//        update(date, rentId);
-//    }
+        System.out.println(rent);
+    }
+
+    @Transactional
+    void update(Date date, int rentId) {
+        entityManager.createQuery("update Rent set time_returned = " + date + " where id = "
+                + rentId).executeUpdate();
+        Rent rent = findById(rentId);
+        entityManager.persist(rent);
+        entityManager.getTransaction().commit();
+    }
+
+    public void setTimeReturned(int rentId) {
+        Date date = new Date(20101012);
+        findById(rentId).setTimeReturned(date);
+        update(date, rentId);
+    }
+
+    public void findRequestsByBookId(int bookId) {
+        TypedQuery<Rent> query = entityManager.createQuery("from Rent where book_id = " + bookId, Rent.class);
+        List<Rent> list = query.getResultList();
+        System.out.println(list);
+    }
 
     public void findRequestsByUserId(int userId) {
         TypedQuery<Rent> query = entityManager.createQuery("from Rent where user_id = " + userId, Rent.class);

@@ -4,7 +4,10 @@ import service.BookService;
 import service.RentService;
 import service.UserService;
 
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class Main {
     public static void main(String[] args) {
@@ -18,6 +21,7 @@ public class Main {
 
         RentService rentBean = container.getBean(RentService.class);
 //        rentBean.save(5, 6, new Date(20101012), new Date(20104012));
+        rentBean.findRentByIds(5, 6);
 //        rentBean.setTimeReturned(6);
 
 //        EntityManagerFactory factory = Persistence.createEntityManagerFactory("xxx");

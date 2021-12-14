@@ -1,6 +1,5 @@
 package dao;
 
-import models.Role;
 import models.User;
 
 import javax.persistence.EntityManager;

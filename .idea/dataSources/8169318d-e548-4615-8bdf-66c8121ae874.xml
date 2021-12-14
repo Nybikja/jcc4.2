@@ -948,294 +948,288 @@ SELECT|sys.sys_config
     </table>
     <table id="297" parent="11" name="authors_name"/>
     <table id="298" parent="11" name="book"/>
-    <table id="299" parent="11" name="hibernate_sequence">
-      <Engine>MyISAM</Engine>
-    </table>
-    <table id="300" parent="11" name="rent"/>
-    <table id="301" parent="11" name="request"/>
-    <table id="302" parent="11" name="role"/>
-    <table id="303" parent="11" name="user"/>
-    <column id="304" parent="295" name="id">
+    <table id="299" parent="11" name="rent"/>
+    <table id="300" parent="11" name="request"/>
+    <table id="301" parent="11" name="role"/>
+    <table id="302" parent="11" name="user"/>
+    <column id="303" parent="295" name="id">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="305" parent="295" name="author_name">
+    <column id="304" parent="295" name="author_name">
       <Position>2</Position>
       <DataType>varchar(45)|0s</DataType>
     </column>
-    <column id="306" parent="295" name="author_surname">
+    <column id="305" parent="295" name="author_surname">
       <Position>3</Position>
       <DataType>varchar(45)|0s</DataType>
     </column>
-    <column id="307" parent="295" name="coauthor_exists">
+    <column id="306" parent="295" name="coauthor_exists">
       <Position>4</Position>
       <DataType>tinyint|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="308" parent="295" name="PRIMARY">
+    <key id="307" parent="295" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="309" parent="296" name="authors_id">
+    <column id="308" parent="296" name="authors_id">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="310" parent="296" name="books_id">
+    <column id="309" parent="296" name="books_id">
       <Position>2</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="311" parent="296" name="FKnu2ccuylp5920vv0cf34siunq">
+    <index id="310" parent="296" name="FKnu2ccuylp5920vv0cf34siunq">
       <ColNames>authors_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="312" parent="296" name="FKbm698lop6rq0k6w0avng8kcex">
+    <index id="311" parent="296" name="FKbm698lop6rq0k6w0avng8kcex">
       <ColNames>books_id</ColNames>
       <Type>btree</Type>
     </index>
-    <column id="313" parent="297" name="book_id">
+    <column id="312" parent="297" name="book_id">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="314" parent="297" name="author_id">
+    <column id="313" parent="297" name="author_id">
       <Position>2</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="315" parent="297" name="fk_book_has_author_book1_idx">
+    <index id="314" parent="297" name="fk_book_has_author_book1_idx">
       <ColNames>book_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="316" parent="297" name="fk_book_has_author_author1_idx">
+    <index id="315" parent="297" name="fk_book_has_author_author1_idx">
       <ColNames>author_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="317" parent="297" name="PRIMARY">
+    <key id="316" parent="297" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>book_id
 author_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="318" parent="297" name="fk_book_has_author_book1">
+    <foreign-key id="317" parent="297" name="fk_book_has_author_book1">
       <ColNames>book_id</ColNames>
       <RefTableName>book</RefTableName>
       <RefColNames>id</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <foreign-key id="319" parent="297" name="fk_book_has_author_author1">
+    <foreign-key id="318" parent="297" name="fk_book_has_author_author1">
       <ColNames>author_id</ColNames>
       <RefTableName>author</RefTableName>
       <RefColNames>id</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="320" parent="298" name="id">
-      <Position>1</Position>
-      <DataType>int|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="321" parent="298" name="book_title">
-      <Position>2</Position>
-      <DataType>varchar(45)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="322" parent="298" name="amount_left">
-      <Position>3</Position>
-      <DataType>int|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="323" parent="298" name="amount_gave">
-      <Position>4</Position>
-      <DataType>int|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="324" parent="298" name="rating">
-      <Position>5</Position>
-      <DataType>int|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <key id="325" parent="298" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="326" parent="299" name="next_val">
-      <Position>1</Position>
-      <DataType>bigint|0s</DataType>
-    </column>
-    <column id="327" parent="300" name="user_id">
-      <Position>1</Position>
-      <DataType>int|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="328" parent="300" name="book_id">
-      <Position>2</Position>
-      <DataType>int|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="329" parent="300" name="time_taken">
-      <Position>3</Position>
-      <DataType>datetime|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="330" parent="300" name="time_should_be_returned">
-      <Position>4</Position>
-      <DataType>datetime|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="331" parent="300" name="time_returned">
-      <Position>5</Position>
-      <DataType>datetime|0s</DataType>
-    </column>
-    <column id="332" parent="300" name="id">
-      <Position>6</Position>
-      <DataType>int|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <index id="333" parent="300" name="fk_user_has_book_user1_idx">
-      <ColNames>user_id</ColNames>
-      <Type>btree</Type>
-    </index>
-    <index id="334" parent="300" name="fk_user_has_book_book1_idx">
-      <ColNames>book_id</ColNames>
-      <Type>btree</Type>
-    </index>
-    <key id="335" parent="300" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>user_id
-book_id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <foreign-key id="336" parent="300" name="fk_user_has_book_user1">
-      <ColNames>user_id</ColNames>
-      <RefTableName>user</RefTableName>
-      <RefColNames>id</RefColNames>
-    </foreign-key>
-    <foreign-key id="337" parent="300" name="fk_user_has_book_book1">
-      <ColNames>book_id</ColNames>
-      <RefTableName>book</RefTableName>
-      <RefColNames>id</RefColNames>
-      <OnDelete>cascade</OnDelete>
-    </foreign-key>
-    <column id="338" parent="301" name="id">
+    <column id="319" parent="298" name="id">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="339" parent="301" name="user_id">
+    <column id="320" parent="298" name="book_title">
       <Position>2</Position>
-      <DataType>int|0s</DataType>
+      <DataType>varchar(45)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="340" parent="301" name="book_id">
+    <column id="321" parent="298" name="amount_left">
       <Position>3</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="341" parent="301" name="time">
+    <column id="322" parent="298" name="amount_gave">
+      <Position>4</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="323" parent="298" name="rating">
+      <Position>5</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="324" parent="298" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="325" parent="299" name="id">
+      <Position>1</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="326" parent="299" name="user_id">
+      <Position>2</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="327" parent="299" name="book_id">
+      <Position>3</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="328" parent="299" name="time_taken">
+      <Position>4</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="329" parent="299" name="time_should_be_returned">
+      <Position>5</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="330" parent="299" name="time_returned">
+      <Position>6</Position>
+      <DataType>datetime|0s</DataType>
+    </column>
+    <index id="331" parent="299" name="fk_user_has_book_user1_idx">
+      <ColNames>user_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="332" parent="299" name="fk_user_has_book_book1_idx">
+      <ColNames>book_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="333" parent="299" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="334" parent="299" name="fk_user_has_book_user1">
+      <ColNames>user_id</ColNames>
+      <RefTableName>user</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="335" parent="299" name="fk_user_has_book_book1">
+      <ColNames>book_id</ColNames>
+      <RefTableName>book</RefTableName>
+      <RefColNames>id</RefColNames>
+      <OnDelete>cascade</OnDelete>
+    </foreign-key>
+    <column id="336" parent="300" name="id">
+      <Position>1</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="337" parent="300" name="user_id">
+      <Position>2</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="338" parent="300" name="book_id">
+      <Position>3</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="339" parent="300" name="time">
       <Position>4</Position>
       <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="342" parent="301" name="fk_request_user1_idx">
+    <index id="340" parent="300" name="fk_request_user1_idx">
       <ColNames>user_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="343" parent="301" name="fk_request_book1_idx">
+    <index id="341" parent="300" name="fk_request_book1_idx">
       <ColNames>book_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="344" parent="301" name="PRIMARY">
+    <key id="342" parent="300" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id
 user_id
 book_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="345" parent="301" name="fk_request_user1">
+    <foreign-key id="343" parent="300" name="fk_request_user1">
       <ColNames>user_id</ColNames>
       <RefTableName>user</RefTableName>
       <RefColNames>id</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <foreign-key id="346" parent="301" name="fk_request_book1">
+    <foreign-key id="344" parent="300" name="fk_request_book1">
       <ColNames>book_id</ColNames>
       <RefTableName>book</RefTableName>
       <RefColNames>id</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="347" parent="302" name="id">
+    <column id="345" parent="301" name="id">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="348" parent="302" name="name">
+    <column id="346" parent="301" name="name">
       <Position>2</Position>
       <DataType>varchar(45)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="349" parent="302" name="PRIMARY">
+    <key id="347" parent="301" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="350" parent="303" name="id">
+    <column id="348" parent="302" name="id">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="351" parent="303" name="Name">
+    <column id="349" parent="302" name="Name">
       <Position>2</Position>
       <DataType>varchar(45)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="352" parent="303" name="Surname">
+    <column id="350" parent="302" name="Surname">
       <Position>3</Position>
       <DataType>varchar(45)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="353" parent="303" name="age">
+    <column id="351" parent="302" name="age">
       <Position>4</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="354" parent="303" name="date_registered">
+    <column id="352" parent="302" name="date_registered">
       <Position>5</Position>
       <DataType>datetime|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="355" parent="303" name="email">
+    <column id="353" parent="302" name="email">
       <Position>6</Position>
       <DataType>varchar(45)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="356" parent="303" name="password">
+    <column id="354" parent="302" name="password">
       <Position>7</Position>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="357" parent="303" name="role_id">
+    <column id="355" parent="302" name="role_id">
       <Position>8</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="358" parent="303" name="fk_user_role_idx">
+    <index id="356" parent="302" name="fk_user_role_idx">
       <ColNames>role_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="359" parent="303" name="PRIMARY">
+    <key id="357" parent="302" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id
 role_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="360" parent="303" name="fk_user_role">
+    <foreign-key id="358" parent="302" name="fk_user_role">
       <ColNames>role_id</ColNames>
       <RefTableName>role</RefTableName>
       <RefColNames>id</RefColNames>
