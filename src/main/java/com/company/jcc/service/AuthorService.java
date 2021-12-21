@@ -3,6 +3,7 @@ package com.company.jcc.service;
 
 
 import com.company.jcc.model.Author;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 

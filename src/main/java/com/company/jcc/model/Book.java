@@ -54,6 +54,10 @@ public class Book {
         this.rating = rating;
     }
 
+    public int getId() {
+        return id;
+    }
+
     public String getBookTitle() {
         return bookTitle;
     }

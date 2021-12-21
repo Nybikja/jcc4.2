@@ -54,26 +54,19 @@ public class UserController {
         return "update_user";
     }
 //
-//    @PostMapping("/{id}/update")
-//    public String update(Model model, @ModelAttribute("user") User user, @PathVariable(name = "id") int id) {
-//        User oldUser = userService.readById(user.getId());
-//        System.out.println(user);
-//        user.setRole(oldUser.getRole());
-//        model.addAttribute("roles", roleService.getAll());
-//        user.setRole(oldUser.getRole());
-//        userService.update(user);
-//        return "redirect:/users/" + user.getId() + "/read";
-//    }
+//
 
     @PostMapping("/{id}/update")
     public String update(@PathVariable(name = "id") int id, @RequestParam String name,
                          @RequestParam String surname,
-                         @RequestParam String password) {
+                         @RequestParam() String password,
+                         @RequestParam String email) {
         User user = userService.readById(id);
         System.out.println(user);
         user.setName(name);
         user.setSurname(surname);
-        if(password != null){
+        user.setEmail(email);
+        if (password != null) {
             user.setPassword(password);
         }
         userService.update(user);

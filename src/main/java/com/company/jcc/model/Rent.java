@@ -89,4 +89,8 @@ public class Rent {
                 ", timeReturned=" + timeReturned +
                 '}' + "\n";
     }
+
+    public int getId() {
+        return id;
+    }
 }

@@ -3,10 +3,12 @@ package com.company.jcc.service.impl;
 import com.company.jcc.model.Request;
 import com.company.jcc.repository.RequestRepository;
 import com.company.jcc.service.RequestService;
+import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
+@Service
 public class RequestServiceImpl implements RequestService {
     private final RequestRepository requestRepository;
 
