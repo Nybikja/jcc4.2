@@ -33,10 +33,11 @@ public class BookRepository {
         return book;
     }
 
-//    @Override
-//    public Book readById(int id) {
-//        return null;
-//    }
+
+    @Transactional
+    public void update(String newTitle, int id){
+        entityManager.setProperty(newTitle, );
+    }
 //
 //    @Override
 //    public Book update(Book book) {
