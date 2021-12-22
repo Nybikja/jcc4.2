@@ -27,6 +27,12 @@ public class BookRepository {
         return query.getResultList();
     }
 
+    @Transactional
+    public Book readById(int id){
+        Book book = entityManager.createQuery("from Book where id = " + id, Book.class).getSingleResult();
+        return book;
+    }
+
 //    @Override
 //    public Book readById(int id) {
 //        return null;

@@ -36,6 +36,11 @@ public class BookServiceImpl implements BookService {
         bookRepository.create(book);
     }
 
+    @Override
+    public Book readById(int id) {
+        return bookRepository.readById(id);
+    }
+
 
 //    @Override
 //    public Book readById(int id) {

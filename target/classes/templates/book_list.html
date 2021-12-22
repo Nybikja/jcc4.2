@@ -19,6 +19,7 @@
     <br>
     <table border="1">
         <tr>
+            <th>Num.</th>
             <th>Id</th>
             <th>Book title</th>
             <th>Amount left</th>
@@ -26,16 +27,30 @@
             <th>Rating</th>
         </tr>
         <tr th:each="book, iStat: ${books}">
-            <td th:text="${iStat.index + 1}"></td>
-            <td th:text="${book.id}"></td>
+            <td>
+                <p th:text="${iStat.index + 1}"></p>
+            </td>
+            <td>
+                <p th:text="${book.id}"></p>
+            </td>
             <td>
                 <a th:href="@{|/books/${book.id}/read|}" th:text="${book.bookTitle}"></a>
-<!--            </td>-->
-<!--                <a th:href="@{|/users/${user.id}/update|}">Edit</a>-->
-<!--            </td>-->
-<!--            <td>-->
-<!--                <a th:href="@{|/users/${user.id}/delete|}">Remove</a>-->
-<!--            </td>-->
+            </td>
+            <td>
+                <p th:text="${book.amountLeft}"></p>
+            </td>
+            <td>
+                <p th:text="${book.amountGave}"></p>
+            </td>
+            <td>
+                <p th:text="${book.rating}"></p>
+            </td>
+            <td>
+                <a th:href="@{|/books/${book.id}/update|}">Edit</a>
+            </td>
+            <td>
+                <a th:href="@{|/books/${book.id}/delete|}">Remove</a>
+            </td>
         </tr>
     </table>
 </div>
