@@ -44,8 +44,9 @@ public class BookRepository {
     @Transactional
     public void delete(int id) {
         Query query =  entityManager.createQuery("delete from Book where id = " + id);
-//        entityManager.remove(readById(id));
-
+        //Book book = readById(id);
+        //entityManager.persist(readById(id));
+        entityManager.remove(readById(id));
     }
 
 

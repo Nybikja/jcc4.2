@@ -116,4 +116,12 @@ public class Book {
                 ", rating=" + rating +
                 '}' + "\n";
     }
+
+    public List<Rent> getRent() {
+        return rent;
+    }
+
+    public void setRent(List<Rent> rent) {
+        this.rent = rent;
+    }
 }
