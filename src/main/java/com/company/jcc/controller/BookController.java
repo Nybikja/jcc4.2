@@ -3,6 +3,7 @@ package com.company.jcc.controller;
 import com.company.jcc.model.Book;
 import com.company.jcc.model.User;
 import com.company.jcc.service.BookService;
+import com.company.jcc.service.impl.BookServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/books")
 public class BookController {
 
-    private BookService bookService;
+    private BookServiceImpl bookService;
 
 
     @GetMapping("/create")
@@ -29,7 +30,7 @@ public class BookController {
 
     @GetMapping("/all")
     public String getAll(Model model) {
-        //model.addAttribute("books", bookService.getAll());
+        model.addAttribute("books", bookService.getAll());
         return "book_list";
     }
 
@@ -40,7 +41,7 @@ public class BookController {
         return bookService;
     }
 
-    public void setBookService(BookService bookService) {
+    public void setBookService(BookServiceImpl bookService) {
         this.bookService = bookService;
     }
 }
