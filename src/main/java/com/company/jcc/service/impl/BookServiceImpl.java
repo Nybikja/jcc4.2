@@ -37,11 +37,9 @@ public class BookServiceImpl implements BookService {
     }
 
 
-//    @Override
-//    public Book readById(int id) {
-//        return bookRepository.findById(id).orElseThrow(
-//                () -> new EntityNotFoundException("Book with id " + id + " not found"));
-//    }
+    public Book readById(int id) {
+        return bookRepository.readById(id);
+    }
 //
 //    @Override
 //    public Book update(Book book) {

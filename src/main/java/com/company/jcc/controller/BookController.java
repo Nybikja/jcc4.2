@@ -30,6 +30,12 @@ public class BookController {
         return "redirect:/books/all";
     }
 
+    @GetMapping("/{id}/read")
+    public String read(@PathVariable int id, Model model) {
+        model.addAttribute("book", bookService.readById(id));
+        return "book_info";
+    }
+
     @GetMapping("/all")
     public String getAll(Model model) {
         model.addAttribute("books", bookService.getAll());
