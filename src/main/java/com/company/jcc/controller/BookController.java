@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/books")
 public class BookController {
 
-    private BookService bookService;
+    private BookServiceImpl bookService;
 
 //    @GetMapping("/create")
 //    public String create(Book book) {
@@ -45,18 +45,18 @@ public class BookController {
 
     @GetMapping("/all")
     public String getAll(Model model) {
-        //model.addAttribute("book", bookService.getAll());
+        model.addAttribute("book", bookService.getAll());
         return "book_list";
     }
 
     public BookController() {
     }
 
-    public BookService getBookService() {
+    public BookServiceImpl getBookService() {
         return bookService;
     }
 
-    public void setBookService(BookService bookService) {
+    public void setBookService(BookServiceImpl bookService) {
         this.bookService = bookService;
     }
 }
