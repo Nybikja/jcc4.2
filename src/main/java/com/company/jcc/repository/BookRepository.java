@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import java.util.List;
@@ -27,32 +28,19 @@ public class BookRepository {
         return query.getResultList();
     }
 
-    @Transactional
-    public Book readById(int id){
-        Book book = entityManager.createQuery("from Book where id = " + id, Book.class).getSingleResult();
-        return book;
+    public Book readById(int id) {
+        Query query = entityManager.createQuery("from Book where id = " + id);
+        return (Book) query.getSingleResult();
     }
 
-
-    @Transactional
-    public void update(String newTitle, int id){
-        entityManager.setProperty(newTitle, );
+    public Book update(Book book) {
+        return null;
     }
-//
-//    @Override
-//    public Book update(Book book) {
-//        return null;
-//    }
-//
-//    @Override
-//    public void delete(int id) {
-//
-//    }
-//
-//    @Override
-//    public List<Book> getAll() {
-//        return null;
-//    }
+
+    public void delete(int id) {
+
+    }
+
 
     public BookRepository() {
     }
