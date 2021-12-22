@@ -24,8 +24,7 @@ public class BookRepository {
     @Transactional
     public List<Book> getAll(){
         TypedQuery<Book> query = entityManager.createQuery("from Book", Book.class);
-        List<Book> list = query.getResultList();
-        return list;
+        return query.getResultList();
     }
 
 //    @Override
