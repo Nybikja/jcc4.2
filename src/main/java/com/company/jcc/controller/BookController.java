@@ -42,6 +42,13 @@ public class BookController {
         return "book_list";
     }
 
+    @GetMapping("/{id}/delete")
+    public String delete(@PathVariable("id") int id) {
+        bookService.delete(id);
+        return "redirect:/books/all";
+    }
+
+
     public BookController() {
     }
 
