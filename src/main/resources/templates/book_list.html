@@ -27,9 +27,9 @@
         </tr>
         <tr th:each="book, iStat: ${books}">
             <td th:text="${iStat.index + 1}"></td>
-            <td th:text="${user.id}"></td>
+            <td th:text="${book.id}"></td>
             <td>
-                <a th:href="@{|/books/${book.id}/read|}" th:text="${book.name}"></a>
+                <a th:href="@{|/books/${book.id}/read|}" th:text="${book.title}"></a>
             </td>
                 <a th:href="@{|/users/${user.id}/update|}">Edit</a>
             </td>
