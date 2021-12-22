@@ -26,7 +26,7 @@ public class BookController {
 
     @PostMapping("/create")
     public String create(@Validated @ModelAttribute("book") Book book) {
-        //bookService.create(book);
+        bookService.create(book);
         return "redirect:/books/all";
     }
 
