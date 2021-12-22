@@ -30,7 +30,7 @@ public class RentController {
     @GetMapping("/create")
     public String create(Model model) {
         model.addAttribute("rent", new Rent());
-        model.addAttribute("books", bookService.getAll());
+        //model.addAttribute("books", bookService.getAll());
         model.addAttribute("users", userService.getAll());
         return "create_rent";
     }
@@ -43,7 +43,7 @@ public class RentController {
         int day = LocalDate.now().getDayOfMonth();
         int month = LocalDate.now().getMonthValue();
         int year = LocalDate.now().getYear();
-        rent.setBook(bookService.readById(bookId));
+        //rent.setBook(bookService.readById(bookId));
         rent.setUser(userService.readById(userId));
         java.util.Date utilDate = new java.util.Date();
         rent.setTimeTaken(new java.sql.Date(utilDate.getTime()));

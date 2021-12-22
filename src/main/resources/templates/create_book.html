@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New Book registration</title>
+</head>
+<body>
+<div class="header">
+    <a href="/books/all">books</a> |
+</div>
+
+<div layout:fragment="content" style="margin: 0 auto; width: max-content">
+    <h2>New Book registration</h2>
+    <form th:action="@{/books/create}" th:object="${book}" method="post">
+        <table>
+            <tr>
+                <td>
+                    <label for="book-title">Book title:</label>
+                </td>
+                <td>
+                    <input type="text" th:field="*{name}" id="book-title" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Register" />
+                    <input type="reset" value="Clear" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>
