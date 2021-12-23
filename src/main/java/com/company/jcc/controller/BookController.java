@@ -49,7 +49,7 @@ public class BookController {
     }
 
     @GetMapping("/{id}/update")
-    public String update(@PathVariable int id, Model model) {
+    public String update(@PathVariable("id") int id, Model model) {
         Book book = bookService.readById(id);
         model.addAttribute("book", book);
         System.out.println(book + "get method");
@@ -57,7 +57,7 @@ public class BookController {
     }
 
     @PostMapping("/{id}/update")
-    public String update(@PathVariable(name = "id") int id, @RequestParam String bookTitle,
+    public String update(@PathVariable("id") int id, @RequestParam String bookTitle,
                          @RequestParam int amountLeft,
                          @RequestParam int amountGave,
                          @RequestParam int rating) {
@@ -67,7 +67,8 @@ public class BookController {
         book.setAmountLeft(amountLeft);
         book.setAmountGave(amountGave);
         book.setRating(rating);
-        bookService.update(book);
+        if (book != null)
+            bookService.update(book);
         return "redirect:/books/" + id + "/read";
     }
 
