@@ -4,10 +4,7 @@ import com.company.jcc.model.Book;
 import com.company.jcc.model.User;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
 import javax.transaction.Transactional;
 import java.util.List;
 
@@ -34,12 +31,18 @@ public class UserRepository {
     }
 
     @Transactional
+    public User update(User user) {
+        return entityManager.merge(user);
+    }
+
+    @Transactional
     public void delete(int id) {
         entityManager.remove(findById(id));
     }
 
     public User findByEmail(String email) {
-        return null;
+        Query query = entityManager.createQuery("from User where email = " + email);
+        return (User) query.getSingleResult();
     }
 
 }
