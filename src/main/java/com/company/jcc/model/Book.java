@@ -23,12 +23,12 @@ public class Book {
     @Column
     private int rating;
 
-    @OneToMany(
-            mappedBy = "book",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
-    )
-    private List<AuthorName> authorNames = new ArrayList<>();
+//    @OneToMany(
+//            mappedBy = "book",
+//            cascade = CascadeType.ALL,
+//            fetch = FetchType.LAZY
+//    )
+//    private List<AuthorName> authorNames = new ArrayList<>();
 
 //
 //    @OneToMany(

@@ -21,12 +21,12 @@ public class Author {
     @Column(name = "coauthor_exists")
     private int coAuthorExists;
 
-    @OneToMany(
-            mappedBy = "author",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
-    )
-    private List<AuthorName> authorNames = new ArrayList<>();
+//    @OneToMany(
+//            mappedBy = "author",
+//            cascade = CascadeType.ALL,
+//            fetch = FetchType.LAZY
+//    )
+//    private List<AuthorName> authorNames = new ArrayList<>();
 
     public Author() {
     }
