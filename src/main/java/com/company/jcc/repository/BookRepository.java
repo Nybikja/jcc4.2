@@ -34,21 +34,16 @@ public class BookRepository {
         return (Book) query.getSingleResult();
     }
 
-//    @Transactional
-//    public Book update(Book book, String newTitle) {
-//        TypedQuery<Book> query = entityManager.createQuery("update Book set book_title = " + newTitle + "where id = 1", Book.class);
-//        System.out.println(query.getSingleResult());
-//        return query.getSingleResult();
-//    }
+    @Transactional
+    public Book update(Book book) {
+        return entityManager.merge(book);
+    }
 
     @Transactional
     public void delete(int id) {
         Query query =  entityManager.createQuery("delete from Book where id = " + id);
-        //Book book = readById(id);
-        //entityManager.persist(readById(id));
         entityManager.remove(readById(id));
     }
-
 
     public BookRepository() {
     }
