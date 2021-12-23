@@ -36,4 +36,14 @@ public class BookServiceImpl implements BookService {
     public Book readById(int id) {
         return bookRepository.readById(id);
     }
+
+    @Override
+    public Book update(Book book) {
+        return bookRepository.update(book);
+    }
+
+    @Override
+    public void delete(int id) {
+        bookRepository.delete(id);
+    }
 }
