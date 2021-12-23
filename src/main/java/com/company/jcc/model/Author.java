@@ -21,11 +21,7 @@ public class Author {
     @Column(name = "coauthor_exists")
     private int coAuthorExists;
 
-    @ManyToMany(
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
-    )
-    private List<Book> books = new ArrayList<>();
+
 
     public Author() {
     }
@@ -34,6 +30,10 @@ public class Author {
         this.authorName = authorName;
         this.authorSurname = authorSurname;
         this.coAuthorExists = coAuthorExists;
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     public String getAuthorName() {
@@ -58,14 +58,6 @@ public class Author {
 
     public void setCoAuthorExists(int coAuthorExists) {
         this.coAuthorExists = coAuthorExists;
-    }
-
-    public List<Book> getBooks() {
-        return books;
-    }
-
-    public void setBooks(List<Book> books) {
-        this.books = books;
     }
 
     @Override

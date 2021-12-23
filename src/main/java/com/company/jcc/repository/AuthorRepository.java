@@ -1,33 +1,59 @@
 package com.company.jcc.repository;
 
 import com.company.jcc.model.Author;
+import com.company.jcc.model.Book;
 import com.company.jcc.service.AuthorService;
+import org.springframework.stereotype.Repository;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
 import java.util.List;
 
-public class AuthorRepository implements AuthorService {
-    @Override
+@Repository
+public class AuthorRepository {
+    @PersistenceContext
+    private EntityManager entityManager;
+
+    @Transactional
     public Author create(Author author) {
-        return null;
+        entityManager.persist(author);
+        return author;
     }
 
-    @Override
+    @Transactional
+    public List<Author> getAll(){
+        TypedQuery<Author> query = entityManager.createQuery("from Author", Author.class);
+        return query.getResultList();
+    }
+
+    @Transactional
     public Author readById(int id) {
-        return null;
+        Query query = entityManager.createQuery("from Author where id = " + id);
+        return (Author) query.getSingleResult();
     }
 
-    @Override
+    @Transactional
     public Author update(Author author) {
         return null;
     }
 
-    @Override
+    @Transactional
     public void delete(int id) {
-
+        Query query =  entityManager.createQuery("delete from Author where id = " + id);
+        entityManager.remove(readById(id));
     }
 
-    @Override
-    public List<Author> getAll() {
-        return null;
+    public AuthorRepository() {
+    }
+
+    public EntityManager getEntityManager() {
+        return entityManager;
+    }
+
+    public void setEntityManager(EntityManager entityManager) {
+        this.entityManager = entityManager;
     }
 }

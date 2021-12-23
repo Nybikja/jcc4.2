@@ -22,7 +22,6 @@ public class BookServiceImpl implements BookService {
         this.bookRepository = bookRepository;
     }
 
-
     @Override
     public List<Book> getAll() {
         return bookRepository.getAll();
@@ -38,20 +37,8 @@ public class BookServiceImpl implements BookService {
         return bookRepository.readById(id);
     }
 
-//
-//    @Override
-//    public Book update(Book book, String newTitle) {
-//        return bookRepository.update(book, newTitle);
-////        }
-//    }
-
     @Override
     public void delete(int id) {
         bookRepository.delete(id);
     }
-//
-//    @Override
-//    public List<Book> getAll() {
-//        return bookRepository.findAll();
-//    }
 }

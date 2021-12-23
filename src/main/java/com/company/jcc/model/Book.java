@@ -23,26 +23,26 @@ public class Book {
     @Column
     private int rating;
 
-    @OneToMany(
-            mappedBy = "book",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
-    )
-    private List<Request> request = new ArrayList<>();
+//    @OneToMany(
+//            mappedBy = "book",
+//            cascade = CascadeType.ALL,
+//            fetch = FetchType.LAZY
+//    )
+//    private List<Request> request = new ArrayList<>();
+//
+//    @OneToMany(
+//            mappedBy = "book",
+//            cascade = CascadeType.ALL,
+//            fetch = FetchType.LAZY
+//    )
+//    private List<Rent> rent = new ArrayList<>();
 
-    @OneToMany(
-            mappedBy = "book",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
-    )
-    private List<Rent> rent = new ArrayList<>();
-
-    @ManyToMany(
-            mappedBy = "books",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
-    )
-    private List<Author> authors = new ArrayList<>();
+//    @ManyToMany(
+//            mappedBy = "books",
+//            cascade = CascadeType.ALL,
+//            fetch = FetchType.LAZY
+//    )
+//    private List<Author> authors = new ArrayList<>();
 
     public Book() {
     }
@@ -90,21 +90,21 @@ public class Book {
         this.rating = rating;
     }
 
-    public List<Request> getRequest() {
-        return request;
-    }
+//    public List<Request> getRequest() {
+//        return request;
+//    }
 
-    public void setRequest(List<Request> request) {
-        this.request = request;
-    }
+//    public void setRequest(List<Request> request) {
+//        this.request = request;
+//    }
 
-    public List<Author> getAuthors() {
-        return authors;
-    }
-
-    public void setAuthors(List<Author> authors) {
-        this.authors = authors;
-    }
+//    public List<Author> getAuthors() {
+//        return authors;
+//    }
+//
+//    public void setAuthors(List<Author> authors) {
+//        this.authors = authors;
+//    }
 
     @Override
     public String toString() {
@@ -117,11 +117,11 @@ public class Book {
                 '}' + "\n";
     }
 
-    public List<Rent> getRent() {
-        return rent;
-    }
-
-    public void setRent(List<Rent> rent) {
-        this.rent = rent;
-    }
+//    public List<Rent> getRent() {
+//        return rent;
+//    }
+//
+//    public void setRent(List<Rent> rent) {
+//        this.rent = rent;
+//    }
 }
