@@ -5,9 +5,9 @@ import com.company.jcc.model.AuthorName;
 import java.util.List;
 
 public interface AuthorNameService {
-    AuthorName create(AuthorName authorName);
-    AuthorName readById(int id);
-    AuthorName update(AuthorName authorName);
-    void delete(int id);
-    List<AuthorName> getAll();
+    public void create(AuthorName authorName);
+    public AuthorName readById(int id);
+    public AuthorName update(AuthorName authorName);
+    public void delete(int id);
+    public List<AuthorName> getAll();
 }
