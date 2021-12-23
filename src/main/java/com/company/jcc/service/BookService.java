@@ -10,8 +10,8 @@ public interface BookService {
     List<Book> getAll();
 
     void create(Book book);
-//    Book readById(int id);
-//    Book update(Book book);
-//    void delete(int id);
+    Book readById(int id);
+//    Book update(Book book, String s);
+    void delete(int id);
 //    List<Book> getAll();
 }
