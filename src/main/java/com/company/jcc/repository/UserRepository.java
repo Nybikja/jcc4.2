@@ -20,11 +20,13 @@ public class UserRepository {
         return user;
     }
 
+    @Transactional
     public User findById(int id) {
         Query query = entityManager.createQuery("from User where id = " + id);
         return (User) query.getSingleResult();
     }
 
+    @Transactional
     public List<User> findAll() {
         TypedQuery<User> query = entityManager.createQuery("from User", User.class);
         return query.getResultList();

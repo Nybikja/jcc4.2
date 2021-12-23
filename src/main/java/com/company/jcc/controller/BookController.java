@@ -48,6 +48,30 @@ public class BookController {
         return "redirect:/books/all";
     }
 
+    @GetMapping("/{id}/update")
+    public String update(@PathVariable("id") int id, Model model) {
+        Book book = bookService.readById(id);
+        model.addAttribute("book", book);
+        System.out.println(book + "get method");
+        return "update_book";
+    }
+
+    @PostMapping("/{id}/update")
+    public String update(@PathVariable("id") int id, @RequestParam String bookTitle,
+                         @RequestParam int amountLeft,
+                         @RequestParam int amountGave,
+                         @RequestParam int rating) {
+        Book book = bookService.readById(id);
+        System.out.println(book);
+        book.setBookTitle(bookTitle);
+        book.setAmountLeft(amountLeft);
+        book.setAmountGave(amountGave);
+        book.setRating(rating);
+        if (book != null)
+            bookService.update(book);
+        return "redirect:/books/" + id + "/read";
+    }
+
 
     public BookController() {
     }
