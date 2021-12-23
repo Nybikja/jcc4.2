@@ -1,8 +1,9 @@
 package com.company.jcc.controller;
 
 import com.company.jcc.model.User;
-import com.company.jcc.service.RoleService;
-import com.company.jcc.service.UserService;
+import com.company.jcc.service.impl.RoleServiceImpl;
+import com.company.jcc.service.impl.UserServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
@@ -11,12 +12,14 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("/users")
 public class UserController {
-    private final UserService userService;
-    private final RoleService roleService;
+    @Autowired
+    private final UserServiceImpl userServiceImpl;
+    @Autowired
+    private final RoleServiceImpl roleServiceImpl;
 
-    public UserController(UserService userService, RoleService roleService) {
-        this.userService = userService;
-        this.roleService = roleService;
+    public UserController(UserServiceImpl userService, RoleServiceImpl roleService) {
+        this.userServiceImpl = userService;
+        this.roleServiceImpl = roleService;
     }
 
     @GetMapping("/create")
@@ -27,41 +30,39 @@ public class UserController {
 
     @PostMapping("/create")
     public String create(@Validated @ModelAttribute("user") User user) {
-        user.setRole(roleService.readById(2));
-        User newUser = userService.create(user);
+        user.setRole(roleServiceImpl.readById(2));
+        User newUser = userServiceImpl.create(user);
         return "redirect:/users/" + newUser.getId() + "/read";
     }
 
     @GetMapping("/{id}/read")
     public String read(@PathVariable int id, Model model) {
-        User user = userService.readById(id);
+        User user = userServiceImpl.readById(id);
         model.addAttribute("user", user);
         return "user_info";
     }
 
     @GetMapping("/all")
     public String getAll(Model model) {
-        model.addAttribute("users", userService.getAll());
+        model.addAttribute("users", userServiceImpl.getAll());
         return "user_list";
     }
 
     @GetMapping("/{id}/update")
     public String update(@PathVariable int id, Model model) {
-        User user = userService.readById(id);
+        User user = userServiceImpl.readById(id);
         model.addAttribute("user", user);
-        model.addAttribute("roles", roleService.getAll());
+        model.addAttribute("roles", roleServiceImpl.getAll());
         System.out.println(user + "get method");
         return "update_user";
     }
-//
-//
 
     @PostMapping("/{id}/update")
     public String update(@PathVariable(name = "id") int id, @RequestParam String name,
                          @RequestParam String surname,
                          @RequestParam() String password,
                          @RequestParam String email) {
-        User user = userService.readById(id);
+        User user = userServiceImpl.readById(id);
         System.out.println(user);
         user.setName(name);
         user.setSurname(surname);
@@ -69,15 +70,13 @@ public class UserController {
         if (password != null) {
             user.setPassword(password);
         }
-        userService.update(user);
+        userServiceImpl.update(user);
         return "redirect:/users/" + id + "/read";
     }
 
     @GetMapping("/{id}/delete")
     public String delete(@PathVariable("id") int id) {
-        userService.delete(id);
+        userServiceImpl.delete(id);
         return "redirect:/users/all";
     }
-
-
 }
