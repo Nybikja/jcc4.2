@@ -19,33 +19,28 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public Role create(Role role) {
-//        if (role != null) {
-            return roleRepository.save(role);
-//        }
+            return roleRepository.create(role);
     }
 
     @Override
-    public Role readById(int id) {
-        return roleRepository.findById(id).orElseThrow(
-                () -> new EntityNotFoundException("Role with id " + id + " not found"));
+    public Role findById(int id) {
+        return roleRepository.findById(id);
     }
 
     @Override
     public Role update(Role role) {
-//        if (role != null) {
-            readById(role.getId());
-            return roleRepository.save(role);
-//        }
+        return roleRepository.update(role);
     }
 
     @Override
     public void delete(int id) {
-        Role role = readById(id);
-        roleRepository.delete(role);
+        roleRepository.delete(id);
     }
 
     @Override
     public List<Role> getAll() {
         return roleRepository.findAll();
     }
+
+
 }

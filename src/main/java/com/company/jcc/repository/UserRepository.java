@@ -1,6 +1,5 @@
 package com.company.jcc.repository;
 
-import com.company.jcc.model.Book;
 import com.company.jcc.model.User;
 import org.springframework.stereotype.Repository;
 

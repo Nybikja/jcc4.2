@@ -28,7 +28,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User update(User user) {
-//            readById(user.getId());
             return userRepository.update(user);
     }
 

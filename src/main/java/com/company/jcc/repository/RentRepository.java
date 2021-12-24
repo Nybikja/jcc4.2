@@ -23,11 +23,13 @@ public class RentRepository {
         return rent;
     }
 
+    @Transactional
     public Rent findById(int id) {
         Query query = entityManager.createQuery("from Rent where id = " + id);
         return (Rent) query.getSingleResult();
     }
 
+    @Transactional
     public List<Rent> findAll() {
         TypedQuery<Rent> query = entityManager.createQuery("from Rent", Rent.class);
         return query.getResultList();

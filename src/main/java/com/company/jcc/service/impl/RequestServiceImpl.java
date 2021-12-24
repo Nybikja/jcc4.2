@@ -19,28 +19,25 @@ public class RequestServiceImpl implements RequestService {
     @Override
     public Request create(Request request) {
 //        if (role != null) {
-        return requestRepository.save(request);
+        return requestRepository.create(request);
 //        }
     }
 
     @Override
     public Request readById(int id) {
-        return requestRepository.findById(id).orElseThrow(
-                () -> new EntityNotFoundException("Role with id " + id + " not found"));
+        return requestRepository.findById(id);
     }
 
     @Override
     public Request update(Request request) {
 //        if (role != null) {
-        readById(request.getId());
-        return requestRepository.save(request);
+        return requestRepository.update(request);
 //        }
     }
 
     @Override
     public void delete(int id) {
-        Request request = readById(id);
-        requestRepository.delete(request);
+        requestRepository.delete(id);
     }
 
     @Override
