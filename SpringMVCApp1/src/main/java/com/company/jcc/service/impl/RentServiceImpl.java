@@ -4,6 +4,7 @@ import com.company.jcc.model.Rent;
 import com.company.jcc.model.Request;
 import com.company.jcc.repository.RentRepository;
 import com.company.jcc.service.RentService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
@@ -11,6 +12,7 @@ import java.util.List;
 
 @Service
 public class RentServiceImpl implements RentService {
+    @Autowired
     private final RentRepository rentRepository;
 
     public RentServiceImpl(RentRepository rentRepository) {
@@ -28,14 +30,11 @@ public class RentServiceImpl implements RentService {
     }
     @Override
     public Rent update(Rent rent) {
-        readById(rent.getId());
-//        return rentRepository.update(rent);
-        return null;
+        return rentRepository.update(rent);
     }
 
     @Override
     public void delete(int id) {
-        Rent rent = readById(id);
         rentRepository.delete(id);
     }
 

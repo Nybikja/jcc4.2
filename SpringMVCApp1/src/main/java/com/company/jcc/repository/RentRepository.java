@@ -39,4 +39,9 @@ public class RentRepository {
         entityManager.remove(readById(id));
     }
 
+    @Transactional
+    public Rent update(Rent rent){
+        return entityManager.merge(rent);
+    }
+
 }

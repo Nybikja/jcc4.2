@@ -20,7 +20,6 @@
     <table border="1">
         <tr>
             <th>Num.</th>
-            <th>Id</th>
             <th>Book title</th>
             <th>Amount left</th>
             <th>Amount gave</th>
@@ -29,9 +28,6 @@
         <tr th:each="book, iStat: ${books}">
             <td>
                 <p th:text="${iStat.index + 1}"></p>
-            </td>
-            <td>
-                <p th:text="${book.id}"></p>
             </td>
             <td>
                 <a th:href="@{|/books/${book.id}/read|}" th:text="${book.bookTitle}"></a>

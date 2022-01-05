@@ -8,11 +8,11 @@
 <body>
 <div class="header">
     <a href="/users/all">users</a> |
-    <a href="/rent/all">rents</a> |
+    <a href="/books/all">books</a> |
 </div>
 
 <div style="margin: 0 auto; width: max-content">
-    <h2>List of Users</h2>
+    <h2>List of rent</h2>
     <form th:action="@{/rent/create}" method="get">
         <input type="submit" value="Create new Rent">
     </form>
@@ -28,7 +28,7 @@
             <td th:text="${iStat.index + 1}"></td>
             <td th:href="@{|/rent/${rent.id}/read|}" th:text="${rent.id}"></td>
             <td th:text="${rent.book.bookTitle}"></td>
-            <td th:text="${rent.user.name}"></td>
+            <td th:text="${rent.user.name + ' ' + rent.user.surname}"></td>
 
             <td>
                 <a th:href="@{|/rent/${rent.id}/return|}">Edit</a>

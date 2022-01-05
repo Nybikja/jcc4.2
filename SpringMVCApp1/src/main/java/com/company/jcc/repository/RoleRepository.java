@@ -16,8 +16,8 @@ public class RoleRepository {
 
     @PersistenceContext
     private EntityManager entityManager;
-    @Transactional
 
+    @Transactional
     public Role create(Role role) {
         entityManager.persist(role);
         return role;

@@ -19,14 +19,13 @@
     <br>
     <table border="1">
         <tr>
-            <th>Id</th>
+            <th>Num</th>
             <th>Full name</th>
             <th>E-mail</th>
             <th colspan="2">Operations</th>
         </tr>
         <tr th:each="user, iStat: ${users}">
             <td th:text="${iStat.index + 1}"></td>
-            <td th:text="${user.id}"></td>
             <td>
                 <a th:href="@{|/users/${user.id}/read|}" th:text="${user.name + ' ' + user.surname}"></a>
             </td>
