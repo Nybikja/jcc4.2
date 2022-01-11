@@ -79,7 +79,7 @@ public class Security extends WebSecurityConfigurerAdapter {
                 .usernameParameter("username")
                 .and()
                 .logout().logoutUrl("/logout")
-//                .logoutSuccessUrl("/xxx")
+                .logoutSuccessUrl("/xxx")
                 .and()
                 .exceptionHandling().accessDeniedPage("/accessDeniedPage")
                 .and()
