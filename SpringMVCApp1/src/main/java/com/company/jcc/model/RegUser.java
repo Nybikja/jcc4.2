@@ -19,7 +19,7 @@ public class RegUser implements UserDetails {
     }
 
     @Enumerated(EnumType.STRING)
-    private ProjectRole role = ProjectRole.UNAUTHORIZED_USER;
+    private ProjectRole role = ProjectRole.ROLE_USER;
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();

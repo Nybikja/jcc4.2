@@ -1,5 +1,5 @@
 package com.company.jcc.model;
 
 public enum ProjectRole {
-    READER, MANAGER, UNAUTHORIZED_USER;
+    ROLE_USER, ROLE_ADMIN, UNAUTHORIZED_USER;
 }

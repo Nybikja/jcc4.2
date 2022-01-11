@@ -1,15 +1,19 @@
 package com.company.jcc.config;
 
+import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+
+import javax.servlet.FilterRegistration;
 
 public class AppInitializer extends
         AbstractAnnotationConfigDispatcherServletInitializer {
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
-//        return null;
-        return new Class[]{HibernateConfig.class};
+        return new Class[]{HibernateConfig.class, Security.class};
     }
+//    FilterRegistration.Dynamic securityFilter = servletContext.addFilter("springSecurityFilterChain", DelegatingFilterProxy.class);
+//    securityFilter.addMappingForUrlPatterns(null, false, "/*");
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
