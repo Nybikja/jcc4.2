@@ -10,6 +10,7 @@ import java.util.Collection;
 import java.util.List;
 
 @Entity
+@Table(name = "reguser")
 public class RegUser implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,6 +21,7 @@ public class RegUser implements UserDetails {
 
     @Enumerated(EnumType.STRING)
     private ProjectRole role = ProjectRole.ROLE_USER;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
@@ -27,6 +29,7 @@ public class RegUser implements UserDetails {
         return authorities;
     }
 
+    @Column
     private String password;
     @Override
     public String getPassword() {

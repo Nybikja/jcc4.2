@@ -8,15 +8,15 @@
 <body>
     <form th:action="@{/saveMe}" method="post">
         <label for="username">Username</label>:
-        <input type="text" id="username" name="username" autofocus="autofocus" /> <br />
+            <input type="text" id="username" name="username" autofocus="autofocus" /> <br />
         <label for="password">Password</label>:
-        <input type="password" id="password" name="password" /> <br />
-        <input type="submit" value="Registration" />
+            <input type="password" id="password" name="password" /> <br />
+            <input type="submit" value="Registration" />
     </form>
     <div th:if="${#httpServletRequest.remoteUser != null}">
     <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
     <form th:action="@{/logout}" method="post">
-        <input type="submit" value="Sign Out"/>
+        <input type="submit" value="Log Out"/>
     </form>
     </div>
 

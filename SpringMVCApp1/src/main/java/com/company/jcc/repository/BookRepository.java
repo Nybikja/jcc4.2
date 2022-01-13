@@ -36,6 +36,12 @@ public class BookRepository {
     }
 
     @Transactional
+    public Book readByTitle(String title) {
+        Query query = entityManager.createQuery("from Book where bookTitle = " + "'" + title + "'");
+        return (Book) query.getSingleResult();
+    }
+
+    @Transactional
     public Book update(Book book) {
         return entityManager.merge(book);
     }

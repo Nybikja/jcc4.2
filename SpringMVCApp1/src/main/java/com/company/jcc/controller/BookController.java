@@ -72,6 +72,17 @@ public class BookController {
         return "redirect:/books/" + id + "/read";
     }
 
+    @GetMapping("/search")
+    public String search() {
+        return "book_search";
+    }
+
+    @GetMapping("/{title}/search")
+    public String searchBookByTitle(@PathVariable String title, Model model) {
+        model.addAttribute("book", bookService.readByTitle(title));
+        return "book_info2";
+    }
+
 
     public BookController() {
     }

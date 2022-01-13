@@ -74,7 +74,7 @@ public class Security extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .loginPage("/login")
-                .loginProcessingUrl("/login.html")
+                .loginProcessingUrl("/loginProcessing")
                 .successForwardUrl("/success")
                 .passwordParameter("password")
                 .usernameParameter("username")

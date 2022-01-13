@@ -22,8 +22,9 @@ public class RegUserServiceImpl implements RegUserService {
         regUserRepository.create(regUser);
     }
 
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return regUserRepository.readByUserName(username);
+        return regUserRepository.findByUserName(username);
     }
 }

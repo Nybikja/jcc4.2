@@ -25,12 +25,6 @@ public class MainController {
         return "login";
     }
 
-    @GetMapping("/-error")
-    public String loginError(Model model) {
-        model.addAttribute("loginError", true);
-        return "login";
-    }
-
     @GetMapping("/")
     public String home(Model model, HttpServletRequest request){
         model.addAttribute("x", "hello");
@@ -62,10 +56,4 @@ public class MainController {
         return "redirect:/";
     }
 
-//
-//    @RequestMapping("/login-error")
-//    public String loginError(Model model) {
-//        model.addAttribute("loginError", true);
-//        return "error";
-//    }
 }
