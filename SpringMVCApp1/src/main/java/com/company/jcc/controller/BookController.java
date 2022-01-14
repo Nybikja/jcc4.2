@@ -73,7 +73,7 @@ public class BookController {
     }
 
     @GetMapping("/search")
-    public String search() {
+    public String search(){
         return "book_search";
     }
 
