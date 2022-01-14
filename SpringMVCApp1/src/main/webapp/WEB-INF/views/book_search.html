@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Login page</title>
+    <title>Book search</title>
 </head>
 <body>
+<!--<form th:action="@{/books/search}" method="get">-->
+<!--    <label for="title">Book Title</label>:-->
+<!--    <input type="text" id="title" name="title" autofocus="autofocus"> <br />-->
+<!--    <input type="submit" value="Search" />-->
+<!--</form>-->
+
 <h1>Search page</h1>
-<form th:action="@{/search}" method="post">
-    <label for="book_title">Book Title</label>:
-    <input type="text" id="book_title" name="book_title" autofocus="autofocus" /> <br />
-    <input type="submit" value="Search" />
+<form th:action="@{|/books/${book.bookTitle}/search|}" th:object="${book}" method="get">
+    <p>Book title: <input type="text" th:field="*{bookTitle}" id="title"/></p>
+    <p><input type="submit" value="search" />
+    <a th:href="@{|/books/${book.bookTitle}/search|}" th:text="'title: ' + ${book.bookTitle}" ></a>
+
 </form>
 </body>
 </html>

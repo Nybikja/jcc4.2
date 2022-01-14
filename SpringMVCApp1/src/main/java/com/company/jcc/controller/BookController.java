@@ -73,11 +73,12 @@ public class BookController {
     }
 
     @GetMapping("/search")
-    public String search(){
+    public String search(@Validated @ModelAttribute("book") Book book){
+        //model.addAttribute("books");
         return "book_search";
     }
 
-    @GetMapping("/{title}/search")
+    @GetMapping("{title}/search")
     public String searchBookByTitle(@PathVariable String title, Model model) {
         model.addAttribute("book", bookService.readByTitle(title));
         return "book_info2";
