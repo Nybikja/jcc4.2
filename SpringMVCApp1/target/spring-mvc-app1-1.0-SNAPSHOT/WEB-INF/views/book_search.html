@@ -11,11 +11,10 @@
 <!--</form>-->
 
 <h1>Search page</h1>
-<form th:action="@{|/books/${book.bookTitle}/search|}" th:object="${book}" method="get">
-    <p>Book title: <input type="text" th:field="*{bookTitle}" id="title"/></p>
-    <p><input type="submit" value="search" />
-    <a th:href="@{|/books/${book.bookTitle}/search|}" th:text="'title: ' + ${book.bookTitle}" ></a>
-
+<form th:action="@{|/books/search/|}" th:object="${book}" method="get">
+<!--    <p>Book title: <input type="text" th:field="*{bookTitle}" id="title"/></p>-->
+    <p><input type="text" th:field="*{bookTitle}" name="search" placeholder="search"/>
+        <button type="submit" class="btn btn-info" >Search</button>
 </form>
 </body>
 </html>

@@ -10,6 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Map;
+
 @Controller
 @RequestMapping("/books")
 public class BookController {
@@ -72,16 +75,31 @@ public class BookController {
         return "redirect:/books/" + id + "/read";
     }
 
-    @GetMapping("/search")
-    public String search(@Validated @ModelAttribute("book") Book book){
-        //model.addAttribute("books");
-        return "book_search";
-    }
+//    @GetMapping("/search")
+//    public String search(@Validated @ModelAttribute("book") Book book){
+//        return "book_search";
+//    }
+//
+//    @GetMapping("/search/")
+//    public String searchBookByTitle(@RequestParam String bookTitle, Model model){
+//        model.addAttribute("book", bookService.readByTitle(bookTitle));
+//        System.out.println(bookTitle);
+//        return "book_info2";
+//    }
 
-    @GetMapping("{title}/search")
-    public String searchBookByTitle(@PathVariable String title, Model model) {
-        model.addAttribute("book", bookService.readByTitle(title));
-        return "book_info2";
+
+
+    @GetMapping("/search")
+    public String home(Book book, Model model, String bookTitle) {
+        List<Book> books = bookService.getAll();
+        if (bookTitle != null) {
+            Book book2 = bookService.readByTitle(bookTitle);
+            model.addAttribute("book", book2);
+            return "index3";
+        } else {
+            model.addAttribute("books", books);
+            return "index2";
+        }
     }
 
 
