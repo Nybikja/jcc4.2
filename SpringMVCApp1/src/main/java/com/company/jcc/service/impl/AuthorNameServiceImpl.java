@@ -3,12 +3,17 @@ package com.company.jcc.service.impl;
 import com.company.jcc.model.AuthorName;
 import com.company.jcc.repository.AuthorNameRepository;
 import com.company.jcc.service.AuthorNameService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class AuthorNameServiceImpl implements AuthorNameService {
 
+    @Autowired
     private AuthorNameRepository authorNameRepository;
+
     @Override
     public void create(AuthorName authorName) {
         authorNameRepository.create(authorName);
@@ -32,5 +37,9 @@ public class AuthorNameServiceImpl implements AuthorNameService {
     @Override
     public List<AuthorName> getAll() {
         return authorNameRepository.getAll();
+    }
+
+    public AuthorNameServiceImpl(AuthorNameRepository authorNameRepository) {
+        this.authorNameRepository = authorNameRepository;
     }
 }

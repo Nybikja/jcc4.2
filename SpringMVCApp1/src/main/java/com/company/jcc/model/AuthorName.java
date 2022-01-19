@@ -2,7 +2,8 @@ package com.company.jcc.model;
 
 import javax.persistence.*;
 
-@Entity(name = "authors_name")
+@Entity
+@Table(name = "authors_name")
 public class AuthorName {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -10,18 +11,18 @@ public class AuthorName {
 
     @ManyToOne
     @JoinColumn(name = "author_id")
-    private User author;
+    private Author author;
 
     @ManyToOne
     @JoinColumn(name = "book_id")
     private Book book;
 
 
-    public User getAuthor() {
+    public Author getAuthor() {
         return author;
     }
 
-    public void setAuthor(User author) {
+    public void setAuthor(Author author) {
         this.author = author;
     }
 
@@ -30,6 +31,15 @@ public class AuthorName {
     }
 
     public void setBook(Book book) {
+        this.book = book;
+    }
+
+    public AuthorName() {
+    }
+
+    public AuthorName(Integer id, Author author, Book book) {
+        this.id = id;
+        this.author = author;
         this.book = book;
     }
 }

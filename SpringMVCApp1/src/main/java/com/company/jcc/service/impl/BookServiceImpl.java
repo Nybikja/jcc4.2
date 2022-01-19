@@ -28,8 +28,8 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public void create(Book book) {
-        bookRepository.create(book);
+    public Book create(Book book) {
+        return bookRepository.create(book);
     }
 
     @Override

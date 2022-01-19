@@ -22,6 +22,7 @@
         <tr>
             <th>Num.</th>
             <th>Book title</th>
+            <th>Book author</th>
             <th>Amount left</th>
             <th>Amount gave</th>
             <th>Rating</th>
@@ -32,6 +33,9 @@
             </td>
             <td>
                 <a th:href="@{|/books/${book.id}/read|}" th:text="${book.bookTitle}"></a>
+            </td>
+            <td>
+                <p th:text="${book.getAuthor()}"></p>
             </td>
             <td>
                 <p th:text="${book.amountLeft}"></p>

@@ -3,6 +3,7 @@ package com.company.jcc.repository;
 import com.company.jcc.model.Author;
 import com.company.jcc.model.AuthorName;
 import com.company.jcc.model.Book;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -11,8 +12,9 @@ import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import java.util.List;
 
-
+@Repository
 public class AuthorNameRepository {
+
     @PersistenceContext
     private EntityManager entityManager;
 

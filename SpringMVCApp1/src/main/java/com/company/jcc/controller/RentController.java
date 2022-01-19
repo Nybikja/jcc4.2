@@ -54,7 +54,7 @@ public class RentController {
         }
         rent.setTimeShouldBeReturned(new java.sql.Date(day, month, year));
         Rent newRent = rentService.create(rent);
-        return "redirect:/rent/" + newRent.getId() + "/read";
+        return "redirect:/rent/all";
     }
 
     @GetMapping("/{id}/read")

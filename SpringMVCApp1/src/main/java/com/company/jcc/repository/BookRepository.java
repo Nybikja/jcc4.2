@@ -19,8 +19,9 @@ public class BookRepository {
     private EntityManager entityManager;
 
     @Transactional
-    public void create(Book book) {
+    public Book create(Book book) {
         entityManager.persist(book);
+        return book;
     }
 
     @Transactional

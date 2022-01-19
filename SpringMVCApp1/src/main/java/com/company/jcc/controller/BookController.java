@@ -1,15 +1,22 @@
 package com.company.jcc.controller;
 
+import com.company.jcc.model.Author;
+import com.company.jcc.model.AuthorName;
 import com.company.jcc.model.Book;
 //import com.company.jcc.model.User;
 import com.company.jcc.service.BookService;
+import com.company.jcc.service.impl.AuthorNameServiceImpl;
+import com.company.jcc.service.impl.AuthorServiceImpl;
 import com.company.jcc.service.impl.BookServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
 
@@ -20,18 +27,41 @@ public class BookController {
     @Autowired
     private BookServiceImpl bookService;
 
+    @Autowired
+    private AuthorServiceImpl authorService;
+
+    @Autowired
+    private AuthorNameServiceImpl authorNameService;
+
+//    @GetMapping("/create")
+//    public String create(Model model) {
+//        model.addAttribute("book", new Book());
+//        return "create_book";
+//    }
 
     @GetMapping("/create")
     public String create(Model model) {
         model.addAttribute("book", new Book());
-        return "create_book";
+        model.addAttribute("authors", authorService.getAll());
+        return "create_book2";
     }
 
     @PostMapping("/create")
-    public String create(@Validated @ModelAttribute("book") Book book) {
-        bookService.create(book);
+    public String save(@Validated @ModelAttribute("book") Book book,
+                         @RequestParam("authorId") int authorId){
+        Book book1 = bookService.create(book);
+        AuthorName authorName = new AuthorName();
+        authorName.setBook(book1);
+        authorName.setAuthor(authorService.readById(authorId));
+        authorNameService.create(authorName);
         return "redirect:/books/all";
     }
+
+//    @PostMapping("/create")
+//    public String create(@Validated @ModelAttribute("book") Book book) {
+//        bookService.create(book);
+//        return "redirect:/books/all";
+//    }
 
     @GetMapping("/{id}/read")
     public String read(@PathVariable int id, Model model) {
@@ -41,8 +71,8 @@ public class BookController {
 
     @GetMapping("/all")
     public String getAll(Model model) {
-        model.addAttribute("books", bookService.getAll());
-        return "book_list";
+        model.addAttribute("books", authorNameService.getAll());
+        return "book_list2";
     }
 
     @GetMapping("/{id}/delete")
@@ -106,11 +136,33 @@ public class BookController {
     public BookController() {
     }
 
+    public BookController(BookServiceImpl bookService, AuthorServiceImpl authorService, AuthorNameServiceImpl authorNameService) {
+        this.bookService = bookService;
+        this.authorService = authorService;
+        this.authorNameService = authorNameService;
+    }
+
+    public AuthorNameServiceImpl getAuthorNameService() {
+        return authorNameService;
+    }
+
+    public void setAuthorNameService(AuthorNameServiceImpl authorNameService) {
+        this.authorNameService = authorNameService;
+    }
+
     public BookService getBookService() {
         return bookService;
     }
 
     public void setBookService(BookServiceImpl bookService) {
         this.bookService = bookService;
+    }
+
+    public AuthorServiceImpl getAuthorService() {
+        return authorService;
+    }
+
+    public void setAuthorService(AuthorServiceImpl authorService) {
+        this.authorService = authorService;
     }
 }
