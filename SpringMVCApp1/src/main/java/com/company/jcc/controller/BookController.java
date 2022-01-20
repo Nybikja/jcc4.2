@@ -4,6 +4,7 @@ import com.company.jcc.model.Author;
 import com.company.jcc.model.AuthorName;
 import com.company.jcc.model.Book;
 //import com.company.jcc.model.User;
+import com.company.jcc.service.AuthorNameService;
 import com.company.jcc.service.BookService;
 import com.company.jcc.service.impl.AuthorNameServiceImpl;
 import com.company.jcc.service.impl.AuthorServiceImpl;
@@ -65,8 +66,9 @@ public class BookController {
 
     @GetMapping("/{id}/read")
     public String read(@PathVariable int id, Model model) {
-        model.addAttribute("book", bookService.readById(id));
-        return "book_info";
+        model.addAttribute("book", authorNameService.readById(id));
+        //model.addAttribute("book", bookService.readById(id));
+        return "book_info2";
     }
 
     @GetMapping("/all")
@@ -105,16 +107,18 @@ public class BookController {
         return "redirect:/books/" + id + "/read";
     }
 
-//    @GetMapping("/search")
-//    public String search(@Validated @ModelAttribute("book") Book book){
-//        return "book_search";
+//    @GetMapping("/search/byauthor")
+//    public String search(Model model){
+//    List<AuthorName> authorNames = authorNameService.getAll();
+//    model.addAttribute("books", authorNames);
+//    return "index4";
 //    }
 //
-//    @GetMapping("/search/")
-//    public String searchBookByTitle(@RequestParam String bookTitle, Model model){
-//        model.addAttribute("book", bookService.readByTitle(bookTitle));
-//        System.out.println(bookTitle);
-//        return "book_info2";
+//    @PostMapping("/search/byauthor")
+//    public String searchBookByTitle(@RequestParam String author, Model model){
+//        model.addAttribute("book", authorNameService.readByAuthor(author));
+//        System.out.println(author);
+//        return "index5";
 //    }
 
 
@@ -129,6 +133,21 @@ public class BookController {
         } else {
             model.addAttribute("books", books);
             return "index2";
+        }
+    }
+
+    @GetMapping("/search/byauthor")
+    public String search(Author author2, Model model, String author) {
+        List<AuthorName> authorNames = authorNameService.getAll();
+        System.out.println(author);
+        if (author != null) {
+            //AuthorName authorName2 = authorNameService.readByAuthor(author);
+            authorNames = authorNameService.readByAuthor(author);
+            model.addAttribute("books", authorNames);
+            return "index4";
+        } else {
+            model.addAttribute("books", authorNames);
+            return "index4";
         }
     }
 

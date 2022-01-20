@@ -20,6 +20,11 @@ public class AuthorNameServiceImpl implements AuthorNameService {
     }
 
     @Override
+    public List<AuthorName> readByAuthor(String surname) {
+        return authorNameRepository.readByAuthor(surname);
+    }
+
+    @Override
     public AuthorName readById(int id) {
         return authorNameRepository.readById(id);
     }

@@ -24,6 +24,11 @@ public class AuthorRepository {
     }
 
     @Transactional
+    public int readByName(String title) {
+        Query query = entityManager.createQuery("select id from Author where authorSurname = " + "'" + title + "'");
+        return (int) query.getSingleResult();
+    }
+    @Transactional
     public List<Author> getAll(){
         TypedQuery<Author> query = entityManager.createQuery("from Author", Author.class);
         return query.getResultList();

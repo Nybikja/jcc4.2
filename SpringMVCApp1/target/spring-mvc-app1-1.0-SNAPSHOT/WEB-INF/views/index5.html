@@ -12,9 +12,9 @@
 <body>
 <div class="container mt-5">
     <h2 align="center">Search in Thymeleaf Template</h2>
-    <form th:action="@{/books/search}" method="get">
+    <form th:action="@{/books/search/byauthor}" method="get">
         <label>
-            <input type="text" name="bookTitle" th:value="${bookTitle}"  placeholder="Find by Title" size="50" >
+            <input type="text" name="author"  placeholder="Find by author" size="50" >
         </label>
         <button type="submit" class="btn btn-info" >Search</button>
         <button type="submit" class="btn btn-info" >Reset</button>
@@ -22,17 +22,20 @@
     <table class="table table-bordered table-sm mt-2">
         <thead>
         <tr>
+
             <th>Book title</th>
+            <th>Book author</th>
             <th>Amount left</th>
-            <th>Amount gave</th>
             <th>Rating</th>
         </tr>
         </thead>
         <tbody>
-            <td th:text="${book.bookTitle}"></td>
-            <td th:text="${book.amountLeft}"></td>
-            <td th:text="${book.amountGave}"></td>
-            <td th:text="${book.rating}"></td>
+            <tr th:each="book : ${books}">
+                <td th:text="${book.book}"></td>
+                <td th:text="${book.getAuthor().authorSurname}"></td>
+                <td th:text="${book.getBook().amountLeft}"></td>
+                <td th:text="${book.getBook().rating}"></td>
+            </tr>
         </tbody>
     </table>
 </div>

@@ -36,7 +36,7 @@
         <tbody>
         <tr th:each="book, iStat: ${books}">
             <td th:text="${iStat.index + 1}"></td>
-            <td><a th:href="@{|/books/${book.getBook()}/read|}" th:text="${book.getBook().bookTitle}"></a></td>
+            <td><a th:href="@{|/books/${book.getBook().id}/read|}" th:text="${book.getBook().bookTitle}"></a></td>
             <td th:text="${book.getAuthor().authorName + ' ' + book.author.authorSurname}"></td>
 <!--            <td>-->
 <!--                <p th:text="${book.amountLeft}"></p>-->

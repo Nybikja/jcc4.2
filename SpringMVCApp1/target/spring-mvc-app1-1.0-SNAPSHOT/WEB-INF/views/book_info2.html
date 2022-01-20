@@ -15,31 +15,38 @@
 <div layout:fragment="content" style="margin: 0 auto; width: max-content">
     <h2>Info about Book</h2>
     <table>
-        <tr>
-            <td>Id:</td>
-            <td>
-                <b th:text="${book.id}"></b>
-            </td>
-        </tr>
+
         <tr>
             <td>Title:</td>
             <td>
-                <b th:text="${book.bookTitle}"></b>
+                <b th:text="${book.getBook().bookTitle}"></b>
+            </td>
+        </tr>
+        <td>Main author:</td>
+        <td>
+            <b th:text="${book.getAuthor().authorName + ' ' + book.getAuthor().authorSurname}"></b>
+        </td>
+        </tr>
+        <tr>
+            <td>Rating</td>
+            <td>
+                <b th:text="${book.getBook().rating}"></b>
             </td>
         </tr>
         <tr>
-            <td>Amount Left:</td>
+            <td>Status</td>
             <td>
-                <b th:text="${book.amountLeft}"></b>
+                <b th:if="${book.getBook().amountLeft} > 0">Available</b>
+                <b th:if="${book.getBook().amountLeft} < 0">Unavailable</b>
             </td>
         </tr>
 
 
     </table>
-    <div>
-        <a th:href="@{|/users/${book.id}/update|}">Edit</a> |
-        <a th:href="@{|/users/${book.id}/delete|}">Remove</a>
-    </div>
+<!--    <div>-->
+<!--        <a th:href="@{|/users/${book.id}/update|}">Edit</a> |-->
+<!--        <a th:href="@{|/users/${book.id}/delete|}">Remove</a>-->
+<!--    </div>-->
 </div>
 </body>
 </html>

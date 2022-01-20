@@ -33,6 +33,12 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     @Override
+    public int readByName(String name) {
+        return authorRepository.readByName(name);
+    }
+
+
+    @Override
     public Author update(Author author) {
         return null;
     }

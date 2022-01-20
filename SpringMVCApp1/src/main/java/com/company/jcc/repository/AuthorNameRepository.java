@@ -1,8 +1,6 @@
 package com.company.jcc.repository;
 
-import com.company.jcc.model.Author;
 import com.company.jcc.model.AuthorName;
-import com.company.jcc.model.Book;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -31,8 +29,15 @@ public class AuthorNameRepository {
 
     @Transactional
     public AuthorName readById(int id) {
-        Query query = entityManager.createQuery("from AuthorName where id = " + id);
+        Query query = entityManager.createQuery("from AuthorName where author.id = " + id);
         return (AuthorName) query.getSingleResult();
+    }
+
+    @Transactional
+    public List<AuthorName> readByAuthor(String surname) {
+        Query query = entityManager.createQuery("from AuthorName " +
+                "where author.authorSurname = " + "'" + surname + "'");
+        return query.getResultList();
     }
 
     @Transactional
