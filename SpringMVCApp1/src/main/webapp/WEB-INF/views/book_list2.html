@@ -14,6 +14,7 @@
     <a href="/users/all">users</a> |
     <a href="/rent/all">rents</a> |
     <a href="/books/search">search</a> |
+    <a href="/books/search/byauthor">search by author</a>
 </div>
 
 <div style="margin: 0 auto; width: max-content">
@@ -28,9 +29,6 @@
             <th>Num.</th>
             <th>Book title</th>
             <th>Book author</th>
-<!--            <th>Amount left</th>-->
-<!--            <th>Amount gave</th>-->
-<!--            <th>Rating</th>-->
         </tr>
         </thead>
         <tbody>
@@ -38,15 +36,6 @@
             <td th:text="${iStat.index + 1}"></td>
             <td><a th:href="@{|/books/${book.getBook().id}/read|}" th:text="${book.getBook().bookTitle}"></a></td>
             <td th:text="${book.getAuthor().authorName + ' ' + book.author.authorSurname}"></td>
-<!--            <td>-->
-<!--                <p th:text="${book.amountLeft}"></p>-->
-<!--            </td>-->
-<!--            <td>-->
-<!--                <p th:text="${book.amountGave}"></p>-->
-<!--            </td>-->
-<!--            <td>-->
-<!--                <p th:text="${book.rating}"></p>-->
-<!--            </td>-->
         </tr>
         </tbody>
     </table>

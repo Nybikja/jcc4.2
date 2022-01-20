@@ -139,16 +139,11 @@ public class BookController {
     @GetMapping("/search/byauthor")
     public String search(Author author2, Model model, String author) {
         List<AuthorName> authorNames = authorNameService.getAll();
-        System.out.println(author);
         if (author != null) {
-            //AuthorName authorName2 = authorNameService.readByAuthor(author);
             authorNames = authorNameService.readByAuthor(author);
-            model.addAttribute("books", authorNames);
-            return "index4";
-        } else {
-            model.addAttribute("books", authorNames);
-            return "index4";
         }
+        model.addAttribute("books", authorNames);
+        return "index4";
     }
 
 
