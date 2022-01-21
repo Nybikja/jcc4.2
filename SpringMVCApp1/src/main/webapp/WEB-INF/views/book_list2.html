@@ -10,12 +10,14 @@
     <title>List of Books</title>
 </head>
 <body>
-<div class="header">
-    <a href="/users/all">users</a> |
-    <a href="/rent/all">rents</a> |
-    <a href="/books/search">search</a> |
+<div class="text-end">
+    <a href="/books/search">search by title</a> |
     <a href="/books/search/byauthor">search by author</a>
 </div>
+ <div class="text-lg-start">
+    <a href="/users/all">users</a> |
+    <a href="/rent/all">rents</a> |
+ </div>
 
 <div style="margin: 0 auto; width: max-content">
     <h2>List of Books</h2>
@@ -29,6 +31,7 @@
             <th>Num.</th>
             <th>Book title</th>
             <th>Book author</th>
+            <th>Action</th>
         </tr>
         </thead>
         <tbody>
@@ -36,6 +39,12 @@
             <td th:text="${iStat.index + 1}"></td>
             <td><a th:href="@{|/books/${book.getBook().id}/read|}" th:text="${book.getBook().bookTitle}"></a></td>
             <td th:text="${book.getAuthor().authorName + ' ' + book.author.authorSurname}"></td>
+            <td>
+                <a th:href="@{|/books/${book.getBook().id}/update|}"
+                   class="btn btn-primary">Update</a>
+                <a th:href="@{|/books/${book.getBook().id}/delete|}"
+                   class="btn btn-danger">Delete</a>
+            </td>
         </tr>
         </tbody>
     </table>

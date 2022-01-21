@@ -3,8 +3,6 @@ package com.company.jcc.controller;
 import com.company.jcc.model.Author;
 import com.company.jcc.model.AuthorName;
 import com.company.jcc.model.Book;
-//import com.company.jcc.model.User;
-import com.company.jcc.service.AuthorNameService;
 import com.company.jcc.service.BookService;
 import com.company.jcc.service.impl.AuthorNameServiceImpl;
 import com.company.jcc.service.impl.AuthorServiceImpl;
@@ -12,14 +10,10 @@ import com.company.jcc.service.impl.BookServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequestMapping("/books")
@@ -87,24 +81,27 @@ public class BookController {
     public String update(@PathVariable("id") int id, Model model) {
         Book book = bookService.readById(id);
         model.addAttribute("book", book);
-        System.out.println(book + "get method");
+        model.addAttribute("authors", authorService.getAll());
         return "update_book";
     }
+
 
     @PostMapping("/{id}/update")
     public String update(@PathVariable("id") int id, @RequestParam String bookTitle,
                          @RequestParam int amountLeft,
                          @RequestParam int amountGave,
-                         @RequestParam int rating) {
+                         @RequestParam int rating,
+                         @RequestParam("authorId") int authorId){
         Book book = bookService.readById(id);
-        System.out.println(book);
         book.setBookTitle(bookTitle);
         book.setAmountLeft(amountLeft);
         book.setAmountGave(amountGave);
         book.setRating(rating);
-        if (book != null)
-            bookService.update(book);
-        return "redirect:/books/" + id + "/read";
+        AuthorName authorName = authorNameService.readById(id);
+        authorName.setAuthor(authorService.readById(authorId));
+        bookService.update(book);
+        authorNameService.update(authorName);
+        return "redirect:/books/all";
     }
 
 //    @GetMapping("/search/byauthor")

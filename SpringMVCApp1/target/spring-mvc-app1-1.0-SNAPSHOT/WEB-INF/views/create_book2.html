@@ -40,21 +40,21 @@
                 <td>
                     <input type="text" th:field="*{rating}" id="rating" />
                 </td>
-            </tr>
 
-            <div class="form-group">
-                <label class="col-sm-2 control-label" for="author">Author:</label>
-                <div class="col-sm-8">
-                    <select class="form-control" id="author" name="authorId">
-                        <span th:each="author : ${authors}">
-<!--                            <option th:if="${book.id == book.role.id}" th:selected="${true}" th:text="${book.bookTitle.substring(0, 1) + book.bookTitle.substring(1).toLowerCase()}"-->
-                            <!--                                    th:value="${book.id}"></option>-->
-                            <option th:text="${author.authorName + ' ' + author.authorSurname.substring(0, 1) + author.authorSurname.substring(1).toLowerCase()}"
-                                    th:value="${author.id}"></option>
-                        </span>
-                    </select>
-                </div>
-            </div>
+                 <td>
+                     <div class="form-group">
+                         <label class="col-sm-2 control-label" for="author">Author:</label>
+                         <div class="col-sm-8">
+                             <select class="form-control" id="author" name="authorId">
+                                <span th:each="author : ${authors}">
+                                    <option th:text="${author.authorName + ' ' + author.authorSurname.substring(0, 1) + author.authorSurname.substring(1).toLowerCase()}"
+                                            th:value="${author.id}"></option>
+                                </span>
+                             </select>
+                         </div>
+                     </div>
+                 </td>
+            </tr>
             <tr>
                 <input type="submit" value="Register" />
                 <input type="reset" value="Clear" />

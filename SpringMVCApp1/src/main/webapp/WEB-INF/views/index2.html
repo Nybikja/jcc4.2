@@ -11,7 +11,7 @@
 </head>
 <body>
 <div class="container mt-5">
-    <h2 align="center">Search in Thymeleaf Template</h2>
+    <h2 align="center">Search by title</h2>
     <form th:action="@{/books/search}" method="get">
         <label>
             <input type="text" name="bookTitle" th:value="${bookTitle}"  placeholder="Find by Title" size="50" >

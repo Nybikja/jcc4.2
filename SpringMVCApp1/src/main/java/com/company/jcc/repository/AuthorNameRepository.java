@@ -29,7 +29,7 @@ public class AuthorNameRepository {
 
     @Transactional
     public AuthorName readById(int id) {
-        Query query = entityManager.createQuery("from AuthorName where author.id = " + id);
+        Query query = entityManager.createQuery("from AuthorName where book.id = " + id);
         return (AuthorName) query.getSingleResult();
     }
 
