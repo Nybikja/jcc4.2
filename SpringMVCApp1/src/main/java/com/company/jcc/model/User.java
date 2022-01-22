@@ -36,6 +36,9 @@ public class User {
     @JoinColumn(name = "role_id")
     private Role role;
 
+    @Column
+    private String status;
+
     @OneToMany(
             mappedBy = "user",
             cascade = CascadeType.ALL,
@@ -137,6 +140,14 @@ public class User {
 
     public void setRent(List<Rent> rent) {
         this.rent = rent;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     @Override

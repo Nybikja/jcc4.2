@@ -1,6 +1,7 @@
 package com.company.jcc.config;
 
 
+import com.company.jcc.model.ProjectRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -16,7 +17,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.csrf.CsrfFilter;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect;
 
@@ -41,8 +41,8 @@ public class Security extends WebSecurityConfigurerAdapter {
         return provider;
     }
 
-        @Bean
-        public SpringSecurityDialect springSecurityDialect(){
+    @Bean
+    public SpringSecurityDialect springSecurityDialect(){
             return new SpringSecurityDialect();
         }
 
@@ -54,8 +54,8 @@ public class Security extends WebSecurityConfigurerAdapter {
     public void configureGlobal(AuthenticationManagerBuilder auth,
                                 AuthenticationProvider provider) throws Exception {
         inMemoryConfigurer()
-                .withUser("a")
-                .password("{noop}a")
+                .withUser("admin")
+                .password("{noop}admin")
                 .authorities("ROLE_ADMIN")
                 .and()
                 .configure(auth);
@@ -70,7 +70,9 @@ public class Security extends WebSecurityConfigurerAdapter {
         http.addFilterBefore(filter, CsrfFilter.class);
         http.authorizeRequests()
                 .antMatchers("/").permitAll()
-                .antMatchers("/admin/**").access("hasRole('ADMIN')")
+//                .antMatchers("/admin/**").hasRole(ProjectRole.ROLE_ADMIN.name())
+                .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
+                .antMatchers("/user/**").access("hasRole('USER')")
                 .and()
                 .formLogin()
                 .loginPage("/login")

@@ -1,5 +1,7 @@
 package com.company.jcc.model;
 
+import org.joda.time.DateTime;
+
 import javax.persistence.*;
 import java.sql.Date;
 

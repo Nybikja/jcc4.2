@@ -7,12 +7,14 @@ import com.company.jcc.model.User;
 import com.company.jcc.service.impl.BookServiceImpl;
 import com.company.jcc.service.impl.RentServiceImpl;
 import com.company.jcc.service.impl.UserServiceImpl;
+import org.joda.time.DateTime;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 @Controller
 @RequestMapping("/rent")
@@ -40,20 +42,13 @@ public class RentController {
     public String create(@Validated @ModelAttribute Rent rent,
                          @RequestParam("bookId") int bookId,
                          @RequestParam("userId") int userId) {
-//        LocalDate date = new LocalDate()
-        int day = LocalDate.now().getDayOfMonth();
-        int month = LocalDate.now().getMonthValue();
-        int year = LocalDate.now().getYear();
         rent.setBook(bookService.readById(bookId));
         rent.setUser(userService.readById(userId));
-        java.util.Date utilDate = new java.util.Date();
-        rent.setTimeTaken(new java.sql.Date(utilDate.getTime()));
-        if (month + 2 > 12) {
-            year++;
-            month = month + 2 - 12;
-        }
-        rent.setTimeShouldBeReturned(new java.sql.Date(day, month, year));
-        Rent newRent = rentService.create(rent);
+        LocalDate localDate = LocalDate.now();
+        LocalDate localDate2 = localDate.plusMonths(2);
+        rent.setTimeTaken(java.sql.Date.valueOf(localDate));
+        rent.setTimeShouldBeReturned(java.sql.Date.valueOf(localDate2));
+        rentService.create(rent);
         return "redirect:/rent/all";
     }
 
