@@ -1,8 +1,6 @@
 package com.company.jcc.controller;
 
-import com.company.jcc.model.RegUser;
-import com.company.jcc.service.RegUserService;
-import com.company.jcc.service.impl.RegUserServiceImpl;
+import com.company.jcc.model.User;
 import com.company.jcc.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -43,16 +41,13 @@ public class MainController {
     }
 
     @Autowired
-    private RegUserService regUserService;
-
-    @Autowired
     private PasswordEncoder passwordEncoder;
 
     @PostMapping("/saveMe")
-    public String saveMe(RegUser regUser){
-        String encode = passwordEncoder.encode(regUser.getPassword());
-        regUser.setPassword(encode);
-        regUserService.create(regUser);
+    public String saveMe(User user){
+        String encode = passwordEncoder.encode(user.getPassword());
+        user.setPassword(encode);
+        userService.create(user);
         return "redirect:/";
     }
 

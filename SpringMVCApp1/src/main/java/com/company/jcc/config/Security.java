@@ -57,6 +57,7 @@ public class Security extends WebSecurityConfigurerAdapter {
                 .withUser("admin")
                 .password("{noop}admin")
                 .authorities("ROLE_ADMIN")
+//                .authorities(ProjectRole.ROLE_ADMIN.getAuthorities())
                 .and()
                 .configure(auth);
         auth.authenticationProvider(provider);
@@ -72,7 +73,7 @@ public class Security extends WebSecurityConfigurerAdapter {
                 .antMatchers("/").permitAll()
 //                .antMatchers("/admin/**").hasRole(ProjectRole.ROLE_ADMIN.name())
                 .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
-                .antMatchers("/user/**").access("hasRole('USER')")
+                .antMatchers("/user/**").access("hasRole('ROLE_USER')")
                 .and()
                 .formLogin()
                 .loginPage("/login")

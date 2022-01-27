@@ -1,7 +1,6 @@
 package com.company.jcc.controller;
 
 import com.company.jcc.model.User;
-import com.company.jcc.service.impl.RoleServiceImpl;
 import com.company.jcc.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,13 +13,14 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
     @Autowired
     private final UserServiceImpl userServiceImpl;
-    @Autowired
-    private final RoleServiceImpl roleServiceImpl;
 
-    public UserController(UserServiceImpl userService, RoleServiceImpl roleService) {
-        this.userServiceImpl = userService;
-        this.roleServiceImpl = roleService;
+    public UserController(UserServiceImpl userServiceImpl) {
+        this.userServiceImpl = userServiceImpl;
     }
+//    @Autowired
+//    private final RoleServiceImpl roleServiceImpl;
+//
+//
 
     @GetMapping("/create")
     public String create(Model model) {
@@ -30,9 +30,8 @@ public class UserController {
 
     @PostMapping("/create")
     public String create(@Validated @ModelAttribute("user") User user) {
-        user.setRole(roleServiceImpl.readById(2));
         User newUser = userServiceImpl.create(user);
-        return "redirect:/users/" + newUser.getId() + "/read";
+        return "redirect:/users/all";
     }
 
     @GetMapping("/{id}/read")
@@ -52,7 +51,7 @@ public class UserController {
     public String update(@PathVariable int id, Model model) {
         User user = userServiceImpl.readById(id);
         model.addAttribute("user", user);
-        model.addAttribute("roles", roleServiceImpl.getAll());
+//        model.addAttribute("roles", .getAll());
         System.out.println(user + "get method");
         return "update_user";
     }
@@ -67,6 +66,7 @@ public class UserController {
         user.setName(name);
         user.setSurname(surname);
         user.setEmail(email);
+        user.setUsername(email);
         if (password != null) {
             user.setPassword(password);
         }

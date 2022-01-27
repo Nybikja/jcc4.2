@@ -1,25 +1,30 @@
 package com.company.jcc.model;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Entity
 @Table(name = "user")
-public class User {
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "Name")
+    @Column
     private String name;
 
-    @Column(name = "Surname")
+    @Column
     private String surname;
 
-    @Column(name = "Age")
+    @Column
     private int age;
 
     @Basic
@@ -29,13 +34,17 @@ public class User {
     @Column
     private String email;
 
+    @Column(unique = true)
+    private  String username;
+
     @Column
     private String password;
 
-    @ManyToOne
-    @JoinColumn(name = "role_id")
-    private Role role;
+//    @ManyToOne
+//    @JoinColumn(name = "role_id")
+//    private Role role;
 
+//    @Enumerated(value = EnumType.STRING)
     @Column
     private String status;
 
@@ -56,14 +65,12 @@ public class User {
     public User() {
     }
 
-    public User(String name, String surname, int age, Date sqlDate, String email, String password, Role role) {
-        this.name = name;
-        this.surname = surname;
-        this.age = age;
-        this.sqlDate = sqlDate;
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
         this.email = email;
-        this.password = password;
-        this.role = role;
     }
 
     public int getId() {
@@ -102,32 +109,75 @@ public class User {
         this.sqlDate = sqlDate;
     }
 
-    public String getEmail() {
-        return email;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    @Enumerated(EnumType.STRING)
+    private ProjectRole projectRole = ProjectRole.ROLE_USER;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        List<SimpleGrantedAuthority> authorities = new ArrayList<SimpleGrantedAuthority>();
+        authorities.add(new SimpleGrantedAuthority(projectRole.name()));
+        return authorities;
     }
 
     public String getPassword() {
         return password;
     }
 
+    @Override
+    public String getUsername() {
+        return username;
+    }
+
+    private boolean isAccNonExp = true;
+    @Override
+    public boolean isAccountNonExpired() {
+        return isAccNonExp;
+    }
+
+    private boolean isAccNonLock = true;
+    @Override
+    public boolean isAccountNonLocked() {
+        return isAccNonLock;
+    }
+
+    private boolean isCredNonExp = true;
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return isCredNonExp;
+    }
+
+    private boolean isEnebled = true;
+    @Override
+    public boolean isEnabled() {
+        return isEnebled;
+    }
+
     public void setPassword(String password) {
         this.password = password;
     }
 
-    public Role getRole() {
-        return role;
-    }
+//    public Role getRole() {
+//        return role;
+//    }
 
-    public void setRole(Role role) {
-        this.role = role;
-    }
+//    public void setRole(Role role) {
+//        this.role = role;
+//    }
 
     public List<Request> getRequest() {
         return request;
+    }
+
+    public ProjectRole getProjectRole() {
+        return projectRole;
+    }
+
+    public void setProjectRole(ProjectRole projectRole) {
+        this.projectRole = projectRole;
     }
 
     public void setRequest(List<Request> request) {
@@ -158,8 +208,6 @@ public class User {
                 ", surname='" + surname + '\'' +
                 ", age=" + age +
                 ", sqlDate=" + sqlDate +
-                ", email='" + email + '\'' +
-                ", role=" + role.getName() +
                 '}' + "\n";
     }
 

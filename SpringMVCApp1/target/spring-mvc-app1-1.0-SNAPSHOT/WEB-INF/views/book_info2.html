@@ -15,7 +15,6 @@
 <div layout:fragment="content" style="margin: 0 auto; width: max-content">
     <h2>Info about Book</h2>
     <table>
-
         <tr>
             <td>Title:</td>
             <td>
@@ -31,6 +30,18 @@
             <td>Rating</td>
             <td>
                 <b th:text="${book.getBook().rating}"></b>
+            </td>
+        </tr>
+        <tr>
+            <td>Amount left</td>
+            <td>
+                <b th:text="${book.getBook().amountLeft}"></b>
+            </td>
+        </tr>
+        <tr>
+            <td>Amount gave</td>
+            <td>
+                <b th:text="${book.getBook().amountGave}"></b>
             </td>
         </tr>
         <tr>

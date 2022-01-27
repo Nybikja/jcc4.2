@@ -1,9 +1,11 @@
 package com.company.jcc.model;
 
 import org.joda.time.DateTime;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.Objects;
 
 @Entity
 @Table(name = "rent")
@@ -94,5 +96,18 @@ public class Rent {
 
     public int getId() {
         return id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Rent rent = (Rent) o;
+        return id == rent.id && timeTaken.equals(rent.timeTaken) && timeShouldBeReturned.equals(rent.timeShouldBeReturned) && Objects.equals(timeReturned, rent.timeReturned) && user.equals(rent.user) && book.equals(rent.book);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, timeTaken, timeShouldBeReturned, timeReturned, user, book);
     }
 }

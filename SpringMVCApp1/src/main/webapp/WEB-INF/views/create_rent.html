@@ -24,7 +24,7 @@
                         <span th:each="user : ${users}">
 <!--                            <option th:if="${user.id == user.role.id}" th:selected="${true}" th:text="${user.name.substring(0, 1) + user.name.substring(1).toLowerCase()}"-->
 <!--                                    th:value="${user.id}"></option>-->
-                            <option th:text="${user.name.substring(0, 1) + user.name.substring(1).toLowerCase()}" th:unless="${user.id == user.role.id}"
+                            <option th:text="${user.surname + ' ' + user.name}"
                                     th:value="${user.id}"></option>
                         </span>
                     </select>

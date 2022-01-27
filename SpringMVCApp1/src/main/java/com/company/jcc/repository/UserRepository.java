@@ -42,7 +42,7 @@ public class UserRepository {
     }
 
     public User findByEmail(String email) {
-        Query query = entityManager.createQuery("from User where email = " + email);
+        Query query = entityManager.createQuery("from User where username = " + "'" + email + "'");
         return (User) query.getSingleResult();
     }
 

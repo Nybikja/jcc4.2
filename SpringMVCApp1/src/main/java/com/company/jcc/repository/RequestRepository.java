@@ -2,7 +2,6 @@ package com.company.jcc.repository;
 
 import com.company.jcc.model.Rent;
 import com.company.jcc.model.Request;
-import com.company.jcc.model.Role;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

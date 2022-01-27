@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import javax.xml.crypto.Data;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -41,5 +44,15 @@ public class RentServiceImpl implements RentService {
     @Override
     public List<Rent> getAll() {
         return rentRepository.findAll();
+    }
+
+    @Override
+    public Rent getMostPopular(LocalDate start, LocalDate end) {
+        return rentRepository.getMostPopular(start, end);
+    }
+
+    @Override
+    public Rent getMostUnpopular(LocalDate start, LocalDate end) {
+        return rentRepository.getMostUnPopular(start, end);
     }
 }
