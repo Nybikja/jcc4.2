@@ -53,6 +53,14 @@ public class BookRepository {
         entityManager.remove(readById(id));
     }
 
+    @Transactional
+    public void rentBook(int id){
+        Query query = entityManager.createQuery("update Book \n" +
+                " set amountLeft = amountLeft - 1, amountGave = amountGave + 1\n where id = " + id);
+//        query.setParameter("amountLeft", book.getAmountLeft() - 1);
+//        query.setParameter("amountGave", book.getAmountGave() + 1);
+        query.executeUpdate();
+    }
     public BookRepository() {
     }
 

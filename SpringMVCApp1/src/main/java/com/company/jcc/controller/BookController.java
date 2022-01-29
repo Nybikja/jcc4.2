@@ -90,13 +90,11 @@ public class BookController {
     public String update(@PathVariable("id") int id, @RequestParam String bookTitle,
                          @RequestParam int amountLeft,
                          @RequestParam int amountGave,
-                         @RequestParam int rating,
                          @RequestParam("authorId") int authorId){
         Book book = bookService.readById(id);
         book.setBookTitle(bookTitle);
         book.setAmountLeft(amountLeft);
         book.setAmountGave(amountGave);
-        book.setRating(rating);
         AuthorName authorName = authorNameService.readById(id);
         authorName.setAuthor(authorService.readById(authorId));
         bookService.update(book);

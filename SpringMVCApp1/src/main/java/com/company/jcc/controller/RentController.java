@@ -52,7 +52,9 @@ public class RentController {
     public String create(@Validated @ModelAttribute Rent rent,
                          @RequestParam("bookId") int bookId,
                          @RequestParam("userId") int userId) {
-        rent.setBook(bookService.readById(bookId));
+        Book book = bookService.readById(bookId);
+        bookService.rentBook(bookId);
+        rent.setBook(book);
         rent.setUser(userService.readById(userId));
         LocalDate localDate = LocalDate.now();
         LocalDate localDate2 = localDate.plusMonths(2);
@@ -119,5 +121,11 @@ public class RentController {
         model.addAttribute("rent", mostPopular);
         model.addAttribute("rent2", mostUnpopular);
         return "rent_list2";
+    }
+
+    @GetMapping("/debtors")
+    public String notReturned(Model model){
+        model.addAttribute("users", rentService.findUsersNotReturnedInTime());
+        return "debtors";
     }
 }

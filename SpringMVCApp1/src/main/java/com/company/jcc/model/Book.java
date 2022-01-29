@@ -20,9 +20,6 @@ public class Book {
     @Column(name = "amount_gave")
     private int amountGave;
 
-    @Column
-    private int rating;
-
 //    @OneToMany(
 //            mappedBy = "book",
 //            cascade = CascadeType.ALL,
@@ -52,7 +49,6 @@ public class Book {
         this.bookTitle = bookTitle;
         this.amountLeft = amountLeft;
         this.amountGave = amountGave;
-        this.rating = rating;
     }
 
     public int getId() {
@@ -83,14 +79,6 @@ public class Book {
         this.amountGave = amountGave;
     }
 
-    public int getRating() {
-        return rating;
-    }
-
-    public void setRating(int rating) {
-        this.rating = rating;
-    }
-
 
     @Override
     public String toString() {
@@ -99,7 +87,6 @@ public class Book {
                 ", bookTitle='" + bookTitle + '\'' +
                 ", amountLeft=" + amountLeft +
                 ", amountGave=" + amountGave +
-                ", rating=" + rating +
                 '}' + "\n";
     }
 }

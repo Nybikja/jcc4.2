@@ -8,8 +8,6 @@ import com.company.jcc.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityNotFoundException;
-import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Service
@@ -50,5 +48,10 @@ public class BookServiceImpl implements BookService {
     @Override
     public void delete(int id) {
         bookRepository.delete(id);
+    }
+
+    @Override
+    public void rentBook(int id) {
+        bookRepository.rentBook(id);
     }
 }

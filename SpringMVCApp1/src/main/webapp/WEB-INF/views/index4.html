@@ -26,7 +26,6 @@
             <th>Book title</th>
             <th>Book author</th>
             <th>Amount left</th>
-            <th>Rating</th>
         </tr>
         </thead>
         <tbody>
@@ -35,7 +34,6 @@
             <td th:text="${book.getBook().bookTitle}"></td>
             <td th:text="${book.getAuthor().authorSurname}"></td>
             <td th:text="${book.getBook().amountLeft}"></td>
-            <td th:text="${book.getBook().rating}"></td>
         </tr>
         </tbody>
     </table>

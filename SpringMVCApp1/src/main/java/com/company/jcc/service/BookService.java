@@ -13,4 +13,5 @@ public interface BookService {
     Book readByTitle(String title);
     Book update(Book book);
     void delete(int id);
+    void rentBook(int id);
 }

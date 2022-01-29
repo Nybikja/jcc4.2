@@ -25,7 +25,6 @@
             <th>Book author</th>
             <th>Amount left</th>
             <th>Amount gave</th>
-            <th>Rating</th>
         </tr>
         <tr th:each="book, iStat: ${books}">
             <td>
@@ -42,9 +41,6 @@
             </td>
             <td>
                 <p th:text="${book.amountGave}"></p>
-            </td>
-            <td>
-                <p th:text="${book.rating}"></p>
             </td>
             <td>
                 <a th:href="@{|/books/${book.id}/update|}">Edit</a>

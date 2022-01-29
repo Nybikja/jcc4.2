@@ -1,5 +1,6 @@
 package com.company.jcc.repository;
 
+import com.company.jcc.model.Rent;
 import com.company.jcc.model.User;
 import org.springframework.stereotype.Repository;
 
@@ -45,5 +46,11 @@ public class UserRepository {
         Query query = entityManager.createQuery("from User where username = " + "'" + email + "'");
         return (User) query.getSingleResult();
     }
+
+//    @Transactional
+//    public List<User> findUsersNotReturnedInTime(){
+//        TypedQuery<Rent> query = entityManager.createQuery("select distinct User from Rent where timeReturned > timeShouldBeReturned or timeReturned = null and timeShouldBeReturned > current_date", Rent.class);
+//        return query.getResultList();
+//    }
 
 }

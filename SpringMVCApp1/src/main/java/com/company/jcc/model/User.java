@@ -29,7 +29,7 @@ public class User implements UserDetails {
 
     @Basic
     @Column(name = "date_registered")
-    private Date sqlDate;
+    private Date dateRegistered;
 
     @Column
     private String email;
@@ -101,12 +101,12 @@ public class User implements UserDetails {
         this.age = age;
     }
 
-    public Date getSqlDate() {
-        return sqlDate;
+    public Date getDateRegistered() {
+        return dateRegistered;
     }
 
-    public void setSqlDate(Date sqlDate) {
-        this.sqlDate = sqlDate;
+    public void setDateRegistered(Date dateRegistered) {
+        this.dateRegistered = dateRegistered;
     }
 
     public void setUsername(String username) {
@@ -207,7 +207,7 @@ public class User implements UserDetails {
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", age=" + age +
-                ", sqlDate=" + sqlDate +
+                ", dateRegistered=" + dateRegistered +
                 '}' + "\n";
     }
 

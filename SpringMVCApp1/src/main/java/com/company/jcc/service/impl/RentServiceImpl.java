@@ -1,16 +1,13 @@
 package com.company.jcc.service.impl;
 
 import com.company.jcc.model.Rent;
-import com.company.jcc.model.Request;
+import com.company.jcc.model.User;
 import com.company.jcc.repository.RentRepository;
 import com.company.jcc.service.RentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityNotFoundException;
-import javax.xml.crypto.Data;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -54,5 +51,10 @@ public class RentServiceImpl implements RentService {
     @Override
     public Rent getMostUnpopular(LocalDate start, LocalDate end) {
         return rentRepository.getMostUnPopular(start, end);
+    }
+
+    @Override
+    public List<User> findUsersNotReturnedInTime() {
+        return rentRepository.findUsersNotReturnedInTime();
     }
 }

@@ -1,6 +1,7 @@
 package com.company.jcc.service;
 
 import com.company.jcc.model.Rent;
+import com.company.jcc.model.User;
 
 import javax.xml.crypto.Data;
 import java.time.LocalDate;
@@ -15,4 +16,5 @@ public interface RentService {
     List<Rent> getAll();
     Rent getMostPopular(LocalDate start, LocalDate end);
     Rent getMostUnpopular(LocalDate start, LocalDate end);
+    List<User> findUsersNotReturnedInTime();
 }

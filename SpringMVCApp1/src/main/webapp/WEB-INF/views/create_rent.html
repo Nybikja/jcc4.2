@@ -37,7 +37,8 @@
                         <span th:each="book : ${books}">
 <!--                            <option th:if="${book.id == book.role.id}" th:selected="${true}" th:text="${book.bookTitle.substring(0, 1) + book.bookTitle.substring(1).toLowerCase()}"-->
 <!--                                    th:value="${book.id}"></option>-->
-                            <option th:text="${book.bookTitle.substring(0, 1) + book.bookTitle.substring(1).toLowerCase()}"
+
+                            <option th:if="${book.amountLeft > 0}" th:text="${book.bookTitle.substring(0, 1) + book.bookTitle.substring(1).toLowerCase()}"
                                     th:value="${book.id}"></option>
                         </span>
                     </select>

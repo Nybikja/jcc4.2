@@ -31,7 +31,6 @@
             <th>Num.</th>
             <th>Book title</th>
             <th>Book author</th>
-            <th>Rating</th>
             <th>Status</th>
             <th>Action</th>
         </tr>
@@ -41,10 +40,9 @@
             <td th:text="${iStat.index + 1}"></td>
             <td><a th:href="@{|/books/${book.getBook().id}/read|}" th:text="${book.getBook().bookTitle}"></a></td>
             <td th:text="${book.getAuthor().authorName + ' ' + book.author.authorSurname}"></td>
-            <td th:text="${book.getBook().rating}"></td>
             <td>
                 <b th:if="${book.getBook().amountLeft} > 0">Available</b>
-                <b th:if="${book.getBook().amountLeft} < 0">Unavailable</b>
+                <b th:if="${book.getBook().amountLeft} <= 0">Unavailable</b>
             </td>
             <td>
                 <a th:href="@{|/books/${book.getBook().id}/update|}"
