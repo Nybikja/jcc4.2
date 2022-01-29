@@ -47,10 +47,8 @@ public class UserRepository {
         return (User) query.getSingleResult();
     }
 
-//    @Transactional
-//    public List<User> findUsersNotReturnedInTime(){
-//        TypedQuery<Rent> query = entityManager.createQuery("select distinct User from Rent where timeReturned > timeShouldBeReturned or timeReturned = null and timeShouldBeReturned > current_date", Rent.class);
-//        return query.getResultList();
-//    }
+
+
+//
 
 }

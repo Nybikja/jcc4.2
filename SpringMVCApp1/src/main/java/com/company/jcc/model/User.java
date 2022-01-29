@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -29,7 +30,7 @@ public class User implements UserDetails {
 
     @Basic
     @Column(name = "date_registered")
-    private Date dateRegistered;
+    private LocalDate dateRegistered;
 
     @Column
     private String email;
@@ -101,11 +102,11 @@ public class User implements UserDetails {
         this.age = age;
     }
 
-    public Date getDateRegistered() {
+    public LocalDate getDateRegistered() {
         return dateRegistered;
     }
 
-    public void setDateRegistered(Date dateRegistered) {
+    public void setDateRegistered(LocalDate dateRegistered) {
         this.dateRegistered = dateRegistered;
     }
 

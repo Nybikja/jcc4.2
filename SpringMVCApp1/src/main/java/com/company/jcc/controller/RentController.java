@@ -128,4 +128,20 @@ public class RentController {
         model.addAttribute("users", rentService.findUsersNotReturnedInTime());
         return "debtors";
     }
+
+    @GetMapping("/count")
+    public String count(){
+        return "book_statistic2";
+    }
+
+    @PostMapping("/count")
+    public String count(@RequestParam("dateStart") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateStart,
+                        @RequestParam("dateEnd") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateEnd,
+                        Model model){
+        model.addAttribute("dateStart", dateStart);
+        model.addAttribute("dateEnd", dateEnd);
+        int count = rentService.howManyBook(dateStart, dateEnd);
+        model.addAttribute("count", count);
+        return "rent_list3";
+    }
 }

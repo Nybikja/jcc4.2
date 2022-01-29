@@ -57,4 +57,15 @@ public class RentServiceImpl implements RentService {
     public List<User> findUsersNotReturnedInTime() {
         return rentRepository.findUsersNotReturnedInTime();
     }
+
+    @Override
+    public int howManyBook(LocalDate start, LocalDate end) {
+        return rentRepository.howManyBook(start, end);
+    }
+
+    @Override
+    public List<Rent> hasRead(int id) {
+        return rentRepository.hasRead(id);
+    }
+
 }

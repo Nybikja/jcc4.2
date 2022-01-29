@@ -1,6 +1,8 @@
 package com.company.jcc.controller;
 
+import com.company.jcc.model.Rent;
 import com.company.jcc.model.User;
+import com.company.jcc.service.impl.RentServiceImpl;
 import com.company.jcc.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,14 +10,23 @@ import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.List;
+
 @Controller
 @RequestMapping("/users")
 public class UserController {
     @Autowired
     private final UserServiceImpl userServiceImpl;
 
-    public UserController(UserServiceImpl userServiceImpl) {
+    @Autowired
+    private final RentServiceImpl rentService;
+
+    public UserController(UserServiceImpl userServiceImpl, RentServiceImpl rentService) {
         this.userServiceImpl = userServiceImpl;
+        this.rentService = rentService;
     }
 //    @Autowired
 //    private final RoleServiceImpl roleServiceImpl;
@@ -31,13 +42,19 @@ public class UserController {
     @PostMapping("/create")
     public String create(@Validated @ModelAttribute("user") User user) {
         User newUser = userServiceImpl.create(user);
+        newUser.setDateRegistered(LocalDate.now());
         return "redirect:/users/all";
     }
 
     @GetMapping("/{id}/read")
     public String read(@PathVariable int id, Model model) {
         User user = userServiceImpl.readById(id);
+        List<Rent> rent = rentService.hasRead(id);
+        LocalDate date = user.getDateRegistered();
+        Period period = Period.between(date, LocalDate.now());
         model.addAttribute("user", user);
+        model.addAttribute("rents", rent);
+        model.addAttribute("period", period);
         return "user_info";
     }
 
@@ -79,4 +96,5 @@ public class UserController {
         userServiceImpl.delete(id);
         return "redirect:/users/all";
     }
+
 }

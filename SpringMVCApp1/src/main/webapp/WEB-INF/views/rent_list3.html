@@ -7,42 +7,24 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>List of Users</title>
+    <title>Books statistic</title>
 </head>
 <body>
 <div class="header">
     <a href="/users/all">users</a> |
-    <a href="/rent/all">rents</a> |
+    <a href="/books/all">books</a> |
 </div>
 
-<div class="container mt-5">
-    <h2 align="center">List of Users</h2>
-    <form th:action="@{/users/create}" method="get">
-        <input type="submit" value="Create new User">
-    </form>
+<div style="margin: 0 auto; width: max-content">
+    <h2 align="center">How many books were giving in</h2>
+    <h3 th:align="center" th:text="${dateStart}"></h3>
+    <h3 th:align="center" th:text="${dateEnd}"></h3>
     <br>
     <table class="table table-bordered table-sm mt-2">
-        <thead>
         <tr>
-            <th>Num</th>
-            <th>Full name</th>
-            <th>E-mail</th>
-            <th colspan="2">Operations</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="user, iStat: ${users}">
-            <td th:text="${iStat.index + 1}"></td>
+            <td>There were given: </td>
             <td>
-                <a th:href="@{|/users/${user.id}/read|}" th:text="${user.name + ' ' + user.surname}"></a>
-            </td>
-            <td th:text="${user.email}"></td>
-
-            <td>
-                <a th:href="@{|/users/${user.id}/update|}">Edit</a>
-            </td>
-            <td>
-                <a th:href="@{|/users/${user.id}/delete|}">Remove</a>
+                <b th:text="${count}"></b>
             </td>
         </tr>
     </table>

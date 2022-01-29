@@ -24,7 +24,7 @@ public class RentRepository {
 
     @Transactional
     public Rent readById(int id) {
-        Query query = entityManager.createQuery("from Rent where id = " + id);
+        Query query = entityManager.createQuery("from Rent where user.id = " + id);
         return (Rent) query.getSingleResult();
     }
 
@@ -62,4 +62,17 @@ public class RentRepository {
         TypedQuery<User> s = entityManager.createQuery("select distinct r.user from Rent r", User.class);
         return s.getResultList();
     }
+
+    @Transactional
+    public int howManyBook(LocalDate start, LocalDate end){
+        Query query = entityManager.createQuery("from Rent where timeTaken between " + "'" + start + "'" + " and " + "'" + end + "'");
+        return query.getResultList().size();
+    }
+
+    @Transactional
+    public List<Rent> hasRead(int id){
+        Query query = entityManager.createQuery("from Rent where user.id = " + id);
+        return query.getResultList();
+    }
+
 }

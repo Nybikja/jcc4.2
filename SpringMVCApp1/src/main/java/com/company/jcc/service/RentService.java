@@ -17,4 +17,7 @@ public interface RentService {
     Rent getMostPopular(LocalDate start, LocalDate end);
     Rent getMostUnpopular(LocalDate start, LocalDate end);
     List<User> findUsersNotReturnedInTime();
+    int howManyBook(LocalDate start, LocalDate end);
+    List<Rent> hasRead(int id);
+
 }

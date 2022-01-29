@@ -49,6 +49,11 @@
                     </td>
                 </tr>
                 <tr>
+                    <td>
+                        <input type="text" th:value="${#dates.format(#dates.createNow(),'YYYY/MM/dd')}" th:field="*{dateRegistered}" id="dateRegistered" />
+                    </td>
+                </tr>
+                <tr>
                     <td colspan="2">
                         <input type="submit" value="Register" />
                         <input type="reset" value="Clear" />
