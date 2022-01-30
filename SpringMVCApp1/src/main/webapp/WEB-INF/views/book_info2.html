@@ -47,7 +47,12 @@
                 <b th:if="${book.getBook().amountLeft} < 0">Unavailable</b>
             </td>
         </tr>
-
+        <tr>
+            <td>Average time of reading</td>
+            <td >
+                <b th:text="${avg + ' ' + 'days'}"></b>
+            </td>
+        </tr>
 
     </table>
 <!--    <div>-->

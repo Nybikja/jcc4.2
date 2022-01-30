@@ -1,6 +1,7 @@
 package com.company.jcc.repository;
 
 import com.company.jcc.model.Book;
+import com.company.jcc.model.Rent;
 import com.company.jcc.service.BookService;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,6 +11,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 //import javax.transaction.Transactional;
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -60,6 +62,15 @@ public class BookRepository {
 //        query.setParameter("amountLeft", book.getAmountLeft() - 1);
 //        query.setParameter("amountGave", book.getAmountGave() + 1);
         query.executeUpdate();
+    }
+
+    @Transactional
+    public List<Rent> averageTime(int id){
+//        Query query = entityManager.createQuery("select function('DATEDIFF',timeReturned, timeTaken) from  Rent where book.id = " + id, Rent.class);
+//        Query query = entityManager.createNativeQuery("select round(avg(DATEDIFF(time_returned, time_taken))) as AvgTimeReading, amount_left, amount_gave from rent r \n" +
+//                "JOIN book b ON r.book_id = b.id");
+        Query query = entityManager.createQuery("from Rent where timeReturned is not null and book.id = " + id);
+        return query.getResultList();
     }
     public BookRepository() {
     }

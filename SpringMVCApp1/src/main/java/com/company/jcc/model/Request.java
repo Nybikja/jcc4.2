@@ -2,6 +2,7 @@ package com.company.jcc.model;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "request")
@@ -12,24 +13,26 @@ public class Request {
 
     @Basic
     @Column
-    private Date time;
+    private LocalDate time;
 
-    @ManyToOne(
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
-    )
+    @ManyToOne
+//            cascade = CascadeType.ALL,
+//            fetch = FetchType.LAZY
+//    )
+    @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToOne(
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
-    )
+    @ManyToOne
+//            cascade = CascadeType.ALL,
+//            fetch = FetchType.LAZY
+//    )
+    @JoinColumn(name = "book_id")
     private Book book;
 
     public Request() {
     }
 
-    public Request(Date time, User user, Book book) {
+    public Request(LocalDate time, User user, Book book) {
         this.time = time;
         this.user = user;
         this.book = book;
@@ -39,11 +42,11 @@ public class Request {
         return id;
     }
 
-    public Date getTime() {
+    public LocalDate getTime() {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(LocalDate time) {
         this.time = time;
     }
 

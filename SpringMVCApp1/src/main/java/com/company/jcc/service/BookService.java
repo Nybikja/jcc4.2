@@ -1,8 +1,10 @@
 package com.company.jcc.service;
 
 import com.company.jcc.model.Book;
+import com.company.jcc.model.Rent;
 
 
+import java.util.Date;
 import java.util.List;
 
 public interface BookService {
@@ -14,4 +16,5 @@ public interface BookService {
     Book update(Book book);
     void delete(int id);
     void rentBook(int id);
+    List<Rent> averageTime(int id);
 }

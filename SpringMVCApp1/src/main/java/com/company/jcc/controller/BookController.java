@@ -3,16 +3,21 @@ package com.company.jcc.controller;
 import com.company.jcc.model.Author;
 import com.company.jcc.model.AuthorName;
 import com.company.jcc.model.Book;
+import com.company.jcc.model.Rent;
 import com.company.jcc.service.BookService;
 import com.company.jcc.service.impl.AuthorNameServiceImpl;
 import com.company.jcc.service.impl.AuthorServiceImpl;
 import com.company.jcc.service.impl.BookServiceImpl;
+import org.joda.time.Days;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import java.time.temporal.ChronoUnit;
 
+
+import java.time.Period;
 import java.util.List;
 
 @Controller
@@ -61,6 +66,15 @@ public class BookController {
     @GetMapping("/{id}/read")
     public String read(@PathVariable int id, Model model) {
         model.addAttribute("book", authorNameService.readById(id));
+        List<Rent> rents = bookService.averageTime(id);
+        long days = 0;
+        for (Rent r: rents) {
+            long period = ChronoUnit.DAYS.between(r.getTimeTaken(), r.getTimeReturned());
+            days += period;
+        }
+        int avg = (int) (days / rents.size());
+        System.out.println(avg);
+        model.addAttribute("avg", avg);
         //model.addAttribute("book", bookService.readById(id));
         return "book_info2";
     }

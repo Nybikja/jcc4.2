@@ -74,5 +74,4 @@ public class RentRepository {
         Query query = entityManager.createQuery("from Rent where user.id = " + id);
         return query.getResultList();
     }
-
 }

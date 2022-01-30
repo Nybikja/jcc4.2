@@ -3,11 +3,13 @@ package com.company.jcc.service.impl;
 
 import com.company.jcc.model.Book;
 //import com.company.jcc.model.Rent;
+import com.company.jcc.model.Rent;
 import com.company.jcc.repository.BookRepository;
 import com.company.jcc.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -53,5 +55,10 @@ public class BookServiceImpl implements BookService {
     @Override
     public void rentBook(int id) {
         bookRepository.rentBook(id);
+    }
+
+    @Override
+    public List<Rent> averageTime(int id) {
+        return bookRepository.averageTime(id);
     }
 }

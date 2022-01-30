@@ -58,8 +58,8 @@ public class RentController {
         rent.setUser(userService.readById(userId));
         LocalDate localDate = LocalDate.now();
         LocalDate localDate2 = localDate.plusMonths(2);
-        rent.setTimeTaken(java.sql.Date.valueOf(localDate));
-        rent.setTimeShouldBeReturned(java.sql.Date.valueOf(localDate2));
+        rent.setTimeTaken(localDate);
+        rent.setTimeShouldBeReturned(localDate2);
         rentService.create(rent);
         return "redirect:/rent/all";
     }
@@ -91,8 +91,9 @@ public class RentController {
     public String update(@PathVariable(name = "id") int id) {
         Rent rent = rentService.readById(id);
         System.out.println(rent);
-        java.util.Date utilDate = new java.util.Date();
-        rent.setTimeReturned(new java.sql.Date(utilDate.getTime()));
+//        java.util.Date utilDate = new java.util.Date();
+        LocalDate date = LocalDate.now();
+        rent.setTimeReturned(date);
         rentService.update(rent);
         return "redirect:/rent/all";
     }

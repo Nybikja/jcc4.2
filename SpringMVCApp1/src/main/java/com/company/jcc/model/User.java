@@ -32,7 +32,7 @@ public class User implements UserDetails {
     @Column(name = "date_registered")
     private LocalDate dateRegistered;
 
-    @Column
+    @Column(unique = true)
     private String email;
 
     @Column(unique = true)

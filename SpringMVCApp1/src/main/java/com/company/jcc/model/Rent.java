@@ -1,10 +1,8 @@
 package com.company.jcc.model;
 
-import org.joda.time.DateTime;
-import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
@@ -16,15 +14,15 @@ public class Rent {
 
     @Basic
     @Column(name = "time_taken")
-    private Date timeTaken;
+    private LocalDate timeTaken;
 
     @Basic
     @Column(name = "time_should_be_returned")
-    private Date timeShouldBeReturned;
+    private LocalDate timeShouldBeReturned;
 
     @Basic
     @Column(name = "time_returned")
-    private Date timeReturned;
+    private LocalDate timeReturned;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -37,34 +35,34 @@ public class Rent {
     public Rent() {
     }
 
-    public Rent(User user, Book book, Date timeTaken, Date timeShouldBeReturned) {
+    public Rent(User user, Book book, LocalDate timeTaken, LocalDate timeShouldBeReturned) {
         this.user = user;
         this.book = book;
         this.timeTaken = timeTaken;
         this.timeShouldBeReturned = timeShouldBeReturned;
     }
 
-    public Date getTimeTaken() {
+    public LocalDate getTimeTaken() {
         return timeTaken;
     }
 
-    public void setTimeTaken(Date timeTaken) {
+    public void setTimeTaken(LocalDate timeTaken) {
         this.timeTaken = timeTaken;
     }
 
-    public Date getTimeShouldBeReturned() {
+    public LocalDate getTimeShouldBeReturned() {
         return timeShouldBeReturned;
     }
 
-    public void setTimeShouldBeReturned(Date timeShouldBeReturned) {
+    public void setTimeShouldBeReturned(LocalDate timeShouldBeReturned) {
         this.timeShouldBeReturned = timeShouldBeReturned;
     }
 
-    public Date getTimeReturned() {
+    public LocalDate getTimeReturned() {
         return timeReturned;
     }
 
-    public void setTimeReturned(Date timeReturned) {
+    public void setTimeReturned(LocalDate timeReturned) {
         this.timeReturned = timeReturned;
     }
 

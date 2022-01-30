@@ -1,8 +1,11 @@
 package com.company.jcc.controller;
 
+import com.company.jcc.config.Security;
 import com.company.jcc.model.User;
 import com.company.jcc.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,8 +28,13 @@ public class MainController {
 
     @GetMapping("/")
     public String home(Model model, HttpServletRequest request){
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        int id = ((User) principal).getId();
+        String name = ((User) principal).getName();
+        model.addAttribute("name", name);
         model.addAttribute("x", "hello");
-        return "hello_world";
+        model.addAttribute("id", id);
+        return "hello_user";
     }
 
     @GetMapping("/xxx")
