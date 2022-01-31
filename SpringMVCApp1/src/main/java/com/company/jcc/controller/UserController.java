@@ -79,8 +79,8 @@ public class UserController {
         LocalDate localDate = LocalDate.now();
         request.setTime(localDate);
         requestService.create(request);
-        model.addAttribute("book", book);
-        model.addAttribute("date", localDate);
+        model.addAttribute("requests", requestService.findAllByUserId(id));
+//        model.addAttribute("date", localDate);
         return "user_request";
     }
 

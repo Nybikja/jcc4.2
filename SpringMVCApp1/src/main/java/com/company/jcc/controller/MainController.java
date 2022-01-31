@@ -2,6 +2,7 @@ package com.company.jcc.controller;
 
 import com.company.jcc.config.Security;
 import com.company.jcc.model.User;
+import com.company.jcc.service.UserService;
 import com.company.jcc.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -29,12 +30,15 @@ public class MainController {
     @GetMapping("/")
     public String home(Model model, HttpServletRequest request){
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        int id = ((User) principal).getId();
-        String name = ((User) principal).getName();
-        model.addAttribute("name", name);
+        System.out.println(principal.toString());
+        if (principal.getClass() == User.class) {
+            int id = ((User) principal).getId();
+            String name = ((User) principal).getName();
+            model.addAttribute("name", name);
+            model.addAttribute("id", id);
+        }
         model.addAttribute("x", "hello");
-        model.addAttribute("id", id);
-        return "hello_user";
+        return "hello_user2";
     }
 
     @GetMapping("/xxx")

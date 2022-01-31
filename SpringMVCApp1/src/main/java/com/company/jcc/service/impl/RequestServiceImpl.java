@@ -44,4 +44,11 @@ public class RequestServiceImpl implements RequestService {
     public List<Request> getAll() {
         return requestRepository.findAll();
     }
+
+    @Override
+    public List<Request> findAllByUserId(int id) {
+        return requestRepository.findAllByUserId(id);
+    }
+
+
 }

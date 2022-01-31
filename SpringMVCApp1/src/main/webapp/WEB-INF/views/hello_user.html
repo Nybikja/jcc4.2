@@ -25,15 +25,21 @@
 </form>
 <div th:if="${#httpServletRequest.remoteUser != null}">
 <!--    <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>-->
-    <h1 th:text="'Hello ' + ${name}"></h1>
+    <h1 th:text="'Hello, ' + ${name}"></h1>
         <a th:href="@{|/users/${id}/create/request|}"
        class="btn btn-dark">Create request</a>
     <form th:action="@{/logout}" method="post">
         <input type="submit" value="Log Out"/>
     </form>
 </div>
-<div sec:authorize access="hasRole('ROLE_USER')">Text visible to user.</div>
+<div sec:authorize="hasRole('ROLE_ADMIN')">
+    This content is only shown to administrators.
+</div>
+<div sec:authorize="hasAuthority('ROLE_USER')">Text visible to user.</div>
 
+<div sec:authorize="isAuthenticated()">
+    Text visible only to authenticated users.
+</div>
 
 </body>
 

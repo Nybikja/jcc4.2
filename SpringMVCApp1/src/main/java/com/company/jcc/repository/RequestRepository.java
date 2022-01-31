@@ -36,6 +36,12 @@ public class RequestRepository {
     }
 
     @Transactional
+    public List<Request> findAllByUserId(int id) {
+        TypedQuery<Request> query = entityManager.createQuery("from Request where user.id = " + id, Request.class);
+        return query.getResultList();
+    }
+
+    @Transactional
     public void delete(int id) {
         entityManager.remove(readById(id));
     }

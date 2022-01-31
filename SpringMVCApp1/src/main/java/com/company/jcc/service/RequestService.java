@@ -10,4 +10,5 @@ public interface RequestService {
     Request update(Request request);
     void delete(int id);
     List<Request> getAll();
+    List<Request> findAllByUserId(int id);
 }
