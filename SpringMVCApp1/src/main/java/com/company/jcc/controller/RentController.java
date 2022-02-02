@@ -77,24 +77,13 @@ public class RentController {
         return "rent_list";
     }
 
-    @GetMapping("/{id}/return")
-    public String update(@PathVariable int id, Model model) {
-        Rent rent = rentService.readById(id);
-        model.addAttribute("rent", rent);
-        System.out.println(rent + "get method");
-        return "update_rent";
-    }
+
 
 
 
     @PostMapping("/{id}/return")
     public String update(@PathVariable(name = "id") int id) {
-        Rent rent = rentService.readById(id);
-        System.out.println(rent);
-//        java.util.Date utilDate = new java.util.Date();
-        LocalDate date = LocalDate.now();
-        rent.setTimeReturned(date);
-        rentService.update(rent);
+
         return "redirect:/rent/all";
     }
 

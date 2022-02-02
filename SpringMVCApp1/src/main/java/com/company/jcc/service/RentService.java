@@ -19,5 +19,6 @@ public interface RentService {
     List<User> findUsersNotReturnedInTime();
     int howManyBook(LocalDate start, LocalDate end);
     List<Rent> hasRead(int id);
+    void backBook(int id);
 
 }

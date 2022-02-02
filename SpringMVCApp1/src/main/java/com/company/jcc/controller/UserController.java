@@ -80,8 +80,24 @@ public class UserController {
         request.setTime(localDate);
         requestService.create(request);
         model.addAttribute("requests", requestService.findAllByUserId(id));
-//        model.addAttribute("date", localDate);
         return "user_request";
+    }
+
+    @GetMapping("/{id}/rent")
+    public String rent(@PathVariable int id, Model model) {
+        List <Rent> rents = rentService.hasRead(id);
+        model.addAttribute("rents", rents);
+        return "user_rent";
+    }
+
+    @GetMapping("/{idUser}/rent/{id}")
+    public String returnBook(@PathVariable int idUser, @PathVariable int id){
+        LocalDate date = LocalDate.now();
+        Rent rent = rentService.readById(id);
+        rent.setTimeReturned(date);
+        rentService.backBook(id);
+        rentService.update(rent);
+        return "redirect:/users/{idUser}/rent";
     }
 
     @GetMapping("/{id}/read")

@@ -24,7 +24,7 @@ public class RentRepository {
 
     @Transactional
     public Rent readById(int id) {
-        Query query = entityManager.createQuery("from Rent where user.id = " + id);
+        Query query = entityManager.createQuery("from Rent where id = " + id);
         return (Rent) query.getSingleResult();
     }
 
@@ -73,5 +73,12 @@ public class RentRepository {
     public List<Rent> hasRead(int id){
         Query query = entityManager.createQuery("from Rent where user.id = " + id);
         return query.getResultList();
+    }
+
+    @Transactional
+    public void backBook(int id){
+        Query query = entityManager.createQuery("update Book \n" +
+                " set amountLeft = amountLeft + 1, amountGave = amountGave - 1  where id = " + id);
+        query.executeUpdate();
     }
 }

@@ -68,4 +68,9 @@ public class RentServiceImpl implements RentService {
         return rentRepository.hasRead(id);
     }
 
+    @Override
+    public void backBook(int id) {
+        rentRepository.backBook(id);
+    }
+
 }

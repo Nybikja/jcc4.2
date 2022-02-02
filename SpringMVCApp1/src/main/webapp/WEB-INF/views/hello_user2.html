@@ -27,18 +27,15 @@
     <!--    <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>-->
     <h1 th:text="'Hello, ' + ${name} + '!'"></h1>
     <div sec:authorize="hasAuthority('ROLE_USER')">
-    <a th:href="@{|/users/${id}/create/request|}"
+        <a th:href="@{|/users/${id}/create/request|}"
        class="btn btn-dark">Create request</a>
+        <a th:href="@{|/users/${id}/rent|}"
+           class="btn btn-dark">My rents</a>
     </div>
     <form th:action="@{/logout}" method="post">
         <input type="submit" value="Log Out"/>
     </form>
     </div>
-</div>
-<div sec:authorize="hasRole('ROLE_ADMIN')">
-    This content is only shown to administrators.
-</div>
-
 </body>
 
 </html>

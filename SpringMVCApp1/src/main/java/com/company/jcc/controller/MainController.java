@@ -37,7 +37,7 @@ public class MainController {
             model.addAttribute("name", name);
             model.addAttribute("id", id);
         }
-        model.addAttribute("x", "hello");
+//        model.addAttribute("x", "hello");
         return "hello_user2";
     }
 
