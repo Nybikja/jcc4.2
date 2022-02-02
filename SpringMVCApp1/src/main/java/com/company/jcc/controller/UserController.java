@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 @Controller
@@ -101,6 +102,31 @@ public class UserController {
         return "redirect:/users/{idUser}/rent";
     }
 
+    @GetMapping("/{id}/statistic")
+    public String statistic(@PathVariable int id, Model model) {
+        List <Rent> rents = rentService.hasRead(id);
+        long days = 0;
+        long days2 = 0;
+        int countBook = 0;
+        int countBook2 = 0;
+        for (Rent r: rents) {
+            if (r.getTimeReturned() != null) {
+                long period = ChronoUnit.DAYS.between(r.getTimeTaken(), r.getTimeReturned());
+                days += period;
+            }
+            else {
+                long period2 = ChronoUnit.DAYS.between(r.getTimeTaken(), LocalDate.now());
+                days2 += period2;
+            }
+            if (r.getTimeReturned() != null)
+                countBook++;
+        }
+        model.addAttribute("days", days);
+        model.addAttribute("countBook", countBook);
+        model.addAttribute("days2", days2);
+        model.addAttribute("countBook2", rents.size() - countBook);
+        return "user_statistic";
+    }
     @GetMapping("/{id}/read")
     public String read(@PathVariable int id, Model model) {
         User user = userService.readById(id);
