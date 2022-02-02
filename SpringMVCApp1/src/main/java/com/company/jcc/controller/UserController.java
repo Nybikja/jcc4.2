@@ -94,8 +94,9 @@ public class UserController {
     public String returnBook(@PathVariable int idUser, @PathVariable int id){
         LocalDate date = LocalDate.now();
         Rent rent = rentService.readById(id);
+        int id1 = rent.getBook().getId();
         rent.setTimeReturned(date);
-        rentService.backBook(id);
+        rentService.backBook(id1);
         rentService.update(rent);
         return "redirect:/users/{idUser}/rent";
     }
