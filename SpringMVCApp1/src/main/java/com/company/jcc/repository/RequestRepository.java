@@ -9,6 +9,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.util.List;
 
 @Repository
@@ -51,4 +52,9 @@ public class RequestRepository {
         return entityManager.merge(request);
     }
 
+    @Transactional
+    public long avgRequest(LocalDate start, LocalDate end){
+        Query query = entityManager.createQuery("select (count(id)) / (count(distinct user.id)) from Request where time between " + "'" + start + "'" + " and " + "'" + end + "'");
+        return (long) query.getSingleResult();
+    }
 }

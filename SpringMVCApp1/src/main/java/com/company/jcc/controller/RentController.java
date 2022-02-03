@@ -77,10 +77,6 @@ public class RentController {
         return "rent_list";
     }
 
-
-
-
-
     @PostMapping("/{id}/return")
     public String update(@PathVariable(name = "id") int id) {
 

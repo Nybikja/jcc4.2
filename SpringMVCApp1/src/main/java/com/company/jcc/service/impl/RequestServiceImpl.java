@@ -6,6 +6,7 @@ import com.company.jcc.service.RequestService;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -48,6 +49,11 @@ public class RequestServiceImpl implements RequestService {
     @Override
     public List<Request> findAllByUserId(int id) {
         return requestRepository.findAllByUserId(id);
+    }
+
+    @Override
+    public long avgRequest(LocalDate start, LocalDate end) {
+        return requestRepository.avgRequest(start, end);
     }
 
 

@@ -9,6 +9,7 @@ import com.company.jcc.service.impl.RentServiceImpl;
 import com.company.jcc.service.impl.RequestServiceImpl;
 import com.company.jcc.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -176,6 +177,32 @@ public class UserController {
     public String delete(@PathVariable("id") int id) {
         userService.delete(id);
         return "redirect:/users/all";
+    }
+
+    @GetMapping("/statistic")
+    public String statistic(){
+        return "users_statistic";
+    }
+
+    @PostMapping("/statistic")
+    public String userStatistic(
+            @RequestParam("dateStart") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateStart,
+                                @RequestParam("dateEnd") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateEnd,
+                                Model model) {
+        List<User> users = userService.getAll();
+        long days = 0;
+        for (User u: users) {
+            long period = ChronoUnit.DAYS.between(u.getDateRegistered(), LocalDate.now());
+            days += period;
+        }
+        int avg = (int) (days / users.size());
+        model.addAttribute("dateStart", dateStart);
+        model.addAttribute("dateEnd", dateEnd);
+        model.addAttribute("avgAge", userService.avgAge());
+        model.addAttribute("avgTime", avg);
+        model.addAttribute("avgRequest", requestService.avgRequest(dateStart, dateEnd));
+        System.out.println(requestService.avgRequest(dateStart, dateEnd));
+        return "users_statistic2";
     }
 
 }

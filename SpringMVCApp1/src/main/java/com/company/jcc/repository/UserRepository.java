@@ -42,12 +42,17 @@ public class UserRepository {
         entityManager.remove(readById(id));
     }
 
+    @Transactional
     public User findByEmail(String email) {
         Query query = entityManager.createQuery("from User where username = " + "'" + email + "'");
         return (User) query.getSingleResult();
     }
 
-
+    @Transactional
+    public int avgAge(){
+        Query query = entityManager.createQuery("select cast(avg(age) as integer)  from User");
+        return (int) query.getSingleResult();
+    }
 
 //
 
