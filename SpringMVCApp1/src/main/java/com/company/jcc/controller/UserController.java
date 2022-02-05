@@ -4,6 +4,7 @@ import com.company.jcc.model.Book;
 import com.company.jcc.model.Rent;
 import com.company.jcc.model.Request;
 import com.company.jcc.model.User;
+import com.company.jcc.config.EmailService;
 import com.company.jcc.service.impl.BookServiceImpl;
 import com.company.jcc.service.impl.RentServiceImpl;
 import com.company.jcc.service.impl.RequestServiceImpl;
@@ -39,11 +40,16 @@ public class UserController {
     @Autowired
     private final BookServiceImpl bookService;
 
-    public UserController(UserServiceImpl userService, RentServiceImpl rentService, RequestServiceImpl requestService, BookServiceImpl bookService) {
+    @Autowired
+    private EmailService emailService;
+
+    public UserController(UserServiceImpl userService, RentServiceImpl rentService, RequestServiceImpl requestService, PasswordEncoder passwordEncoder, BookServiceImpl bookService, EmailService emailService) {
         this.userService = userService;
         this.rentService = rentService;
         this.requestService = requestService;
+        this.passwordEncoder = passwordEncoder;
         this.bookService = bookService;
+        this.emailService = emailService;
     }
 
     @GetMapping("/create")
@@ -205,4 +211,9 @@ public class UserController {
         return "users_statistic2";
     }
 
+    @GetMapping("/email/{subject}")
+    public String email(@PathVariable("subject") String subject){
+        emailService.sendSimpleMessage(subject, "test from my app");
+        return "redirect:/";
+    }
 }
