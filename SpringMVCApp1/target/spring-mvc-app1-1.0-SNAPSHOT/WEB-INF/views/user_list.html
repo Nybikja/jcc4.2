@@ -11,7 +11,6 @@
 </head>
 <body>
 <div class="header">
-    <a href="/users/all">users</a> |
     <a href="/rent/all">rents</a> |
 </div>
 
@@ -44,8 +43,14 @@
             <td>
                 <a th:href="@{|/users/${user.id}/delete|}">Remove</a>
             </td>
+            <td>
+                <a th:href="@{|/admin/email/${user.id}/|}"
+                   class="btn btn-secondary">Send email</a>
+            </td>
         </tr>
     </table>
+    <a th:href="@{|/admin/email/all/|}"
+         class="btn btn-secondary">Send email to all</a>
 </div>
 </body>
 </html>

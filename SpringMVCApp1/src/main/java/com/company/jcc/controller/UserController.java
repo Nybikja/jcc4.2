@@ -40,16 +40,13 @@ public class UserController {
     @Autowired
     private final BookServiceImpl bookService;
 
-    @Autowired
-    private EmailService emailService;
 
-    public UserController(UserServiceImpl userService, RentServiceImpl rentService, RequestServiceImpl requestService, PasswordEncoder passwordEncoder, BookServiceImpl bookService, EmailService emailService) {
+    public UserController(UserServiceImpl userService, RentServiceImpl rentService, RequestServiceImpl requestService, PasswordEncoder passwordEncoder, BookServiceImpl bookService) {
         this.userService = userService;
         this.rentService = rentService;
         this.requestService = requestService;
         this.passwordEncoder = passwordEncoder;
         this.bookService = bookService;
-        this.emailService = emailService;
     }
 
     @GetMapping("/create")
@@ -146,11 +143,7 @@ public class UserController {
         return "user_info";
     }
 
-    @GetMapping("/all")
-    public String getAll(Model model) {
-        model.addAttribute("users", userService.getAll());
-        return "user_list";
-    }
+
 
     @GetMapping("/{id}/update")
     public String update(@PathVariable int id, Model model) {
@@ -211,9 +204,5 @@ public class UserController {
         return "users_statistic2";
     }
 
-    @GetMapping("/email/{subject}")
-    public String email(@PathVariable("subject") String subject){
-        emailService.sendSimpleMessage(subject, "test from my app");
-        return "redirect:/";
-    }
+
 }

@@ -17,10 +17,10 @@ public class EmailService {
     public EmailService() {
     }
 
-    public void sendSimpleMessage(String subject, String text) {
+    public void sendSimpleMessage(String subject, String text, String to) {
         SimpleMailMessage message = new SimpleMailMessage();
 //        message.setFrom("");
-        message.setTo("poxpox344@gmail.com");
+        message.setTo(to);
         message.setSubject(subject);
         message.setText(text);
         emailSender.send(message);

@@ -17,6 +17,10 @@ public class AuthorName {
     @JoinColumn(name = "book_id")
     private Book book;
 
+    @ManyToOne
+    @JoinColumn(name = "coauthor_id")
+    private Author coauthor;
+
 
     public Author getAuthor() {
         return author;
@@ -34,12 +38,21 @@ public class AuthorName {
         this.book = book;
     }
 
+    public Author getCoauthor() {
+        return coauthor;
+    }
+
+    public void setCoauthor(Author coauthor) {
+        this.coauthor = coauthor;
+    }
+
     public AuthorName() {
     }
 
-    public AuthorName(Integer id, Author author, Book book) {
+    public AuthorName(Integer id, Author author, Book book, Author coauthor) {
         this.id = id;
         this.author = author;
         this.book = book;
+        this.coauthor = coauthor;
     }
 }

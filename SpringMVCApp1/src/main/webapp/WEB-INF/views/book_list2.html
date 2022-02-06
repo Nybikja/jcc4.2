@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml"
       lang="en">
 <head>
     <meta charset="ISO-8859-1">
@@ -14,14 +14,17 @@
     <a href="/books/search">search by title</a> |
     <a href="/books/search/byauthor">search by author</a>
 </div>
- <div class="text-lg-start">
-    <a href="/users/all">users</a> |
+ <div sec:authorize="hasAuthority('ROLE_ADMIN')" class="text-lg-start">
+    <a href="/admin/users/all/">users</a> |
     <a href="/rent/all">rents</a> |
  </div>
+<div>
+    <a href="/rent/statistic">books statistic</a>
+</div>
 
 <div style="margin: 0 auto; width: max-content">
     <h2>List of Books</h2>
-    <form th:action="@{/books/create}" method="get">
+    <form sec:authorize="hasAuthority('ROLE_ADMIN')" th:action="@{/books/create}" method="get">
         <input type="submit" value="Create new Book">
     </form>
     <br>
@@ -31,20 +34,24 @@
             <th>Num.</th>
             <th>Book title</th>
             <th>Book author</th>
+            <th>Book co-author</th>
             <th>Status</th>
-            <th>Action</th>
+            <th sec:authorize="hasAuthority('ROLE_ADMIN')">Action</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="book, iStat: ${books}">
             <td th:text="${iStat.index + 1}"></td>
-            <td><a th:href="@{|/books/${book.getBook().id}/read|}" th:text="${book.getBook().bookTitle}"></a></td>
+            <td sec:authorize="hasAuthority('ROLE_ADMIN')"><a th:href="@{|/books/${book.getBook().id}/read|}" th:text="${book.getBook().bookTitle}"></a></td>
+            <td sec:authorize="hasAuthority('ROLE_USER')" th:text="${book.getBook().bookTitle}"></td>
             <td th:text="${book.getAuthor().authorName + ' ' + book.author.authorSurname}"></td>
+            <td th:if="${book.getCoauthor() != null}" th:text="${book.getCoauthor().authorName + ' ' + book.getCoauthor().authorSurname}"></td>
+            <td th:if="${book.getCoauthor() == null}">No co-author</td>
             <td>
                 <b th:if="${book.getBook().amountLeft} > 0">Available</b>
                 <b th:if="${book.getBook().amountLeft} <= 0">Unavailable</b>
             </td>
-            <td>
+            <td sec:authorize="hasAuthority('ROLE_ADMIN')">
                 <a th:href="@{|/books/${book.getBook().id}/update|}"
                    class="btn btn-primary">Update</a>
                 <a th:href="@{|/books/${book.getBook().id}/delete|}"

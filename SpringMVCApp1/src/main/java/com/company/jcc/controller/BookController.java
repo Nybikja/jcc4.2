@@ -48,11 +48,14 @@ public class BookController {
 
     @PostMapping("/create")
     public String save(@Validated @ModelAttribute("book") Book book,
-                         @RequestParam("authorId") int authorId){
+                         @RequestParam("authorId") int authorId,
+                       @RequestParam("coauthorId") int coauthorId){
         Book book1 = bookService.create(book);
         AuthorName authorName = new AuthorName();
         authorName.setBook(book1);
         authorName.setAuthor(authorService.readById(authorId));
+        if (coauthorId != 0)
+            authorName.setCoauthor(authorService.readById(coauthorId));
         authorNameService.create(authorName);
         return "redirect:/books/all";
     }
@@ -68,11 +71,17 @@ public class BookController {
         model.addAttribute("book", authorNameService.readById(id));
         List<Rent> rents = bookService.averageTime(id);
         long days = 0;
+        int avg = 0;
         for (Rent r: rents) {
             long period = ChronoUnit.DAYS.between(r.getTimeTaken(), r.getTimeReturned());
             days += period;
         }
-        int avg = (int) (days / rents.size());
+        if(rents.size() > 0) {
+            avg = (int) (days / rents.size());
+        }
+        else {
+            avg = (int) days;
+        }
         System.out.println(avg);
         model.addAttribute("avg", avg);
         //model.addAttribute("book", bookService.readById(id));

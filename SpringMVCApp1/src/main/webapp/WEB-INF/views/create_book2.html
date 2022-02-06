@@ -42,6 +42,21 @@
                          </div>
                      </div>
                  </td>
+
+                <td>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="coauthor">Coauthor:</label>
+                        <div class="col-sm-8">
+                            <select class="form-control" id="coauthor" name="coauthorId">
+                                <option selected th:value="0">no co-author</option>
+                                <span th:each="author : ${authors}">
+                                    <option th:text="${author.authorName + ' ' + author.authorSurname.substring(0, 1) + author.authorSurname.substring(1).toLowerCase()}"
+                                            th:value="${author.id}"></option>
+                                </span>
+                            </select>
+                        </div>
+                    </div>
+                </td>
             </tr>
             <tr>
                 <input type="submit" value="Register" />
