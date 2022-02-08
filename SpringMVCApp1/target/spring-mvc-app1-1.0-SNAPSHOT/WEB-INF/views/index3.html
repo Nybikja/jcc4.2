@@ -14,7 +14,7 @@
     <h2 align="center">Search by title</h2>
     <form th:action="@{/books/search}" method="get">
         <label>
-            <input type="text" name="bookTitle" th:value="${bookTitle}"  placeholder="Find by Title" size="50" >
+            <input type="text" name="bookTitle" th:value="${authorName.book.bookTitle}"  placeholder="Find by Title" size="50" >
         </label>
         <button type="submit" class="btn btn-info" >Search</button>
         <button type="submit" class="btn btn-info" >Reset</button>
@@ -23,14 +23,15 @@
         <thead>
         <tr>
             <th>Book title</th>
-            <th>Amount left</th>
-            <th>Amount gave</th>
+            <th>Main author</th>
+            <th>Co-author</th>
         </tr>
         </thead>
         <tbody>
-            <td th:text="${book.bookTitle}"></td>
-            <td th:text="${book.amountLeft}"></td>
-            <td th:text="${book.amountGave}"></td>
+            <td th:text="${authorName.book.bookTitle}"></td>
+            <td th:text="${authorName.getAuthor().authorSurname + ' ' + authorName.getAuthor().authorName}"></td>
+            <td th:if="${authorName.getCoauthor() != null}"
+                th:text="${authorName.getCoauthor().authorSurname + ' ' + authorName.getCoauthor().authorName}"></td>
         </tbody>
     </table>
 </div>

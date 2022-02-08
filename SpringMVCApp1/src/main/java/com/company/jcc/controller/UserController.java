@@ -116,17 +116,6 @@ public class UserController {
         model.addAttribute("countBook2", rents.size() - countBook);
         return "user_statistic";
     }
-    @GetMapping("/{id}/read")
-    public String read(@PathVariable int id, Model model) {
-        User user = userService.readById(id);
-        List<Rent> rent = rentService.hasRead(id);
-        LocalDate date = user.getDateRegistered();
-        Period period = Period.between(date, LocalDate.now());
-        model.addAttribute("user", user);
-        model.addAttribute("rents", rent);
-        model.addAttribute("period", period);
-        return "user_info";
-    }
 
 
 

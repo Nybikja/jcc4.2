@@ -1,6 +1,7 @@
 package com.company.jcc.repository;
 
 import com.company.jcc.model.AuthorName;
+import com.company.jcc.model.Book;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -38,6 +39,12 @@ public class AuthorNameRepository {
         Query query = entityManager.createQuery("from AuthorName " +
                 "where author.authorSurname = " + "'" + surname + "'" + " or coauthor.authorSurname = " + "'" + surname + "'");
         return query.getResultList();
+    }
+
+    @Transactional
+    public AuthorName readByTitle(String title) {
+        Query query = entityManager.createQuery("from AuthorName where book.bookTitle = " + "'" + title + "'");
+        return (AuthorName) query.getSingleResult();
     }
 
     @Transactional

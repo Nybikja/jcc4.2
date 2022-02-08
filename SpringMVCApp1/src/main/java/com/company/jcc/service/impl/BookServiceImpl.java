@@ -38,11 +38,6 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Book readByTitle(String title) {
-        return bookRepository.readByTitle(title);
-    }
-
-    @Override
     public Book update(Book book) {
         return bookRepository.update(book);
     }

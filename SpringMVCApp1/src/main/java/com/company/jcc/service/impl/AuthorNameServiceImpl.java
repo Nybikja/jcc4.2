@@ -44,6 +44,11 @@ public class AuthorNameServiceImpl implements AuthorNameService {
         return authorNameRepository.getAll();
     }
 
+    @Override
+    public AuthorName readByTitle(String title) {
+       return authorNameRepository.readByTitle(title);
+    }
+
     public AuthorNameServiceImpl(AuthorNameRepository authorNameRepository) {
         this.authorNameRepository = authorNameRepository;
     }

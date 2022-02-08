@@ -152,10 +152,10 @@ public class BookController {
 
     @GetMapping("/search")
     public String home(Book book, Model model, String bookTitle) {
-        List<Book> books = bookService.getAll();
+        List<AuthorName> books = authorNameService.getAll();
         if (bookTitle != null) {
-            Book book2 = bookService.readByTitle(bookTitle);
-            model.addAttribute("book", book2);
+            AuthorName authorName = authorNameService.readByTitle(bookTitle);
+            model.addAttribute("authorName", authorName);
             return "index3";
         } else {
             model.addAttribute("books", books);
@@ -170,11 +170,6 @@ public class BookController {
             authorNames = authorNameService.readByAuthor(author);
         }
         model.addAttribute("books", authorNames);
-        for (AuthorName book : authorNames) {
-            if (book.getCoauthor() != null)
-                System.out.println(book.getCoauthor().getId());
-
-        }
         return "index4";
     }
 

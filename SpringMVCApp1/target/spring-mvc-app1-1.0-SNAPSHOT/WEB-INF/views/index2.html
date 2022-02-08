@@ -23,16 +23,17 @@
         <tr>
             <th>Num.</th>
             <th>Book title</th>
-            <th>Amount left</th>
-            <th>Amount gave</th>
+            <th>Main author</th>
+            <th>Co-author</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="book : ${books}">
             <td th:text="${bookStat.index+1}"></td>
-            <td th:text="${book.bookTitle}"></td>
-            <td th:text="${book.amountLeft}"></td>
-            <td th:text="${book.amountGave}"></td>
+            <td th:text="${book.book.bookTitle}"></td>
+            <td th:text="${book.getAuthor().authorSurname + ' ' + book.getAuthor().authorName}"></td>
+            <td th:if="${book.getCoauthor() != null}"
+                th:text="${book.getCoauthor().authorSurname + ' ' + book.getCoauthor().authorName}"></td>
         </tr>
         </tbody>
     </table>
