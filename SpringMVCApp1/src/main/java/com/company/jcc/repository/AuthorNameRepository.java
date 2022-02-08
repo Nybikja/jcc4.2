@@ -36,7 +36,7 @@ public class AuthorNameRepository {
     @Transactional
     public List<AuthorName> readByAuthor(String surname) {
         Query query = entityManager.createQuery("from AuthorName " +
-                "where author.authorSurname = " + "'" + surname + "'");
+                "where author.authorSurname = " + "'" + surname + "'" + " or coauthor.authorSurname = " + "'" + surname + "'");
         return query.getResultList();
     }
 

@@ -8,8 +8,8 @@
 </head>
 <body>
 <div class="header">
-    <a href="/users/all">users</a> |
-    <a href="/rent/all">rents</a> |
+    <a href="/admin/users/all">users</a> |
+    <a href="/admin/rents/all">rents</a> |
 </div>
 
 <div layout:fragment="content" style="margin: 0 auto; width: max-content">
@@ -38,8 +38,8 @@
         </tr>
     </table>
     <div>
-        <a th:href="@{|/rent/${rent.id}/return|}">Edit</a> |
-        <a th:href="@{|/rent/${rent.id}/delete|}">Remove</a>
+        <a th:href="@{|/admin/rents/${rent.id}/return|}">Edit</a> |
+        <a th:href="@{|/admin/rents/${rent.id}/delete|}">Remove</a>
     </div>
 </div>
 </body>

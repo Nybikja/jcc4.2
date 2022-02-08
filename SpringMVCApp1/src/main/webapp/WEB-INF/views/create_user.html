@@ -8,8 +8,7 @@
 </head>
 <body>
 <div class="header">
-    <a href="/users/all">users</a> |
-    <a href="/rent/all">rents</a> |
+
 </div>
 
     <div layout:fragment="content" style="margin: 0 auto; width: max-content">
@@ -30,6 +29,14 @@
                     </td>
                     <td>
                         <input type="text" th:field="*{surname}" id="last-name" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="age">Age:</label>
+                    </td>
+                    <td>
+                        <input type="text" th:field="*{age}" id="age" />
                     </td>
                 </tr>
                 <tr>

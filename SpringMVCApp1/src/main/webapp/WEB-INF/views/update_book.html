@@ -7,7 +7,7 @@
 </head>
 <body>
 <div class="header">
-    <a href="/users/all">users</a> |
+    <a href="/admin/users/all">users</a> |
     <a href="/books/all">books</a> |
 </div>
 
@@ -45,6 +45,20 @@
             <label class="col-sm-2 control-label" for="author">Author:</label>
             <div class="col-sm-8">
                 <select class="form-control" id="author" name="authorId">
+                    <span th:each="author : ${authors}">
+                        <option th:text="${author.authorName + ' ' + author.authorSurname.substring(0, 1) + author.authorSurname.substring(1).toLowerCase()}"
+                                th:value="${author.id}">
+                        </option>
+                    </span>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="coauthor">Co-Author:</label>
+            <div class="col-sm-8">
+                <select class="form-control" id="coauthor" name="coAuthorId">
+                    <option selected th:value="0">no co-author</option>
                     <span th:each="author : ${authors}">
                         <option th:text="${author.authorName + ' ' + author.authorSurname.substring(0, 1) + author.authorSurname.substring(1).toLowerCase()}"
                                 th:value="${author.id}">

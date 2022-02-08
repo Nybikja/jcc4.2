@@ -23,7 +23,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 @Controller
-@RequestMapping("/users")
+@RequestMapping("/user")
 public class UserController {
     @Autowired
     private final UserServiceImpl userService;
@@ -49,22 +49,7 @@ public class UserController {
         this.bookService = bookService;
     }
 
-    @GetMapping("/create")
-    public String create(Model model) {
-        model.addAttribute("user", new User());
-        return "create_user";
-    }
 
-    @PostMapping("/create")
-    public String create(@Validated @ModelAttribute("user") User user) {
-        LocalDate localDate = LocalDate.now();
-        String encode = passwordEncoder.encode(user.getPassword());
-        user.setPassword(encode);
-        user.setDateRegistered(localDate);
-        user.setUsername(user.getEmail());
-        userService.create(user);
-        return "redirect:/users/all";
-    }
 
     @GetMapping("/{id}/create/request")
     public String createRequest(@PathVariable int id, Model model) {
@@ -103,7 +88,7 @@ public class UserController {
         rent.setTimeReturned(date);
         rentService.backBook(id1);
         rentService.update(rent);
-        return "redirect:/users/{idUser}/rent";
+        return "redirect:/user/{idUser}/rent";
     }
 
     @GetMapping("/{id}/statistic")
@@ -169,40 +154,13 @@ public class UserController {
             user.setPassword(password);
         }
         userService.update(user);
-        return "redirect:/users/" + id + "/read";
+        return "redirect:/user/" + id + "/read";
     }
 
-    @GetMapping("/{id}/delete")
-    public String delete(@PathVariable("id") int id) {
-        userService.delete(id);
-        return "redirect:/users/all";
-    }
-
-    @GetMapping("/statistic")
-    public String statistic(){
-        return "users_statistic";
-    }
-
-    @PostMapping("/statistic")
-    public String userStatistic(
-            @RequestParam("dateStart") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateStart,
-                                @RequestParam("dateEnd") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateEnd,
-                                Model model) {
-        List<User> users = userService.getAll();
-        long days = 0;
-        for (User u: users) {
-            long period = ChronoUnit.DAYS.between(u.getDateRegistered(), LocalDate.now());
-            days += period;
-        }
-        int avg = (int) (days / users.size());
-        model.addAttribute("dateStart", dateStart);
-        model.addAttribute("dateEnd", dateEnd);
-        model.addAttribute("avgAge", userService.avgAge());
-        model.addAttribute("avgTime", avg);
-        model.addAttribute("avgRequest", requestService.avgRequest(dateStart, dateEnd));
-        System.out.println(requestService.avgRequest(dateStart, dateEnd));
-        return "users_statistic2";
-    }
-
+//    @GetMapping("/{id}/delete")
+//    public String delete(@PathVariable("id") int id) {
+//        userService.delete(id);
+//        return "redirect:/users/all";
+//    }
 
 }

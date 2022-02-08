@@ -10,8 +10,7 @@
 </head>
 <body>
 <h2 align="center">Books Statistic</h2>
-<form th:action="@{|/rent/count|}" method="post">
-    <input type="submit" value="Submit">
+<form th:action="@{|/admin/rents/count|}" method="post">
     <table>
         <tr>
             <td>
@@ -30,6 +29,7 @@
             </td>
         </tr>
     </table>
+    <input type="submit" value="Submit">
 </form>
 </body>
 </html>

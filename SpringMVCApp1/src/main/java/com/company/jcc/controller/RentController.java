@@ -27,7 +27,7 @@ import java.util.Date;
 import java.util.List;
 
 @Controller
-@RequestMapping("/rent")
+@RequestMapping("/admin/rents")
 public class RentController {
     private final RentServiceImpl rentService;
     private final BookServiceImpl bookService;
@@ -38,6 +38,41 @@ public class RentController {
         this.rentService = rentService;
         this.bookService = bookService;
         this.userService = userService;
+    }
+
+    @GetMapping("/statistic")
+    public String statistic(){
+//        model.addAttribute("rents", rentService.getAll());
+        return "book_statistic";
+    }
+
+    @PostMapping("/statistic")
+    public String statistic(@RequestParam("dateStart") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateStart,
+                            @RequestParam("dateEnd") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateEnd,
+                            Model model){
+        model.addAttribute("dateStart", dateStart);
+        model.addAttribute("dateEnd", dateEnd);
+        Rent mostPopular = rentService.getMostPopular(dateStart, dateEnd);
+        Rent mostUnpopular = rentService.getMostUnpopular(dateStart, dateEnd);
+        model.addAttribute("rent", mostPopular);
+        model.addAttribute("rent2", mostUnpopular);
+        return "rent_list2";
+    }
+
+    @GetMapping("/count")
+    public String count(){
+        return "book_statistic2";
+    }
+
+    @PostMapping("/count")
+    public String count(@RequestParam("dateStart") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateStart,
+                        @RequestParam("dateEnd") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateEnd,
+                        Model model){
+        model.addAttribute("dateStart", dateStart);
+        model.addAttribute("dateEnd", dateEnd);
+        int count = rentService.howManyBook(dateStart, dateEnd);
+        model.addAttribute("count", count);
+        return "rent_list3";
     }
 
     @GetMapping("/create")
@@ -61,7 +96,7 @@ public class RentController {
         rent.setTimeTaken(localDate);
         rent.setTimeShouldBeReturned(localDate2);
         rentService.create(rent);
-        return "redirect:/rent/all";
+        return "redirect:/admin/rents/all";
     }
 
     @GetMapping("/{id}/read")
@@ -72,62 +107,21 @@ public class RentController {
     }
 
     @GetMapping("/all")
-    public String getAll(Model model) {
+    public String readAll(Model model) {
         model.addAttribute("rents", rentService.getAll());
         return "rent_list";
     }
 
     @PostMapping("/{id}/return")
     public String update(@PathVariable(name = "id") int id) {
-
-        return "redirect:/rent/all";
+        Rent rent = rentService.readById(id);
+        rentService.update(rent);
+        return "redirect:/admin/rents/all";
     }
 
     @GetMapping("/{id}/delete")
     public String delete(@PathVariable("id") int id) {
         rentService.delete(id);
-        return "redirect:/rent/all";
-    }
-
-    @GetMapping("/statistic")
-    public String statistic(){
-//        model.addAttribute("rents", rentService.getAll());
-        return "book_statistic";
-    }
-
-
-    @PostMapping("/statistic")
-    public String statistic(@RequestParam("dateStart") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateStart,
-                            @RequestParam("dateEnd") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateEnd,
-                            Model model){
-        model.addAttribute("dateStart", dateStart);
-        model.addAttribute("dateEnd", dateEnd);
-        Rent mostPopular = rentService.getMostPopular(dateStart, dateEnd);
-        Rent mostUnpopular = rentService.getMostUnpopular(dateStart, dateEnd);
-        model.addAttribute("rent", mostPopular);
-        model.addAttribute("rent2", mostUnpopular);
-        return "rent_list2";
-    }
-
-    @GetMapping("/debtors")
-    public String notReturned(Model model){
-        model.addAttribute("users", rentService.findUsersNotReturnedInTime());
-        return "debtors";
-    }
-
-    @GetMapping("/count")
-    public String count(){
-        return "book_statistic2";
-    }
-
-    @PostMapping("/count")
-    public String count(@RequestParam("dateStart") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateStart,
-                        @RequestParam("dateEnd") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateEnd,
-                        Model model){
-        model.addAttribute("dateStart", dateStart);
-        model.addAttribute("dateEnd", dateEnd);
-        int count = rentService.howManyBook(dateStart, dateEnd);
-        model.addAttribute("count", count);
-        return "rent_list3";
+        return "redirect:/admin/rents/all";
     }
 }

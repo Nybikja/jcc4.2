@@ -16,9 +16,6 @@ public class Author {
     @Column(name = "author_surname")
     private String authorSurname;
 
-    @Column(name = "coauthor_exists")
-    private int coAuthorExists;
-
 //    @OneToMany(
 //            mappedBy = "author",
 //            cascade = CascadeType.ALL,
@@ -32,7 +29,6 @@ public class Author {
     public Author(String authorName, String authorSurname, int coAuthorExists) {
         this.authorName = authorName;
         this.authorSurname = authorSurname;
-        this.coAuthorExists = coAuthorExists;
     }
 
     public Integer getId() {
@@ -55,21 +51,12 @@ public class Author {
         this.authorSurname = authorSurname;
     }
 
-    public int isCoAuthorExists() {
-        return coAuthorExists;
-    }
-
-    public void setCoAuthorExists(int coAuthorExists) {
-        this.coAuthorExists = coAuthorExists;
-    }
-
     @Override
     public String toString() {
         return "\n Author{" +
                 "id=" + id +
                 ", authorName='" + authorName + '\'' +
                 ", authorSurname='" + authorSurname + '\'' +
-                ", coAuthorExists=" + coAuthorExists +
                 '}' + "\n";
     }
 }

@@ -13,12 +13,18 @@ import org.springframework.security.config.annotation.authentication.configurers
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 @Configuration
 @EnableWebSecurity
@@ -70,13 +76,14 @@ public class Security extends WebSecurityConfigurerAdapter {
         filter.setForceEncoding(true);
         http.addFilterBefore(filter, CsrfFilter.class);
         http.authorizeRequests()
-                .antMatchers("/").permitAll()
+                .antMatchers("/form-login").permitAll()
 //                .antMatchers("/admin/**").hasRole(ProjectRole.ROLE_ADMIN.name())
                 .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
                 .antMatchers("/user/**").access("hasRole('ROLE_USER')")
+                .antMatchers("/books/**").access("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
                 .and()
                 .formLogin()
-                .loginPage("/login")
+                .loginPage("/form-login")
                 .loginProcessingUrl("/loginProcessing")
                 .successForwardUrl("/success")
                 .passwordParameter("password")
@@ -88,5 +95,16 @@ public class Security extends WebSecurityConfigurerAdapter {
                 .exceptionHandling().accessDeniedPage("/accessDeniedPage")
                 .and()
                 .csrf();
+    }
+
+    public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
+                                        AuthenticationException exception) throws IOException, ServletException {
+        String email = request.getParameter("email");
+        String error = exception.getMessage();
+        System.out.println("A failed login attempt with email: "
+                + email + ". Reason: " + error);
+
+        String redirectUrl = request.getContextPath() + "/login?error";
+        response.sendRedirect(redirectUrl);
     }
 }

@@ -8,12 +8,11 @@
 </head>
 <body>
 <div class="header">
-    <a href="/users/all">users</a> |
-    <a href="/rent/all">rents</a> |
+
 </div>
 
 <div layout:fragment="content" style="margin: 0 auto; width: max-content">
-    <form th:action="@{|/users/${id}/create/request|}" th:object="${request}" method="post">
+    <form th:action="@{|/user/${id}/create/request|}" th:object="${request}" method="post">
         <h3>Choose a book</h3>
         <table>
             <div class="form-group">

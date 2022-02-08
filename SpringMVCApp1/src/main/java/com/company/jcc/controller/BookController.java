@@ -100,6 +100,14 @@ public class BookController {
         return "redirect:/books/all";
     }
 
+    @GetMapping("/{id}/delete/one")
+    public String deleteOne(@PathVariable("id") int id) {
+        Book book = bookService.readById(id);
+        book.setAmountLeft(book.getAmountLeft() - 1);
+        bookService.update(book);
+        return "redirect:/books/all";
+    }
+
     @GetMapping("/{id}/update")
     public String update(@PathVariable("id") int id, Model model) {
         Book book = bookService.readById(id);
@@ -113,12 +121,15 @@ public class BookController {
     public String update(@PathVariable("id") int id, @RequestParam String bookTitle,
                          @RequestParam int amountLeft,
                          @RequestParam int amountGave,
-                         @RequestParam("authorId") int authorId){
+                         @RequestParam("authorId") int authorId,
+                         @RequestParam("coAuthorId") int coAuthorId){
         Book book = bookService.readById(id);
         book.setBookTitle(bookTitle);
         book.setAmountLeft(amountLeft);
         book.setAmountGave(amountGave);
         AuthorName authorName = authorNameService.readById(id);
+        if (coAuthorId != 0)
+            authorName.setCoauthor(authorService.readById(coAuthorId));
         authorName.setAuthor(authorService.readById(authorId));
         bookService.update(book);
         authorNameService.update(authorName);
@@ -138,8 +149,6 @@ public class BookController {
 //        System.out.println(author);
 //        return "index5";
 //    }
-
-
 
     @GetMapping("/search")
     public String home(Book book, Model model, String bookTitle) {
@@ -161,6 +170,11 @@ public class BookController {
             authorNames = authorNameService.readByAuthor(author);
         }
         model.addAttribute("books", authorNames);
+        for (AuthorName book : authorNames) {
+            if (book.getCoauthor() != null)
+                System.out.println(book.getCoauthor().getId());
+
+        }
         return "index4";
     }
 

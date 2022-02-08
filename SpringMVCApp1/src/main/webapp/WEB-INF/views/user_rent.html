@@ -15,8 +15,7 @@
     <a href="/books/search/byauthor">search by author</a>
 </div>
 <div class="text-lg-start">
-    <a href="/users/all">users</a> |
-    <a href="/rent/all">rents</a> |
+
 </div>
 
 <div style="margin: 0 auto; width: max-content">
@@ -41,7 +40,7 @@
             <td th:text="${rent.getTimeShouldBeReturned()}"></td>
             <td th:text="${rent.getTimeReturned()}"></td>
             <td th:if="${rent.getTimeReturned() == null}">
-                <a th:href="@{|/users/${id}/rent/${rent.id}|}"
+                <a th:href="@{|/user/${id}/rent/${rent.id}|}"
                    class="btn btn-primary">Return</a>
             </td>
 

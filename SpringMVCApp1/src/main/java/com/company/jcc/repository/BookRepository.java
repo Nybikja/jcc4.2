@@ -72,6 +72,7 @@ public class BookRepository {
         Query query = entityManager.createQuery("from Rent where timeReturned is not null and book.id = " + id);
         return query.getResultList();
     }
+
     public BookRepository() {
     }
 
