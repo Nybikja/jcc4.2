@@ -96,15 +96,4 @@ public class Security extends WebSecurityConfigurerAdapter {
                 .and()
                 .csrf();
     }
-
-    public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
-                                        AuthenticationException exception) throws IOException, ServletException {
-        String email = request.getParameter("email");
-        String error = exception.getMessage();
-        System.out.println("A failed login attempt with email: "
-                + email + ". Reason: " + error);
-
-        String redirectUrl = request.getContextPath() + "/login?error";
-        response.sendRedirect(redirectUrl);
-    }
 }
