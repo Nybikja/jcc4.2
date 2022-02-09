@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.w3.org/1999/xhtml"
       lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,12 +8,15 @@
 </head>
 <body>
 <div class="header">
+    <a href="/">home</a> |
+    <a sec:authorize="hasRole('ROLE_ADMIN')" href="/admin/rents/all">rents</a> |
     <a href="/books/all">books</a> |
+    <a sec:authorize="hasRole('ROLE_ADMIN')" href="/admin/users/all">readers</a>
 </div>
 
 <div layout:fragment="content" style="margin: 0 auto; width: max-content">
     <h2>New Book registration</h2>
-    <form th:action="@{/books/create/}" th:object="${book}" method="post">
+    <form th:action="@{/admin/book/create/}" th:object="${book}" method="post">
         <table>
             <tr>
                 <td>

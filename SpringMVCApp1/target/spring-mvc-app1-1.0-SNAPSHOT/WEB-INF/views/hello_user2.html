@@ -34,6 +34,8 @@
            class="btn btn-outline-info">My statistic</a>
         <a th:href="@{|/books/all/|}"
            class="btn btn-dark">Books</a>
+<!--        <a th:href="@{|/user/${id}/update/|}"-->
+<!--            class="btn btn-primary">update</a>-->
     </div>
         <div sec:authorize="hasAuthority('ROLE_ADMIN')">
             <a th:href="@{|/admin/users/all/|}"

@@ -39,54 +39,6 @@ public class BookController {
 //        return "create_book";
 //    }
 
-    @GetMapping("/create")
-    public String create(Model model) {
-        model.addAttribute("book", new Book());
-        model.addAttribute("authors", authorService.getAll());
-        return "create_book2";
-    }
-
-    @PostMapping("/create")
-    public String save(@Validated @ModelAttribute("book") Book book,
-                         @RequestParam("authorId") int authorId,
-                       @RequestParam("coauthorId") int coauthorId){
-        Book book1 = bookService.create(book);
-        AuthorName authorName = new AuthorName();
-        authorName.setBook(book1);
-        authorName.setAuthor(authorService.readById(authorId));
-        if (coauthorId != 0)
-            authorName.setCoauthor(authorService.readById(coauthorId));
-        authorNameService.create(authorName);
-        return "redirect:/books/all";
-    }
-
-//    @PostMapping("/create")
-//    public String create(@Validated @ModelAttribute("book") Book book) {
-//        bookService.create(book);
-//        return "redirect:/books/all";
-//    }
-
-    @GetMapping("/{id}/read")
-    public String read(@PathVariable int id, Model model) {
-        model.addAttribute("book", authorNameService.readById(id));
-        List<Rent> rents = bookService.averageTime(id);
-        long days = 0;
-        int avg = 0;
-        for (Rent r: rents) {
-            long period = ChronoUnit.DAYS.between(r.getTimeTaken(), r.getTimeReturned());
-            days += period;
-        }
-        if(rents.size() > 0) {
-            avg = (int) (days / rents.size());
-        }
-        else {
-            avg = (int) days;
-        }
-        System.out.println(avg);
-        model.addAttribute("avg", avg);
-        //model.addAttribute("book", bookService.readById(id));
-        return "book_info2";
-    }
 
     @GetMapping("/all")
     public String getAll(Model model) {
@@ -94,47 +46,7 @@ public class BookController {
         return "book_list2";
     }
 
-    @GetMapping("/{id}/delete")
-    public String delete(@PathVariable("id") int id) {
-        bookService.delete(id);
-        return "redirect:/books/all";
-    }
 
-    @GetMapping("/{id}/delete/one")
-    public String deleteOne(@PathVariable("id") int id) {
-        Book book = bookService.readById(id);
-        book.setAmountLeft(book.getAmountLeft() - 1);
-        bookService.update(book);
-        return "redirect:/books/all";
-    }
-
-    @GetMapping("/{id}/update")
-    public String update(@PathVariable("id") int id, Model model) {
-        Book book = bookService.readById(id);
-        model.addAttribute("book", book);
-        model.addAttribute("authors", authorService.getAll());
-        return "update_book";
-    }
-
-
-    @PostMapping("/{id}/update")
-    public String update(@PathVariable("id") int id, @RequestParam String bookTitle,
-                         @RequestParam int amountLeft,
-                         @RequestParam int amountGave,
-                         @RequestParam("authorId") int authorId,
-                         @RequestParam("coAuthorId") int coAuthorId){
-        Book book = bookService.readById(id);
-        book.setBookTitle(bookTitle);
-        book.setAmountLeft(amountLeft);
-        book.setAmountGave(amountGave);
-        AuthorName authorName = authorNameService.readById(id);
-        if (coAuthorId != 0)
-            authorName.setCoauthor(authorService.readById(coAuthorId));
-        authorName.setAuthor(authorService.readById(authorId));
-        bookService.update(book);
-        authorNameService.update(authorName);
-        return "redirect:/books/all";
-    }
 
 //    @GetMapping("/search/byauthor")
 //    public String search(Model model){

@@ -7,9 +7,10 @@
     <title>New Request</title>
 </head>
 <body>
-<div class="header">
-
-</div>
+<a href="/">home</a>
+<a th:href="@{|/user/${id}/rent|}">rents</a>
+<a th:href="@{|/user/${id}/statistic|}">statistic</a>
+<a th:href="@{|/books/all/|}">books</a>
 
 <div layout:fragment="content" style="margin: 0 auto; width: max-content">
     <form th:action="@{|/user/${id}/create/request|}" th:object="${request}" method="post">

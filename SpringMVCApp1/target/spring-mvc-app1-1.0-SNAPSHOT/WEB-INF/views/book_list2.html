@@ -10,19 +10,14 @@
     <title>List of Books</title>
 </head>
 <body>
-<div class="text-end">
-    <a href="/books/search">search by title</a> |
-    <a href="/books/search/byauthor">search by author</a>
+<div class="header">
+    <a href="/">home</a> |
+    <a sec:authorize="hasRole('ROLE_ADMIN')" href="/admin/rents/all">rents</a> |
+    <a sec:authorize="hasRole('ROLE_ADMIN')" href="/admin/users/all">readers</a>
 </div>
- <div sec:authorize="hasAuthority('ROLE_ADMIN')" class="text-lg-start">
-    <a href="/admin/users/all/">users</a> |
-    <a href="/admin/rents/all">rents</a> |
- </div>
-
-
 <div style="margin: 0 auto; width: max-content">
     <h2>List of Books</h2>
-    <form sec:authorize="hasAuthority('ROLE_ADMIN')" th:action="@{/books/create}" method="get">
+    <form sec:authorize="hasAuthority('ROLE_ADMIN')" th:action="@{/admin/book/create}" method="get">
         <input type="submit" value="Create new Book">
     </form>
     <br>
@@ -40,7 +35,7 @@
         <tbody>
         <tr th:each="book, iStat: ${books}">
             <td th:text="${iStat.index + 1}"></td>
-            <td sec:authorize="hasAuthority('ROLE_ADMIN')"><a th:href="@{|/books/${book.getBook().id}/read|}" th:text="${book.getBook().bookTitle}"></a></td>
+            <td sec:authorize="hasAuthority('ROLE_ADMIN')"><a th:href="@{|/admin/book/${book.getBook().id}/read|}" th:text="${book.getBook().bookTitle}"></a></td>
             <td sec:authorize="hasAuthority('ROLE_USER')" th:text="${book.getBook().bookTitle}"></td>
             <td th:text="${book.getAuthor().authorName + ' ' + book.author.authorSurname}"></td>
             <td th:if="${book.getCoauthor() != null}" th:text="${book.getCoauthor().authorName + ' ' + book.getCoauthor().authorSurname}"></td>
@@ -50,11 +45,11 @@
                 <b th:if="${book.getBook().amountLeft} <= 0">Unavailable</b>
             </td>
             <td sec:authorize="hasAuthority('ROLE_ADMIN')">
-                <a th:href="@{|/books/${book.getBook().id}/update|}"
+                <a th:href="@{|/admin/book/${book.getBook().id}/update|}"
                    class="btn btn-primary">Update</a>
-                <a th:href="@{|/books/${book.getBook().id}/delete/one|}"
+                <a th:href="@{|/admin/book/${book.getBook().id}/delete/one|}"
                    class="btn btn-warning">Delete one copy</a>
-                <a th:href="@{|/books/${book.getBook().id}/delete|}"
+                <a th:href="@{|/admin/book/${book.getBook().id}/delete|}"
                    class="btn btn-danger">Delete</a>
             </td>
         </tr>
@@ -64,6 +59,10 @@
         <a href="/admin/rents/count"
            class="btn btn-outline-success">Statistic</a>
     </td>
+    <a href="/books/search"
+        class="btn btn-secondary">search by title</a>
+    <a href="/books/search/byauthor"
+        class="btn btn-secondary">search by author</a>
 </div>
 </body>
 </html>

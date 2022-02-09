@@ -49,8 +49,6 @@ public class UserController {
         this.bookService = bookService;
     }
 
-
-
     @GetMapping("/{id}/create/request")
     public String createRequest(@PathVariable int id, Model model) {
         model.addAttribute("request", new Request());

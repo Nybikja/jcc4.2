@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.w3.org/1999/xhtml"
       lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,8 +8,10 @@
 </head>
 <body>
 <div class="header">
-    <a href="/users/all">users</a> |
-    <a href="/rent/all">rents</a> |
+    <a href="/">home</a> |
+    <a sec:authorize="hasRole('ROLE_ADMIN')" href="/admin/rents/all">rents</a> |
+    <a href="/books/all">books</a> |
+    <a sec:authorize="hasRole('ROLE_ADMIN')" href="/admin/users/all">readers</a>
 </div>
 
 <div layout:fragment="content" style="margin: 0 auto; width: max-content">
@@ -55,10 +57,6 @@
         </tr>
 
     </table>
-<!--    <div>-->
-<!--        <a th:href="@{|/users/${book.id}/update|}">Edit</a> |-->
-<!--        <a th:href="@{|/users/${book.id}/delete|}">Remove</a>-->
-<!--    </div>-->
 </div>
 </body>
 </html>

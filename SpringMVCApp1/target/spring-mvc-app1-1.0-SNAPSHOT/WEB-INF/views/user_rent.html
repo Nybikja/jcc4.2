@@ -10,10 +10,10 @@
     <title>My rents</title>
 </head>
 <body>
-<div class="text-end">
-    <a href="/books/search">search by title</a> |
-    <a href="/books/search/byauthor">search by author</a>
-</div>
+<a href="/">home</a>
+<a th:href="@{|/user/${id}/rent|}">rents</a>
+<a th:href="@{|/user/${id}/statistic|}">statistic</a>
+<a th:href="@{|/books/all/|}">books</a>
 <div class="text-lg-start">
 
 </div>

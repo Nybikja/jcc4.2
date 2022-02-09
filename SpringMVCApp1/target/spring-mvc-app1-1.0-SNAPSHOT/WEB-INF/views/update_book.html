@@ -15,7 +15,7 @@
     <h2>Update Existing Book</h2>
 </div>
 <div>
-    <form class="form-horizontal" th:action="@{|/books/${id}/update/|}"method="post" th:object="${book}">
+    <form class="form-horizontal" th:action="@{|/admin/book/${id}/update/|}"method="post" th:object="${book}">
         <div class="form-group">
             <label class="col-sm-2 control-label" for="id">ID:</label>
             <div class="col-sm-8">

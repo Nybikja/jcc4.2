@@ -9,6 +9,10 @@
     <title>Reader Statistic</title>
 </head>
 <body>
+<a href="/">home</a>
+<a th:href="@{|/user/${id}/rent|}">rents</a>
+<a th:href="@{|/books/all/|}">books</a>
+
 <h2 class="text-center">My Statistic</h2>
     <div class="text-center" th:text="'You were read ' + ${countBook} +  ' books'"></div>
     <div class="text-center" th:text="'You were read for ' + ${days} + ' days'"></div>
