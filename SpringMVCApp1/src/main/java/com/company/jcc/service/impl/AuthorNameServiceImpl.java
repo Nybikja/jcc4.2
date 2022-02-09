@@ -49,6 +49,11 @@ public class AuthorNameServiceImpl implements AuthorNameService {
        return authorNameRepository.readByTitle(title);
     }
 
+    @Override
+    public List<AuthorName> readByCoAuthor(String surname) {
+        return authorNameRepository.readByCoAuthor(surname);
+    }
+
     public AuthorNameServiceImpl(AuthorNameRepository authorNameRepository) {
         this.authorNameRepository = authorNameRepository;
     }

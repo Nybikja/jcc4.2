@@ -50,10 +50,10 @@ public class AdminController {
 
     @GetMapping("/email/{id}")
     public String email(@PathVariable("id") int id){
-//        List<User> users = userService.getAll();
         User user = userService.readById(id);
         String email = user.getEmail();
-        emailService.sendSimpleMessage("hello", "test from my app", email);
+        String name = user.getName();
+        emailService.sendSimpleMessage("hello "+ name, "test from my app", email);
         return "redirect:/";
     }
 
@@ -64,7 +64,7 @@ public class AdminController {
             String email = user.getEmail();
             emailService.sendSimpleMessage("hello", "test from my app", email);
         }
-        return "redirect:/";
+        return "redirect:/admin/email/all";
     }
 
     @GetMapping("/users/statistic")

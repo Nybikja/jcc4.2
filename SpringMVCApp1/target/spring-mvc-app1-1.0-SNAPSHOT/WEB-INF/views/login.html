@@ -17,10 +17,10 @@
     <label for="username">Username</label>:
     <input type="text" id="username" name="username" autofocus="autofocus" /> <br />
     <label for="password">Password</label>:
-    <input type="password" id="password" name="password" /> <br />
+    <input type="password" id="password" name="password" autofocus="autofocus" /> <br />
     <input type="submit" value="Log in" />
-    <a th:href="@{/users/create}"
-       class="btn btn-primary btn-sm">Sign up</a>
+    <a th:href="@{/users/create}">Sign up</a>
 </form>
+
 </body>
 </html>

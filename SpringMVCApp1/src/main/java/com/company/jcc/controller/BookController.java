@@ -168,6 +168,8 @@ public class BookController {
         List<AuthorName> authorNames = authorNameService.getAll();
         if (author != null) {
             authorNames = authorNameService.readByAuthor(author);
+            List<AuthorName> authorNames1 = authorNameService.readByCoAuthor(author);
+            authorNames.addAll(authorNames1);
         }
         model.addAttribute("books", authorNames);
         return "index4";

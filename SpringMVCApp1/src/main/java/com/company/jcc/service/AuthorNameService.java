@@ -13,5 +13,6 @@ public interface AuthorNameService {
     void delete(int id);
     List<AuthorName> getAll();
     AuthorName readByTitle(String title);
+    List<AuthorName> readByCoAuthor(String surname);
 
 }

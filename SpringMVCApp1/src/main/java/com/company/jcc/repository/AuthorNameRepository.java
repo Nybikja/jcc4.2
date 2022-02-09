@@ -36,8 +36,14 @@ public class AuthorNameRepository {
 
     @Transactional
     public List<AuthorName> readByAuthor(String surname) {
-        Query query = entityManager.createQuery("from AuthorName " +
-                "where author.authorSurname = " + "'" + surname + "'" + " or coauthor.authorSurname = " + "'" + surname + "'");
+        TypedQuery<AuthorName> query = entityManager.createQuery("from AuthorName " +
+                "where author.authorSurname = " + "'" + surname + "'", AuthorName.class);
+        return query.getResultList();
+    }
+
+    @Transactional
+    public List<AuthorName> readByCoAuthor(String surname) {
+        TypedQuery<AuthorName> query = entityManager.createQuery("from AuthorName where coauthor.authorSurname = " + "'" + surname + "'", AuthorName.class);
         return query.getResultList();
     }
 
