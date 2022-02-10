@@ -8,12 +8,16 @@ import com.company.jcc.service.BookService;
 import com.company.jcc.service.impl.AuthorNameServiceImpl;
 import com.company.jcc.service.impl.AuthorServiceImpl;
 import com.company.jcc.service.impl.BookServiceImpl;
+import com.company.jcc.service.impl.RentServiceImpl;
 import org.joda.time.Days;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
 
@@ -33,20 +37,14 @@ public class BookController {
     @Autowired
     private AuthorNameServiceImpl authorNameService;
 
-//    @GetMapping("/create")
-//    public String create(Model model) {
-//        model.addAttribute("book", new Book());
-//        return "create_book";
-//    }
-
+    @Autowired
+    private RentServiceImpl rentService;
 
     @GetMapping("/all")
     public String getAll(Model model) {
         model.addAttribute("books", authorNameService.getAll());
         return "book_list2";
     }
-
-
 
 //    @GetMapping("/search/byauthor")
 //    public String search(Model model){
@@ -85,6 +83,24 @@ public class BookController {
         }
         model.addAttribute("books", authorNames);
         return "index4";
+    }
+
+    @GetMapping("/statistic")
+    public String statistic(){
+        return "book_statistic";
+    }
+
+    @PostMapping("/statistic")
+    public String statistic(@RequestParam("dateStart") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateStart,
+                            @RequestParam("dateEnd") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateEnd,
+                            Model model){
+        model.addAttribute("dateStart", dateStart);
+        model.addAttribute("dateEnd", dateEnd);
+        Rent mostPopular = rentService.getMostPopular(dateStart, dateEnd);
+        Rent mostUnpopular = rentService.getMostUnpopular(dateStart, dateEnd);
+        model.addAttribute("rent", mostPopular);
+        model.addAttribute("rent2", mostUnpopular);
+        return "rent_list2";
     }
 
 

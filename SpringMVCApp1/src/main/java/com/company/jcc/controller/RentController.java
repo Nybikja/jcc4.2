@@ -40,24 +40,7 @@ public class RentController {
         this.userService = userService;
     }
 
-    @GetMapping("/statistic")
-    public String statistic(){
-//        model.addAttribute("rents", rentService.getAll());
-        return "book_statistic";
-    }
 
-    @PostMapping("/statistic")
-    public String statistic(@RequestParam("dateStart") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateStart,
-                            @RequestParam("dateEnd") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateEnd,
-                            Model model){
-        model.addAttribute("dateStart", dateStart);
-        model.addAttribute("dateEnd", dateEnd);
-        Rent mostPopular = rentService.getMostPopular(dateStart, dateEnd);
-        Rent mostUnpopular = rentService.getMostUnpopular(dateStart, dateEnd);
-        model.addAttribute("rent", mostPopular);
-        model.addAttribute("rent2", mostUnpopular);
-        return "rent_list2";
-    }
 
     @GetMapping("/count")
     public String count(){

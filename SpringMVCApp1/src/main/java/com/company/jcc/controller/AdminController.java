@@ -206,4 +206,10 @@ public class AdminController {
         authorNameService.update(authorName);
         return "redirect:/books/all";
     }
+
+    @GetMapping("/requests/all")
+    public String readAll(Model model) {
+        model.addAttribute("requests", requestService.getAll());
+        return "request_list";
+    }
 }

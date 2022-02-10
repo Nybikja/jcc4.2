@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml"
       lang="en">
 <head>
     <meta charset="ISO-8859-1">
@@ -11,8 +11,12 @@
 </head>
 <body>
 <div class="header">
-    <a href="/users/all">users</a> |
-    <a href="/books/all">books</a> |
+    <a href="/">home</a> |
+    <a href="/books/all">books</a>
+    <div sec:authorize="hasRole('ROLE_ADMIN')">
+        <a href="/admin/rents/all">rents</a> |
+        <a href="/admin/users/all">readers</a>
+    </div>
 </div>
 
 <div style="margin: 0 auto; width: max-content">

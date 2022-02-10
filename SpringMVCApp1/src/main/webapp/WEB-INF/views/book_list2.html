@@ -12,8 +12,10 @@
 <body>
 <div class="header">
     <a href="/">home</a> |
-    <a sec:authorize="hasRole('ROLE_ADMIN')" href="/admin/rents/all">rents</a> |
-    <a sec:authorize="hasRole('ROLE_ADMIN')" href="/admin/users/all">readers</a>
+    <div sec:authorize="hasRole('ROLE_ADMIN')">
+        <a href="/admin/rents/all">rents</a> |
+        <a href="/admin/users/all">readers</a>
+    </div>
 </div>
 <div style="margin: 0 auto; width: max-content">
     <h2>List of Books</h2>
@@ -55,14 +57,16 @@
         </tr>
         </tbody>
     </table>
+    <a href="/books/statistic"
+           class="btn btn-success">Statistic</a>
     <td sec:authorize="hasAuthority('ROLE_ADMIN')">
         <a href="/admin/rents/count"
-           class="btn btn-outline-success">Statistic</a>
+           class="btn btn-outline-success">Count</a>
     </td>
     <a href="/books/search"
-        class="btn btn-secondary">search by title</a>
+        class="btn btn-secondary">Search by title</a>
     <a href="/books/search/byauthor"
-        class="btn btn-secondary">search by author</a>
+        class="btn btn-secondary">Search by author</a>
 </div>
 </body>
 </html>
