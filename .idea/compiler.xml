@@ -8,14 +8,15 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="jccNew" />
-        <module name="jcc4.2" />
         <module name="todolist" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="jcc4.2" target="15" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="jcc4.2" options="-parameters" />
       <module name="jccNew" options="-parameters" />
       <module name="todolist" options="-parameters" />
     </option>
